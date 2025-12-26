@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prueba Tecnica - Ingeniero de Datos</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .tag { background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 3px 8px; margin-left: 6px; font-size: 0.95em; }
+  dt { color: #2e7d32; font-weight: bold; margin-top: 10px; }
+  dd { margin-bottom: 10px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+  .sideEffects ul, .solid ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  /* Code block styling */
+  pre { background: #f6f8fa; padding: 14px; border-radius: 8px; overflow: auto; font-size: 0.92em; }
+  code { font-family: Consolas, 'Courier New', monospace; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  /* Small visual helpers */
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  .json { white-space: pre; font-family: Consolas, 'Courier New', monospace; font-size: 0.95em; }
+  .success { color: #2e7d32; font-weight: 600; }
+  .error { color: #c62828; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prueba Tecnica - Ingeniero de Datos</h1>
+    <p>Transcripcion de los requerimientos basicos para planificar el ejercicio y dejar registro visual de cada componente del proceso.</p>
+
+    <h2>Objetivo</h2>
+    <p>Evaluar la capacidad del candidato para:</p>
+    <ul>
+      <li>Identificar problemas de calidad de datos en un conjunto de datos.</li>
+      <li>Aplicar tecnicas de limpieza, validacion y auditoria de datos.</li>
+      <li>Documentar hallazgos y proponer estrategias de mejora.</li>
+      <li>Utilizar herramientas para depuracion.</li>
+      <li>Aplicar principios de gobierno de datos.</li>
+    </ul>
+
+    <h2>Tiempo estimado para resolucion</h2>
+    <p>4 a 6 horas.</p>
+
+    <h2>Entregables esperados</h2>
+    <h3>1. Informe tecnico</h3>
+    <ul>
+      <li>Analisis exploratorio y resumen de hallazgos de calidad.</li>
+      <li>Validaciones realizadas y problemas detectados.</li>
+      <li>Estrategia de limpieza y supuestos adoptados.</li>
+      <li>Metricas de calidad antes y despues de la limpieza.</li>
+    </ul>
+    <h3>2. Script o notebook Python</h3>
+    <ul>
+      <li>Ingesta del archivo <code>dataset_hospital.json</code>.</li>
+      <li>Limpieza de los datos segun lo identificado.</li>
+      <li>Validaciones cruzadas entre tablas.</li>
+      <li>Exportacion de las versiones limpias.</li>
+    </ul>
+    <h3>3. Opcional</h3>
+    <p>(Valorado positivamente) implementacion de pruebas automaticas para validar integridad.</p>
+
+    <div class="note">
+      <p>Entrega final en archivo comprimido (.zip) con:</p>
+      <ul>
+        <li>Informe en PDF.</li>
+        <li>Script o notebook.</li>
+        <li>Datasets limpios exportados.</li>
+      </ul>
+    </div>
+
+    <h2>Actividades a realizar</h2>
+    <h3>Parte 1 - Analisis de calidad de datos (Exploracion)</h3>
+    <p>Identificar y describir los principales problemas de calidad en las tablas <strong>pacientes</strong> y <strong>citas_medicas</strong>.</p>
+
+    <h3>Parte 2 - Limpieza y validacion</h3>
+    <ol>
+      <li>Aplicar un proceso de limpieza que resuelva lo detectado en la Parte 1 y justificar cada decision.</li>
+      <li>Implementar validaciones cruzadas entre campos relacionados.</li>
+    </ol>
+
+    <h3>Parte 3 - Indicadores de calidad y documentacion</h3>
+    <ul>
+      <li>Crear resumen con indicadores de calidad antes y despues de la limpieza.</li>
+      <li>Documentar supuestos adoptados, reglas de validacion implementadas y recomendaciones de mejora para garantizar la calidad futura.</li>
+    </ul>
+
+    <h2>Bonus (opcional, se valora positivamente)</h2>
+    <ul>
+      <li>Implementar pruebas automaticas con <code>pytest</code>, <code>great_expectations</code> u otro framework de validacion.</li>
+      <li>Simular una migracion de los datos limpios a una estructura destino como un Data Warehouse.</li>
+    </ul>
+
+    <h2>Requisitos tecnicos</h2>
+    <ul>
+      <li>Usar Python.</li>
+      <li>Puede ser un notebook (<code>.ipynb</code>) o script (<code>.py</code>).</li>
+    </ul>
+
+    <h2>Entregables</h2>
+    <ul>
+      <li><a href="usecases.html" target="_blank">Listado Casos de Uso detectados</a></li>
+      <li></li>
+    </ul>
+    <div class="footer"> </div>
+    <p>&nbsp;</p>
+    <div class="footer">
+      Entrega ideal: <strong>index.html</strong> complementa la planificacion y sirve como referencia visual del encargo.
+    </div>
+  </div>
+</body>
+</html>
