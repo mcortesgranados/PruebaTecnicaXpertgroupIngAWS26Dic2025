@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte caso de uso 2.4</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .tag { background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 3px 8px; margin-left: 6px; font-size: 0.95em; }
+  dt { color: #2e7d32; font-weight: bold; margin-top: 10px; }
+  dd { margin-bottom: 10px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+  .sideEffects ul, .solid ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  /* Code block styling */
+  pre { background: #f6f8fa; padding: 14px; border-radius: 8px; overflow: auto; font-size: 0.92em; }
+  code { font-family: Consolas, 'Courier New', monospace; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  /* Small visual helpers */
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  .json { white-space: pre; font-family: Consolas, 'Courier New', monospace; font-size: 0.95em; }
+  .success { color: #2e7d32; font-weight: 600; }
+  .error { color: #c62828; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Histórico de estados y efectos en la agenda (2.4)</h1>
+    <div class="note">
+      <p>Consolidamos cada <code>id_cita</code> para contar transiciones, detectar múltiples reprogramaciones y cuantificar el impacto en médicos/semana.</p>
+    </div>
+    <div class="row">
+      <div class="col endpoint">
+        <strong>Citas únicas</strong>
+        <p>9961</p>
+      </div>
+      <div class="col endpoint">
+        <strong>Citas reprogramadas</strong>
+        <p>2533</p>
+      </div>
+    </div>
+
+    <h2>Historial por cita</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>id_cita</th>
+          <th>Estado final</th>
+          <th>Reprogramaciones</th>
+          <th>Médicos involucrados</th>
+          <th>Eventos</th>
+          <th>Detalles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>760b31a6-c470-4bf3-add1-878703b403ba</td><td>Reprogramada</td><td>1</td><td>Dr. Juan Valdez</td><td>1</td><td>Reprogramada (sin fecha)</td></tr>
+<tr><td>0810c43c-fe5a-4461-90af-34f6daf8f7b7</td><td>Completada</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>Completada (2022-02-14T00:00:00)</td></tr>
+<tr><td>2f38fd84-4db6-48d5-989d-8c7e4a34dcaa</td><td>Cancelada</td><td>0</td><td>—</td><td>1</td><td>Cancelada (sin fecha)</td></tr>
+<tr><td>fc660b15-69c7-4de9-a860-9c73c1174350</td><td>Completada</td><td>0</td><td>—</td><td>1</td><td>Completada (2025-06-16T00:00:00)</td></tr>
+<tr><td>1cf4b240-0f86-47a1-bab1-53568b25d786</td><td>Reprogramada</td><td>1</td><td>—</td><td>1</td><td>Reprogramada (sin fecha)</td></tr>
+<tr><td>89cee699-c86e-4169-8764-18e57d4e79ee</td><td>Cancelada</td><td>0</td><td>Dr. Juan Valdez</td><td>1</td><td>Cancelada (sin fecha)</td></tr>
+<tr><td>b3b54baf-abdc-47e0-848c-a256150884e6</td><td>Cancelada</td><td>0</td><td>Dr. Juan Valdez</td><td>1</td><td>Cancelada (sin fecha)</td></tr>
+<tr><td>b22ff34b-7976-4610-a64a-aac85511c4e4</td><td>Completada</td><td>0</td><td>—</td><td>1</td><td>Completada (2025-04-12T00:00:00)</td></tr>
+<tr><td>a673a003-07fb-4b49-a888-f583ca394d25</td><td>Reprogramada</td><td>1</td><td>Dra. Lina Torres</td><td>1</td><td>Reprogramada (sin fecha)</td></tr>
+<tr><td>a6f50bf0-f4ca-4bba-8b2e-42d67485773c</td><td>Completada</td><td>0</td><td>—</td><td>1</td><td>Completada (sin fecha)</td></tr>
+<tr><td>a8d38c42-b714-4f29-8b60-4afad0a20e35</td><td>sin_estado</td><td>0</td><td>—</td><td>1</td><td>sin_estado (sin fecha)</td></tr>
+<tr><td>6d6187ef-f4f1-4636-a473-9c896a2e49eb</td><td>sin_estado</td><td>0</td><td>Dr. Camilo Rojas</td><td>1</td><td>sin_estado (sin fecha)</td></tr>
+<tr><td>48c37b6f-3b8d-4a0f-83bb-9ca029480376</td><td>Reprogramada</td><td>1</td><td>—</td><td>1</td><td>Reprogramada (2022-11-26T00:00:00)</td></tr>
+<tr><td>5ea4825e-e7b3-4515-8900-07d1a419837d</td><td>Completada</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>Completada (sin fecha)</td></tr>
+<tr><td>757c5b9c-ef67-4537-b862-efee137077f5</td><td>Completada</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>Completada (sin fecha)</td></tr>
+<tr><td>c31007ca-5960-4b14-abd3-c84d4d8563cf</td><td>sin_estado</td><td>0</td><td>Dra. Lina Torres</td><td>1</td><td>sin_estado (2023-10-19T00:00:00)</td></tr>
+<tr><td>4db4b5f6-93d1-4f16-b494-a355b2059695</td><td>Completada</td><td>0</td><td>Dr. Juan Valdez</td><td>1</td><td>Completada (2024-01-13T00:00:00)</td></tr>
+<tr><td>38416d65-90dd-4d07-9b3f-ddf294c166f8</td><td>Completada</td><td>0</td><td>Dr. Juan Valdez</td><td>1</td><td>Completada (sin fecha)</td></tr>
+<tr><td>6b2a9862-9349-4ef0-a183-e6b726d153da</td><td>sin_estado</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>sin_estado (sin fecha)</td></tr>
+<tr><td>2b9461b6-05fb-4086-9c58-df5ede8cfad1</td><td>Cancelada</td><td>0</td><td>Dra. Lina Torres</td><td>1</td><td>Cancelada (sin fecha)</td></tr>
+<tr><td>ad98f0a9-5bb6-4931-aa99-6958f95fb225</td><td>Completada</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>Completada (2025-12-16T00:00:00)</td></tr>
+<tr><td>eea9ed6e-93bf-4afc-8894-b461735079b4</td><td>Cancelada</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>Cancelada (sin fecha)</td></tr>
+<tr><td>d9831883-ac52-4691-8ee5-97fa2f3fd307</td><td>sin_estado</td><td>0</td><td>Dr. Camilo Rojas</td><td>1</td><td>sin_estado (sin fecha)</td></tr>
+<tr><td>408ec9be-d14d-4289-b710-01c6f10a22b0</td><td>Reprogramada</td><td>1</td><td>Dra. Lina Torres</td><td>1</td><td>Reprogramada (2025-03-29T00:00:00)</td></tr>
+<tr><td>901e5c62-3486-42b5-85b0-65f4d0d33610</td><td>Reprogramada</td><td>1</td><td>Dr. Andrés Murcia</td><td>1</td><td>Reprogramada (sin fecha)</td></tr>
+<tr><td>2202d310-6183-4400-b359-2b41cdba6f9f</td><td>Cancelada</td><td>0</td><td>—</td><td>1</td><td>Cancelada (sin fecha)</td></tr>
+<tr><td>87d0e7f6-5949-46c6-88a8-78dc1f24ac38</td><td>Reprogramada</td><td>1</td><td>Dra. Lina Torres</td><td>1</td><td>Reprogramada (sin fecha)</td></tr>
+<tr><td>d1305cdc-2a75-4edf-af38-4edfe7ed6eb5</td><td>sin_estado</td><td>0</td><td>Dr. Juan Valdez</td><td>1</td><td>sin_estado (2023-06-28T00:00:00)</td></tr>
+<tr><td>ba53d833-4979-4e7e-86e3-605b7b1b8978</td><td>Completada</td><td>0</td><td>Dr. Andrés Murcia</td><td>1</td><td>Completada (sin fecha)</td></tr>
+<tr><td>6e56b979-1bf8-4422-8ff9-6b7d8ef94291</td><td>Reprogramada</td><td>1</td><td>—</td><td>1</td><td>Reprogramada (sin fecha)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Impacto en ocupación</h2>
+    <p class="note">Reprogramaciones distribuidas por médico y semana ISO.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Médico</th>
+          <th>Semana</th>
+          <th>Reprogramaciones</th>
+          <th>Citas afectadas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Dr. Camilo Rojas</td><td>2022-W22</td><td>5</td><td>5</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2023-W45</td><td>4</td><td>4</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2024-W48</td><td>4</td><td>4</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2022-W31</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2022-W32</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2023-W24</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2023-W28</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2023-W29</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2023-W37</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2023-W40</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2025-W08</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2025-W37</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2025-W40</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2025-W42</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Andrés Murcia</td><td>2025-W46</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2022-W21</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2022-W29</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2022-W36</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2022-W47</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2023-W16</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2024-W09</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Camilo Rojas</td><td>2025-W14</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Juan Valdez</td><td>2022-W04</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Juan Valdez</td><td>2022-W06</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Juan Valdez</td><td>2022-W28</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Juan Valdez</td><td>2024-W43</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Juan Valdez</td><td>2024-W50</td><td>3</td><td>3</td></tr>
+<tr><td>Dr. Juan Valdez</td><td>2025-W45</td><td>3</td><td>3</td></tr>
+<tr><td>Dra. Lina Torres</td><td>2022-W05</td><td>3</td><td>3</td></tr>
+<tr><td>Dra. Lina Torres</td><td>2022-W07</td><td>3</td><td>3</td></tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_appointment_state_timeline.py</code>.
+    </div>
+  </div>
+</body>
+</html>
