@@ -253,3 +253,39 @@ class AppointmentIndicatorReport:
             "entries": [entry.to_dict() for entry in self.entries],
             "bottlenecks": [entry.to_dict() for entry in self.bottlenecks],
         }
+
+
+@dataclass
+class AppointmentAlertEntry:
+    id_cita: str
+    id_paciente: Optional[int]
+    falta_fecha: bool
+    falta_medico: bool
+    especialidad: Optional[str]
+    note: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "id_paciente": self.id_paciente,
+            "falta_fecha": self.falta_fecha,
+            "falta_medico": self.falta_medico,
+            "especialidad": self.especialidad,
+            "note": self.note,
+        }
+
+
+@dataclass
+class AppointmentAlertReport:
+    total_records: int
+    alerts: int
+    entries: List[AppointmentAlertEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_records": self.total_records,
+                "alerts": self.alerts,
+            },
+            "alerts": [entry.to_dict() for entry in self.entries],
+        }
