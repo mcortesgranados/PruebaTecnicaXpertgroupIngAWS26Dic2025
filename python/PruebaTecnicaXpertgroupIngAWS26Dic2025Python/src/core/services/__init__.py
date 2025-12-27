@@ -1,5 +1,6 @@
 from .age_consistency_service import AgeConsistencyService
 from .appointment_alert_service import AppointmentAlertService
+from .appointment_cost_audit_service import AppointmentCostAuditService
 from .appointment_indicator_service import AppointmentIndicatorService
 from .completeness_service import CompletenessService
 from .duplicate_detection_service import DuplicateDetectionService
