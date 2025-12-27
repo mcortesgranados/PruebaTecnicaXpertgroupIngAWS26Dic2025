@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from enum import Enum
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 
 class PatientCategory(str, Enum):
@@ -352,4 +352,58 @@ class CostAuditReport:
             },
             "summaries": [entry.to_dict() for entry in self.summaries],
             "anomalies": [entry.to_dict() for entry in self.anomalies],
+        }
+
+
+@dataclass
+class AppointmentStateHistoryEntry:
+    id_cita: str
+    transitions: List[Tuple[str, Optional[str]]]  # (status, fecha)
+    doctors: List[str]
+    reprogram_count: int
+    final_estado: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "transitions": [
+                {"estado": estado, "fecha": fecha} for estado, fecha in self.transitions
+            ],
+            "doctors": self.doctors,
+            "reprogram_count": self.reprogram_count,
+            "final_estado": self.final_estado,
+        }
+
+
+@dataclass
+class OccupancyImpactEntry:
+    medico: str
+    week: str
+    reprograms: int
+    affected_citas: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "medico": self.medico,
+            "week": self.week,
+            "reprograms": self.reprograms,
+            "affected_citas": self.affected_citas,
+        }
+
+
+@dataclass
+class AppointmentStateTimelineReport:
+    total_citas: int
+    reprogrammed_citas: int
+    entries: List[AppointmentStateHistoryEntry] = field(default_factory=list)
+    occupancy_impacts: List[OccupancyImpactEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_citas": self.total_citas,
+                "reprogrammed_citas": self.reprogrammed_citas,
+            },
+            "entries": [entry.to_dict() for entry in self.entries],
+            "occupancy_impacts": [entry.to_dict() for entry in self.occupancy_impacts],
         }
