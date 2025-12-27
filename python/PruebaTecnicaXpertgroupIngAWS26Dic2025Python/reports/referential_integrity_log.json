@@ -1,0 +1,958 @@
+{
+  "summary": {
+    "total_citas": 9961,
+    "orphan_citas": 190
+  },
+  "orphan_entries": [
+    {
+      "id_cita": "ff335846-cf4a-427c-a598-4d0c49019fcf",
+      "id_paciente": 6416,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "9ceaa50a-16dd-431e-8345-c5e4a32e7c6d",
+      "id_paciente": 6148,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "86fbd10f-c3ef-490c-a4f7-0ab55e4745fe",
+      "id_paciente": 6141,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "6f46ce42-8e1f-4ed8-b80a-cdb1f238a715",
+      "id_paciente": 6095,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "3f08c4ff-37c8-41e1-bea8-1e59172f0b6a",
+      "id_paciente": 6000,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "64bdd3cd-8a7b-48cc-8123-227f3ed4d23e",
+      "id_paciente": 6327,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "e6111e33-36b3-4065-92f1-68068598a3be",
+      "id_paciente": 6157,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "2933d6a4-e3b8-46dd-a3b8-85a2164adf32",
+      "id_paciente": 6065,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "de2dcdd7-50ad-4494-8772-34d91110b10a",
+      "id_paciente": 6037,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "b9c18dc9-51ce-45e2-b502-71fca15cf122",
+      "id_paciente": 6477,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "901987fc-1563-469f-9aac-38333201b551",
+      "id_paciente": 6186,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "9bd60575-0ebc-465f-b34b-c57243b4d63d",
+      "id_paciente": 6368,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "76aa3982-875b-4004-aba2-1297186fa4bc",
+      "id_paciente": 6030,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "61280b56-9d30-46ec-9a56-5cd13af3097f",
+      "id_paciente": 6911,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "397ffd62-f407-4217-93b1-5dcab7293c93",
+      "id_paciente": 6277,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "cc5d4d91-8843-4773-a0d5-069ac187aed6",
+      "id_paciente": 6473,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a588d034-d26b-4d0e-b8cb-9e5abec69d6d",
+      "id_paciente": 6434,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "852ac72d-0b5a-4f52-8792-8fcb47c49e7b",
+      "id_paciente": 6731,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "85f79ce2-3944-4185-9ee4-cbe7307b118d",
+      "id_paciente": 6543,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "48a5a011-075b-47ca-827e-1be26b3460fa",
+      "id_paciente": 6848,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a479d3c9-e0d2-4f05-9084-ed44e5c095bf",
+      "id_paciente": 6936,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a797a242-e8fd-435d-a347-b0f2d5a86321",
+      "id_paciente": 6974,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "549db67f-ce1e-4eea-9a5a-32ce556e0f58",
+      "id_paciente": 6608,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "eb835a30-cf4c-4139-91c3-12a27c872d67",
+      "id_paciente": 6676,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "84d72a23-c4df-4943-87fe-554cc5160170",
+      "id_paciente": 6880,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "fa0116cf-6e0a-4270-8041-2618d1bb524d",
+      "id_paciente": 6690,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "707c9b66-e749-4f80-9d97-afe5434d052a",
+      "id_paciente": 6897,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "73e36b71-1df5-4209-a6bd-b9e9be3fa192",
+      "id_paciente": 6381,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "00c78844-db8c-4558-94fb-afae12aeaa2b",
+      "id_paciente": 6024,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "1dcdc345-a9d4-4c6b-b7e7-8aca1f9dc204",
+      "id_paciente": 6324,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a0c8e109-f413-4430-8c45-a72691aa546f",
+      "id_paciente": 6544,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "af4b8683-5d4b-454e-b48e-2f402d3a0039",
+      "id_paciente": 6454,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "71df1713-24f1-4b7d-af71-a57c370a870f",
+      "id_paciente": 6473,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "f4886583-5ed4-4ac2-9387-d66857ac336e",
+      "id_paciente": 6592,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "871d2c84-eda3-4794-a939-bdb9ab09b2a4",
+      "id_paciente": 6198,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "0058979d-e21e-4e82-93fd-35d22a2f9476",
+      "id_paciente": 6249,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "803b6247-6f17-4b1c-838b-7da54876ffd0",
+      "id_paciente": 6542,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "64cd283c-ec0a-43b8-8212-c2b8004c239e",
+      "id_paciente": 6370,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "2da2cd51-1266-44ba-a884-7f9259477540",
+      "id_paciente": 6742,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "21ff6f76-18a3-4c0a-9e01-2bff31e8488b",
+      "id_paciente": 6827,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "0964dba2-e9f4-49fa-83a5-65bdc3f5b8fa",
+      "id_paciente": 6546,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "f582d7a2-0829-49be-945c-bdd6edca6801",
+      "id_paciente": 6118,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a989037a-1f1d-4f7e-b374-67f7a8705a16",
+      "id_paciente": 6786,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "d47d003c-fe7c-461b-abef-19bcbe4fa5bc",
+      "id_paciente": 6377,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "8065581a-8962-4f07-9f46-0ff0b7d9100f",
+      "id_paciente": 6175,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "613491f0-5c69-44b6-86a1-f2c7f9c6f750",
+      "id_paciente": 6948,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "e858f704-1f92-4332-8a1f-5394703d2261",
+      "id_paciente": 6489,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "b7524450-062e-4048-bd87-d2350cc55793",
+      "id_paciente": 6452,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "3f3c4def-54d8-4a8c-ad5e-a46135f9670d",
+      "id_paciente": 6150,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "df49dd40-af56-4b56-a1e6-607a8ebb1607",
+      "id_paciente": 6994,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "48ecc7e4-8cb2-45ab-9149-e1567a082b01",
+      "id_paciente": 6469,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "f6ffab24-5f9b-488e-83f2-c0498c2dc0f6",
+      "id_paciente": 6736,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a0259668-759d-475a-be7c-1b145d4e8d61",
+      "id_paciente": 6822,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ef8e1b02-81e8-4753-812b-c28760af705a",
+      "id_paciente": 6630,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "541384a0-64a3-414d-baf2-3569781e6fc8",
+      "id_paciente": 6159,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "6933d9a2-dc42-4e1c-9420-ae41c298bca6",
+      "id_paciente": 6439,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "6fe033a2-d0d6-49f2-b2da-3e632ea8d69c",
+      "id_paciente": 6373,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4ae5f817-7379-41bd-a519-1ba56d2773e5",
+      "id_paciente": 6904,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4ab6739d-b5f3-454c-9532-424f2afa0242",
+      "id_paciente": 6091,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5a96a636-6600-41e2-9e44-039cef1acc59",
+      "id_paciente": 6169,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "329eec36-aa49-4085-bad9-a4a943fb2e6a",
+      "id_paciente": 6714,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "d39bb532-2391-4e87-98e0-f5206e98edb7",
+      "id_paciente": 6331,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "dfb515e8-4c22-48a9-be28-95634aa7a503",
+      "id_paciente": 6164,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "3f48c951-0b9c-4169-9ec3-eb4840c62832",
+      "id_paciente": 6790,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "1cc2e441-9f9f-41a7-b6b4-6d38e3a86411",
+      "id_paciente": 6369,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a4e106a6-0eb1-44e9-8be9-7df4a059ee52",
+      "id_paciente": 6851,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "319c8216-caa5-479b-a167-f80a841eedd9",
+      "id_paciente": 6072,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5a026372-d529-4824-bd62-b9795f3854dc",
+      "id_paciente": 6475,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "f869154d-9cab-4ff3-bbaf-dc3a4bf6e077",
+      "id_paciente": 6348,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "09edd1f2-d4ac-4263-815d-bbfd062fbad4",
+      "id_paciente": 6549,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5f97e3e9-bf5a-4fc3-b08b-eb004efb3196",
+      "id_paciente": 6904,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "0f6754b9-d7cd-470d-8b47-803c4c4d1846",
+      "id_paciente": 6647,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "8375f3ec-d0fb-4bc9-a81e-85354459744d",
+      "id_paciente": 6689,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "b8eb00bb-696c-4749-8216-f322d25e3a26",
+      "id_paciente": 6220,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "941e4531-71d3-4cff-83f2-004ebbf2d603",
+      "id_paciente": 6203,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "e8d58a5b-7d71-4d32-bba1-b30b624a55b3",
+      "id_paciente": 6981,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "481928e4-74bc-404f-b43d-04f9249d5814",
+      "id_paciente": 6847,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "df646c63-941e-48f3-a63b-0cfecd1c01e6",
+      "id_paciente": 6268,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4c184893-b4f8-47e1-9e9b-531cd999adad",
+      "id_paciente": 6490,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "cefbc893-384c-4118-b608-8e0c187aa508",
+      "id_paciente": 6782,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "2228cbfa-f67a-43cb-a7d8-c54046e9e082",
+      "id_paciente": 6149,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "8eaabada-986b-4fcb-ba82-6b1ee05e44e6",
+      "id_paciente": 6051,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ef32d18a-98a3-4052-bcf8-597d54d5dacd",
+      "id_paciente": 6089,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "e88e60b4-008d-483b-9662-67b70e207c31",
+      "id_paciente": 6991,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "b66b128b-7139-4af6-b808-6806b30feb63",
+      "id_paciente": 6241,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "fb8747bd-7b68-4e83-96d2-a17de05e9731",
+      "id_paciente": 6888,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4a8bbb6e-ae25-42c4-9b3f-f7bbc817a765",
+      "id_paciente": 6112,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "2a6f16ee-bc8f-4b58-83ab-daaf30238e15",
+      "id_paciente": 6593,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "bf27e36d-64a3-4391-8196-371129c936d6",
+      "id_paciente": 6164,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "b22b107a-95b7-4bc0-9ea7-95b423bc7ca2",
+      "id_paciente": 6314,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "7d79596b-1294-4236-97fc-8d53178b848c",
+      "id_paciente": 6710,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "108907ff-c1b5-492d-bb36-72d108805ff7",
+      "id_paciente": 6359,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "80cbd898-7ecc-40b7-91b7-eb0b255864eb",
+      "id_paciente": 6342,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4d3857b7-8efe-440d-90ca-3f281c4b9965",
+      "id_paciente": 6351,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "8915e8ea-056f-4235-8f2b-ae2d355594e9",
+      "id_paciente": 6946,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "bc934b61-2e78-4f2a-a2e7-08d9edf99255",
+      "id_paciente": 6334,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "13f98868-eac5-4d20-87d3-408761b1dfba",
+      "id_paciente": 6003,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ee83af8f-ca10-4141-8517-4ff1bd0e9ebf",
+      "id_paciente": 6728,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "855b0b04-62e5-4608-bc76-f85b3b32e60d",
+      "id_paciente": 6922,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a9c74d6f-96d8-4011-b18a-44a200646a71",
+      "id_paciente": 6477,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5dc3f551-b3e2-4e4b-bfec-a9ac51267707",
+      "id_paciente": 6837,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "fc077b91-ce2e-49fa-9572-85a6e38a6e46",
+      "id_paciente": 6767,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "23d3e0b8-75aa-47a6-ab1d-869004b284fb",
+      "id_paciente": 6332,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "440fa5bc-7303-46f0-947b-e45e5e610794",
+      "id_paciente": 6310,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ba04149d-3031-4f61-9ce6-2397deed1263",
+      "id_paciente": 6139,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "491bc649-c244-4441-a0ee-f8e8cc49c9bd",
+      "id_paciente": 6466,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "80cee5d1-4cd0-44ec-bd4e-1153af172f8b",
+      "id_paciente": 6545,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "43540a59-e078-4db5-8f7d-a5a7622125d0",
+      "id_paciente": 6721,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "015fd158-78fa-467c-a790-91db830b5bbb",
+      "id_paciente": 6174,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ad22563f-f026-427b-904a-332c85009acc",
+      "id_paciente": 6509,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "362fba27-0292-458a-a9c5-48dd21676a04",
+      "id_paciente": 6063,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "86691eef-1ea7-46f8-a76d-24464070f526",
+      "id_paciente": 6450,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "16fac1ea-7013-4de9-8d87-30fef817591a",
+      "id_paciente": 6176,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a191c366-4319-42a4-9b30-0942828903b4",
+      "id_paciente": 6797,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "0d4b8480-aa27-475f-a641-e953b6bb25c6",
+      "id_paciente": 6562,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4d2f57e6-4561-4760-a623-8b52f7258482",
+      "id_paciente": 6859,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "36682116-6a1e-4028-acfd-97296325e56c",
+      "id_paciente": 6125,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5de08f84-3730-4a7f-9a4c-346488f3bb5d",
+      "id_paciente": 6673,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "fc160896-eddf-4905-ad15-441b4fd1b9a0",
+      "id_paciente": 6087,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "8d417592-3772-47ed-a67b-850c06cf52d4",
+      "id_paciente": 6690,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "2fe58147-a499-4ee8-b38d-d554b4f9cd6c",
+      "id_paciente": 6758,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "38b8ab85-c787-4124-a189-20ea206bd60c",
+      "id_paciente": 6146,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "62770a68-4f05-4127-a252-f34fdae50fc7",
+      "id_paciente": 6814,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "7c4a349e-79e5-4492-9957-5782cce0aa02",
+      "id_paciente": 6488,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "1b3ce637-8632-46cd-aecd-5d96930d0c36",
+      "id_paciente": 6363,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "9481da76-ed87-46eb-8ff5-785788dfae67",
+      "id_paciente": 6395,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "1927e498-f79f-49f3-936f-ec097fa61282",
+      "id_paciente": 6894,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "0fccdaa1-5f0b-4092-8588-100c8cc061f2",
+      "id_paciente": 6787,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "9cb255fe-57e6-44eb-a3b4-8838d79c3ba2",
+      "id_paciente": 6460,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "2ba7add2-4891-4cbd-8d58-089a5e028b5f",
+      "id_paciente": 6068,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "de74dc31-1125-4614-953a-d7ce36d1bb4d",
+      "id_paciente": 6773,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "9a304ab5-2bfa-49ff-a563-aa912df62732",
+      "id_paciente": 6865,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "fa84f273-c51d-4b72-ad85-b6126fe8a9f5",
+      "id_paciente": 6963,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ab6ebec6-3164-4adb-9a8f-e56c5b6efb78",
+      "id_paciente": 6733,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "93810ded-8745-4f04-b8fc-e66d0905c6a1",
+      "id_paciente": 6011,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "634ad5bd-a0f5-42b8-9d09-42a2e6f7c7d9",
+      "id_paciente": 6684,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a046da1a-4321-4ecc-ba99-87871c31f838",
+      "id_paciente": 6350,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ef8f40d4-d706-4c0d-b4dc-d3fbd29454c7",
+      "id_paciente": 6124,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "517b4f36-c57f-4287-a805-40033da8267b",
+      "id_paciente": 6012,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "decaeecc-1ed6-40e1-a0ac-67cd7fad75cf",
+      "id_paciente": 6567,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "77692731-3ec6-4d15-890c-0cae6336bb89",
+      "id_paciente": 6494,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ccbc11f3-0b68-4a69-872e-64a8414e5398",
+      "id_paciente": 6047,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "250e5d8a-b6a6-4714-9793-6b1bef2ff1a9",
+      "id_paciente": 6874,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "6bfbf176-4d1f-4129-908d-fcbd65402ba9",
+      "id_paciente": 6329,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "17dbd40e-2a5b-49e5-bcba-7ce7507cbf8e",
+      "id_paciente": 6241,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "f11d1a3a-95ca-4239-bc8f-92ec849e6a49",
+      "id_paciente": 6464,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "24a431be-2fde-4d90-9074-1dc2d5648c93",
+      "id_paciente": 6183,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "aa49c5d7-b64a-480a-bd7d-a29748e28496",
+      "id_paciente": 6989,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a5fee392-400d-435c-a00f-1d893b4fd488",
+      "id_paciente": 6288,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "c901a0b6-9ca8-4f01-8d64-2cd3df022dfa",
+      "id_paciente": 6613,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "d4e7b519-cf9f-437b-b3cc-3deb1d936999",
+      "id_paciente": 6313,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "93d7910e-cb81-4f64-baec-071d9e347745",
+      "id_paciente": 6714,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "234b2ed0-b9b3-4272-8e51-0b089e73bd17",
+      "id_paciente": 6379,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "148d0250-5e00-4146-91d4-94a12c36897b",
+      "id_paciente": 6544,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "54314837-d376-4079-9b4d-c09498095307",
+      "id_paciente": 6071,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "c5b45f39-0fec-4f92-a173-d5b67e029240",
+      "id_paciente": 6607,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5afb83c5-829f-4eba-83f7-e20e9c276f48",
+      "id_paciente": 6956,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "1c5df478-ff94-4d1d-9ee0-044137fae2e0",
+      "id_paciente": 6892,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "d77fd98d-5140-4860-b1c7-e279b1ac255d",
+      "id_paciente": 6874,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "7309519b-2bcb-4c76-8fd4-9552665dfd49",
+      "id_paciente": 6555,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "492fe104-18b4-4c7b-b043-3a93779f2f1b",
+      "id_paciente": 6911,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "3c76e72f-56b2-4736-80fa-e9606a815890",
+      "id_paciente": 6655,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "99641bd2-d9e6-41c6-9113-6f47bb7550ea",
+      "id_paciente": 6628,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "de38477e-fef7-4264-8a06-4e2571199459",
+      "id_paciente": 6865,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "49be4e5f-6ddd-4978-8694-5f50b74986dd",
+      "id_paciente": 6770,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "131d66b3-5cf7-49d0-9eb5-93b119bb249b",
+      "id_paciente": 6102,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "d781b1a9-302c-49c7-94da-01068b9ddc60",
+      "id_paciente": 6617,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "36d346ed-14d9-41f1-9746-fad6a019c4be",
+      "id_paciente": 6982,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "45763f6f-cc9e-4f66-9d0f-6b3e00fa8a03",
+      "id_paciente": 6504,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "b9700aa8-23f9-4059-990a-3e83c4beb0c7",
+      "id_paciente": 6188,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5c2dc228-eb89-44aa-8596-9db4fa5e899d",
+      "id_paciente": 6078,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5bd2ef77-844e-4fb0-8c5d-99ca270896d0",
+      "id_paciente": 6081,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a1d51be0-b25d-48e4-a98c-671659f516da",
+      "id_paciente": 6472,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "4244b46d-2170-4eab-88d4-afd6c653d78e",
+      "id_paciente": 6879,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "847fd095-93d2-4191-8f74-9ac4cedcbf9e",
+      "id_paciente": 6303,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "ac4a4f25-151a-4c25-8a42-4cfe1d3475a2",
+      "id_paciente": 6094,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "d9295c83-62b5-4e4a-b8f4-4ddaa5f8f8c6",
+      "id_paciente": 6322,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "87990ffc-a9de-4cf6-8ba6-af46fc9cad69",
+      "id_paciente": 6890,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "57d13db0-3956-48c3-9f30-592665749efe",
+      "id_paciente": 6558,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "5f0b83e0-1fcb-4ff0-ae37-b1aba8794e12",
+      "id_paciente": 6650,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "cad197bd-c7cd-4610-9211-60d6e72941d5",
+      "id_paciente": 6763,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "22e5dbd6-0268-4517-9804-ee56fab52ba8",
+      "id_paciente": 6865,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "915b4204-f50d-47c0-9c3d-674d99c90d3e",
+      "id_paciente": 6019,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "29c37349-8329-44ea-96ea-c28e9939cda5",
+      "id_paciente": 6369,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "bf0b591d-b332-47c9-a9e1-a420c2793662",
+      "id_paciente": 6949,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "a04f6be4-5abe-458e-b545-a3dbabc6fcf0",
+      "id_paciente": 6229,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "dd9ad64e-f21b-4b30-a525-27fb15e361f1",
+      "id_paciente": 6108,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "12ae8a04-3adf-4585-921e-5a79fcbc205a",
+      "id_paciente": 6255,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "173da1a7-b036-46eb-b1ca-083be9b5c0e8",
+      "id_paciente": 6052,
+      "motivo": "paciente no registrado"
+    },
+    {
+      "id_cita": "604f8b2a-031c-4340-bfb9-8a56804dd5dd",
+      "id_paciente": 6365,
+      "motivo": "paciente no registrado"
+    }
+  ]
+}
