@@ -509,3 +509,39 @@ class AgeSpecialtyMismatchReport:
             },
             "entries": [entry.to_dict() for entry in self.entries],
         }
+
+
+@dataclass
+class AccessibilityEntry:
+    id_paciente: int
+    nombre: str
+    residencia: Optional[str]
+    appointment_cities: List[str]
+    total_citas: int
+    note: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_paciente": self.id_paciente,
+            "nombre": self.nombre,
+            "residencia": self.residencia,
+            "appointment_cities": self.appointment_cities,
+            "total_citas": self.total_citas,
+            "note": self.note,
+        }
+
+
+@dataclass
+class AccessibilityReport:
+    total_pacientes: int
+    flagged: int
+    entries: List[AccessibilityEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_pacientes": self.total_pacientes,
+                "flagged": self.flagged,
+            },
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
