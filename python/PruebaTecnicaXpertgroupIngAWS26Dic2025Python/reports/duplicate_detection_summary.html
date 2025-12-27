@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso de uso 1.3 – Reporte de duplicados</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background:#f9fafc; color:#111827; margin:0; padding:20px; }
+    .container { max-width:1100px; margin:0 auto; padding:32px; background:#fff; border-radius:12px; box-shadow:0 20px 40px rgba(15,23,42,0.1); }
+    h1 { color:#2563eb; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin:24px 0; }
+    .card { background:#eff6ff; border-radius:10px; padding:16px; }
+    .card strong { display:block; font-size:1.1rem; color:#1d4ed8; }
+    table { width:100%; border-collapse:collapse; margin-top:18px; font-size:0.95rem; }
+    th, td { border:1px solid #e5e7eb; padding:10px; text-align:left; }
+    th { background:#dbeafe; color:#1d4ed8; }
+    .note { margin-top:18px; color:#374151; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Caso de uso 1.3 – Duplicados potenciales</h1>
+    <div class="cards">
+      <div class="card">
+        <strong>Total registros</strong>
+        <span>5010</span>
+      </div>
+      <div class="card">
+        <strong>Grupos detectados</strong>
+        <span>140</span>
+      </div>
+      <div class="card">
+        <strong>Registros archivados</strong>
+        <span>4060</span>
+      </div>
+    </div>
+    <p class="note">Se muestran hasta 25 grupos con los ids duplicados y su registro canónico. Consulte el JSON si necesita todo el detalle.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>canonical_id</th>
+          <th>nombre</th>
+          <th>criterio</th>
+          <th>duplicate_ids</th>
+          <th>nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1851</td><td>Andrea Pérez</td><td>nombre+fecha_nacimiento</td><td>109</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>166</td><td>María Torres</td><td>nombre+fecha_nacimiento</td><td>1972</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>1309</td><td>Andrea López</td><td>nombre+fecha_nacimiento</td><td>590</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3938</td><td>Andrea Gómez</td><td>nombre+fecha_nacimiento</td><td>680</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3241</td><td>Claudia Pérez</td><td>nombre+fecha_nacimiento</td><td>815</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>2494</td><td>María Rojas</td><td>nombre+fecha_nacimiento</td><td>1670</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3869</td><td>María Gómez</td><td>nombre+fecha_nacimiento</td><td>1716</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3078</td><td>Juan Torres</td><td>nombre+fecha_nacimiento</td><td>1765</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3083</td><td>Carlos Gómez</td><td>nombre+fecha_nacimiento</td><td>1924</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>4302</td><td>Andrea Pérez</td><td>nombre+fecha_nacimiento</td><td>1980</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>2540</td><td>Andrea Gómez</td><td>nombre+fecha_nacimiento</td><td>2703</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3071</td><td>María Torres</td><td>nombre+fecha_nacimiento</td><td>4650</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>4266</td><td>Claudia Torres</td><td>nombre+fecha_nacimiento</td><td>3304</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>3537</td><td>Juan Gómez</td><td>nombre+fecha_nacimiento</td><td>3344</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>4733</td><td>Claudia López</td><td>nombre+fecha_nacimiento</td><td>3355</td><td>Se identificaron registros con el mismo nombre y fecha de nacimiento y se archivaron los ids reemplazados.</td></tr>
+<tr><td>209</td><td>Claudia Torres</td><td>nombre+ciudad</td><td>485, 562, 1781, 4031, 4917, 1, 846, 886, 1451, 1499, 1593, 2491, 4266, 4692, 383, 700, 977, 1155, 1238, 1856, 2636, 2719, 2746, 2770, 2877, 3597, 4392, 62, 1200, 2324, 3587, 4297</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>784</td><td>Carlos Gómez</td><td>nombre+ciudad</td><td>1471, 1708, 1732, 2054, 2544, 4211, 4259, 4494, 4937, 117, 458, 1026, 1029, 1076, 1136, 1211, 1253, 1850, 2022, 2270, 2422, 2868, 3779, 4024, 4185, 4746, 2, 527, 1265, 1365, 2240, 2528, 2817, 3333, 3928, 4955, 392, 844</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>33</td><td>Carlos Gómez</td><td>nombre+ciudad</td><td>2802, 3769, 4441, 3, 448, 668, 1368, 1373, 1941, 1971, 2338, 2385, 2468, 3387, 3474, 3672, 4696, 721, 1069, 1109, 1563, 2442, 3154, 4011, 4086, 287, 2638, 1124, 4440</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>150</td><td>Andrea López</td><td>nombre+ciudad</td><td>504, 2263, 2723, 3195, 4820, 4, 763, 935, 1057, 1668, 2662, 2726, 2754, 3009, 3148, 3762, 4803, 4844, 1399, 1715, 2096, 2164, 2582, 2619, 2884, 3276, 3312, 4664, 4685, 1394, 3481</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>442</td><td>Juan Gómez</td><td>nombre+ciudad</td><td>997, 1245, 1789, 2657, 2664, 4483, 5, 331, 707, 878, 956, 2339, 2957, 3323, 3383, 3654, 4371, 4659, 4921, 4926, 226, 2934, 4230, 4504, 4518, 4613, 2947, 3060</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>804</td><td>María López</td><td>nombre+ciudad</td><td>2550, 3244, 3492, 4438, 4914, 4919, 6, 173, 1663, 1677, 2265, 2551, 2569, 2933, 3038, 3085, 3418, 3584, 3614, 4140, 4283, 4563, 1244, 1612, 1910, 2950, 3039, 3046, 3279, 3409, 4943, 3678, 2073</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>780</td><td>María Torres</td><td>nombre+ciudad</td><td>2583, 3000, 3000, 7, 306, 346, 355, 938, 1335, 1633, 1698, 1837, 2150, 2440, 2698, 3016, 3641, 4379, 4460, 4533, 127, 435, 1274, 1834, 1963, 2075, 2135, 2429, 2660, 2673, 2940, 2969, 3864, 3964, 4120, 4289, 4663, 205, 971, 1443, 1571, 2525, 3088, 3631, 4503, 4907, 4994</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>8</td><td>Andrea López</td><td>nombre+ciudad</td><td>307, 717, 1064, 2056, 2823, 2834, 3814, 4160, 506, 994, 1018, 1371, 1409, 1589, 2258, 3252, 3716, 4060, 4535, 139, 1410, 1568, 2004, 2419, 2661, 2763, 3664, 4471, 4621, 2232, 3677, 3767, 4779</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>9</td><td>María Torres</td><td>nombre+ciudad</td><td>382, 655, 1078, 2997, 4095, 214, 409, 470, 903, 1187, 1921, 2042, 2325, 2712, 3552, 3688, 4461, 188, 1281, 2828, 3538, 4782, 472, 2733, 3099</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+<tr><td>118</td><td>Juan López</td><td>nombre+ciudad</td><td>3765, 4965, 1296, 1302, 1326, 1810, 1821, 2526, 2891, 4090, 4960, 4980, 10, 831, 1746, 1951, 2007, 2469, 2557, 2788, 3159, 4193, 4728, 4854, 4953</td><td>Se identificaron registros con el mismo nombre y ciudad y se archivaron los ids reemplazados.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
