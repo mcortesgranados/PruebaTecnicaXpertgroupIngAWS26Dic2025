@@ -122,3 +122,39 @@ class AgeConsistencyReport:
             },
             "changes": [entry.to_dict() for entry in self.log_entries],
         }
+
+
+@dataclass
+class DuplicateConsolidationLogEntry:
+    canonical_id: int
+    canonical_nombre: str
+    criteria: str
+    duplicate_ids: List[int]
+    note: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "canonical_id": self.canonical_id,
+            "canonical_nombre": self.canonical_nombre,
+            "criteria": self.criteria,
+            "duplicate_ids": self.duplicate_ids,
+            "note": self.note,
+        }
+
+
+@dataclass
+class DuplicateConsolidationReport:
+    total_records: int
+    total_groups: int
+    total_duplicates: int
+    log_entries: List[DuplicateConsolidationLogEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_records": self.total_records,
+                "total_groups": self.total_groups,
+                "total_duplicates": self.total_duplicates,
+            },
+            "groups": [entry.to_dict() for entry in self.log_entries],
+        }
