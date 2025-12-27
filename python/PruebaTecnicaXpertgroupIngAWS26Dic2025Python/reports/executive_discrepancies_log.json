@@ -1,0 +1,27 @@
+{
+  "generated_at": "2025-12-27T23:51:46.181092",
+  "channel": "gobernanza@hospital.local",
+  "entries": [
+    {
+      "category": "Referencialidad",
+      "description": "Pacientes huérfanos detectados en citas_medicas.",
+      "count": 190,
+      "severity": "high",
+      "source": "referential_integrity_log.json"
+    },
+    {
+      "category": "Alertas de agenda",
+      "description": "Citas sin médico/fecha detectadas.",
+      "count": 4673,
+      "severity": "high",
+      "source": "appointment_alerts_log.json"
+    },
+    {
+      "category": "Revisión ejecutiva",
+      "description": "Citas completadas/canceladas sin datos críticos.",
+      "count": 2301,
+      "severity": "medium",
+      "source": "appointment_review_log.json"
+    }
+  ]
+}
