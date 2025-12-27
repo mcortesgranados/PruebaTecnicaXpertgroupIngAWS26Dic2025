@@ -42,9 +42,12 @@ python scripts/run_quality_kpis.py
 
 Use case 4.2 validation
  python scripts/run_business_rules_catalog.py
- 
+
 Use case 4.3 validation
 python scripts/run_cleaning_audit.py
+
+Use case 4.4 validation
+python scripts/run_executive_discrepancy.py
 
 
 
