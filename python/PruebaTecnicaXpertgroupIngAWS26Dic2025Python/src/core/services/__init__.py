@@ -2,6 +2,7 @@ from .age_consistency_service import AgeConsistencyService
 from .appointment_alert_service import AppointmentAlertService
 from .appointment_cost_audit_service import AppointmentCostAuditService
 from .appointment_indicator_service import AppointmentIndicatorService
+from .age_specialty_mismatch_service import AgeSpecialtyMismatchService
 from .appointment_review_service import AppointmentReviewService
 from .appointment_state_timeline_service import AppointmentStateTimelineService
 from .referential_integrity_service import ReferentialIntegrityService
