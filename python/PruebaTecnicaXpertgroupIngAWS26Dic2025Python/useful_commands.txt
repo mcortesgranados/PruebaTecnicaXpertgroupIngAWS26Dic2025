@@ -1,1 +1,15 @@
 python -m pip install pytest
+
+
+Use case 1.2 validation
+python scripts/run_age_consistency.py
+
+Use case 1.3 validation
+python scripts/run_duplicate_detection.py
+
+Use case 1.4 validation
+python scripts/run_text_normalization.py
+
+
+
+
