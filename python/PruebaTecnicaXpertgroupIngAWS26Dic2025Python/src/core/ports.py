@@ -3,13 +3,19 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Iterable, List
 
-from .models import CompletenessMetric, ImputationPlan, PatientRecord
+from .models import AppointmentRecord, CompletenessMetric, ImputationPlan, PatientRecord
 
 
 class PatientRepository(ABC):
     @abstractmethod
     def list_patients(self) -> Iterable[PatientRecord]:
         """Devuelve todos los pacientes disponibles."""
+
+
+class AppointmentRepository(ABC):
+    @abstractmethod
+    def list_appointments(self) -> Iterable[AppointmentRecord]:
+        """Devuelve todas las citas disponibles."""
 
 
 class CompletenessReporter(ABC):
