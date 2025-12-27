@@ -40,6 +40,10 @@ python scripts/run_accessibility.py
 Use case 4.1. validation
 python scripts/run_quality_kpis.py
 
+Use case 4.2 validation
+ python scripts/run_business_rules_catalog.py
+ 
+
 
 
 
