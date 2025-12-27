@@ -407,3 +407,33 @@ class AppointmentStateTimelineReport:
             "entries": [entry.to_dict() for entry in self.entries],
             "occupancy_impacts": [entry.to_dict() for entry in self.occupancy_impacts],
         }
+
+
+@dataclass
+class ReferentialIntegrityEntry:
+    id_cita: str
+    id_paciente: Optional[int]
+    motivo: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "id_paciente": self.id_paciente,
+            "motivo": self.motivo,
+        }
+
+
+@dataclass
+class ReferentialIntegrityReport:
+    total_citas: int
+    orphan_citas: int
+    entries: List[ReferentialIntegrityEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_citas": self.total_citas,
+                "orphan_citas": self.orphan_citas,
+            },
+            "orphan_entries": [entry.to_dict() for entry in self.entries],
+        }
