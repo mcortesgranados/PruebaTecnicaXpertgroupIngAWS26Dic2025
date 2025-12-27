@@ -1,3 +1,4 @@
 from .age_consistency_service import AgeConsistencyService
 from .completeness_service import CompletenessService
 from .duplicate_detection_service import DuplicateDetectionService
+from .text_normalization_service import TextNormalizationService
