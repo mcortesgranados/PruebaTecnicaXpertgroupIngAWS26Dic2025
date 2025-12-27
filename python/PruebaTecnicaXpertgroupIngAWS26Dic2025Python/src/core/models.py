@@ -158,3 +158,37 @@ class DuplicateConsolidationReport:
             },
             "groups": [entry.to_dict() for entry in self.log_entries],
         }
+
+
+@dataclass
+class TextNormalizationEntry:
+    id_paciente: int
+    field: str
+    original_value: Optional[str]
+    normalized_value: Optional[str]
+    method: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_paciente": self.id_paciente,
+            "field": self.field,
+            "original_value": self.original_value,
+            "normalized_value": self.normalized_value,
+            "method": self.method,
+        }
+
+
+@dataclass
+class TextNormalizationReport:
+    total_records: int
+    normalized_fields: Dict[str, int]
+    log_entries: List[TextNormalizationEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_records": self.total_records,
+                "normalized_fields": self.normalized_fields,
+            },
+            "entries": [entry.to_dict() for entry in self.log_entries],
+        }
