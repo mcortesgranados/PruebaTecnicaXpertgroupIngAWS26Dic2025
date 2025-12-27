@@ -545,3 +545,45 @@ class AccessibilityReport:
             },
             "entries": [entry.to_dict() for entry in self.entries],
         }
+
+
+@dataclass
+class FieldQualityMetric:
+    field: str
+    completeness: float
+    uniqueness: float
+    format_valid: float
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "field": self.field,
+            "completeness": round(self.completeness * 100, 2),
+            "uniqueness": round(self.uniqueness * 100, 2),
+            "format_validity": round(self.format_valid * 100, 2),
+        }
+
+
+@dataclass
+class TableQualityMetrics:
+    table_name: str
+    before: List[FieldQualityMetric] = field(default_factory=list)
+    after: List[FieldQualityMetric] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "table_name": self.table_name,
+            "before": [metric.to_dict() for metric in self.before],
+            "after": [metric.to_dict() for metric in self.after],
+        }
+
+
+@dataclass
+class QualityKpiReport:
+    generated_at: str
+    tables: List[TableQualityMetrics] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "tables": [table.to_dict() for table in self.tables],
+        }
