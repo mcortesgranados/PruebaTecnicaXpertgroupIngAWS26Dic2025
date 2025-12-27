@@ -25,4 +25,5 @@ python scripts/run_appointment_cost_audit.py
 Use case 2.4 validation
 python scripts/run_appointment_state_timeline.py
 
-
+Use case 3.1 validation
+scripts/run_referential_integrity.py
