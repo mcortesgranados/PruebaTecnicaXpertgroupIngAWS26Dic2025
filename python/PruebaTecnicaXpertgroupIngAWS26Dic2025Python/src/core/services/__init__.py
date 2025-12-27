@@ -3,6 +3,7 @@ from .appointment_alert_service import AppointmentAlertService
 from .appointment_cost_audit_service import AppointmentCostAuditService
 from .appointment_indicator_service import AppointmentIndicatorService
 from .appointment_state_timeline_service import AppointmentStateTimelineService
+from .referential_integrity_service import ReferentialIntegrityService
 from .completeness_service import CompletenessService
 from .duplicate_detection_service import DuplicateDetectionService
 from .text_normalization_service import TextNormalizationService
