@@ -1,1 +1,2 @@
+from .age_consistency_service import AgeConsistencyService
 from .completeness_service import CompletenessService
