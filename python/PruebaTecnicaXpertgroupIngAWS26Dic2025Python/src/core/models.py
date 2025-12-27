@@ -587,3 +587,31 @@ class QualityKpiReport:
             "generated_at": self.generated_at,
             "tables": [table.to_dict() for table in self.tables],
         }
+
+
+@dataclass
+class BusinessRule:
+    id: str
+    title: str
+    description: str
+    details: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "details": self.details,
+        }
+
+
+@dataclass
+class BusinessRulesCatalog:
+    created_at: str
+    rules: List[BusinessRule] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "created_at": self.created_at,
+            "rules": [rule.to_dict() for rule in self.rules],
+        }
