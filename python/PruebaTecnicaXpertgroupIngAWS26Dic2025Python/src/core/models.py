@@ -192,3 +192,64 @@ class TextNormalizationReport:
             },
             "entries": [entry.to_dict() for entry in self.log_entries],
         }
+
+
+@dataclass
+class AppointmentRecord:
+    id_cita: str
+    id_paciente: int
+    fecha_cita: Optional[str]
+    especialidad: Optional[str]
+    medico: Optional[str]
+    costo: Optional[float]
+    estado_cita: Optional[str]
+
+    @staticmethod
+    def from_dict(source: Dict[str, Any]) -> "AppointmentRecord":
+        return AppointmentRecord(
+            id_cita=source["id_cita"],
+            id_paciente=source.get("id_paciente"),
+            fecha_cita=source.get("fecha_cita"),
+            especialidad=source.get("especialidad"),
+            medico=source.get("medico"),
+            costo=source.get("costo"),
+            estado_cita=source.get("estado_cita"),
+        )
+
+
+@dataclass
+class AppointmentIndicatorEntry:
+    period_type: str  # 'daily' or 'weekly'
+    period_value: str  # YYYY-MM-DD or YYYY-WW
+    especialidad: str
+    estado_cita: str
+    medico: str
+    count: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "period_type": self.period_type,
+            "period_value": self.period_value,
+            "especialidad": self.especialidad,
+            "estado_cita": self.estado_cita,
+            "medico": self.medico,
+            "count": self.count,
+        }
+
+
+@dataclass
+class AppointmentIndicatorReport:
+    total_records: int
+    missing_date: int
+    entries: List[AppointmentIndicatorEntry] = field(default_factory=list)
+    bottlenecks: List[AppointmentIndicatorEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_records": self.total_records,
+                "missing_date": self.missing_date,
+            },
+            "entries": [entry.to_dict() for entry in self.entries],
+            "bottlenecks": [entry.to_dict() for entry in self.bottlenecks],
+        }
