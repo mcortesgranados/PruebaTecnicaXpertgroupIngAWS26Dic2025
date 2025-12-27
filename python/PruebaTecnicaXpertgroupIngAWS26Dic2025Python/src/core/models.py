@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import date, datetime
 from enum import Enum
-from typing import Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional
 
 
 class PatientCategory(str, Enum):
@@ -78,3 +78,47 @@ class ImputationPlan:
     field: str
     strategy: str
     rationale: str
+
+
+@dataclass
+class AgeCorrectionLogEntry:
+    id_paciente: int
+    nombre: str
+    fecha_nacimiento: Optional[str]
+    edad_registrada: Optional[int]
+    edad_calculada: Optional[int]
+    action: str
+    note: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_paciente": self.id_paciente,
+            "nombre": self.nombre,
+            "fecha_nacimiento": self.fecha_nacimiento,
+            "edad_registrada": self.edad_registrada,
+            "edad_calculada": self.edad_calculada,
+            "action": self.action,
+            "note": self.note,
+        }
+
+
+@dataclass
+class AgeConsistencyReport:
+    cutoff_date: date
+    total_records: int
+    inconsistencies: int
+    imputations: int
+    missing_birthdate_records: int
+    log_entries: List[AgeCorrectionLogEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "cutoff_date": self.cutoff_date.isoformat(),
+            "summary": {
+                "total_records": self.total_records,
+                "inconsistencies": self.inconsistencies,
+                "imputations": self.imputations,
+                "missing_birthdate_records": self.missing_birthdate_records,
+            },
+            "changes": [entry.to_dict() for entry in self.log_entries],
+        }
