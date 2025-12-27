@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "total_records": 9961,
+    "analyzed_records": 8237
+  },
+  "summaries": [
+    {
+      "especialidad": "Cardiología",
+      "count": 1375,
+      "average": 163.51,
+      "std_dev": 46.2,
+      "expected_range": {
+        "min": 71.11,
+        "max": 255.9
+      }
+    },
+    {
+      "especialidad": "Ginecología",
+      "count": 1395,
+      "average": 164.32,
+      "std_dev": 46.45,
+      "expected_range": {
+        "min": 71.41,
+        "max": 257.22
+      }
+    },
+    {
+      "especialidad": "Neurología",
+      "count": 1367,
+      "average": 164.37,
+      "std_dev": 45.76,
+      "expected_range": {
+        "min": 72.85,
+        "max": 255.9
+      }
+    },
+    {
+      "especialidad": "Ortopedia",
+      "count": 1372,
+      "average": 162.11,
+      "std_dev": 46.43,
+      "expected_range": {
+        "min": 69.26,
+        "max": 254.97
+      }
+    },
+    {
+      "especialidad": "Pediatría",
+      "count": 1354,
+      "average": 164.31,
+      "std_dev": 46.86,
+      "expected_range": {
+        "min": 70.58,
+        "max": 258.04
+      }
+    },
+    {
+      "especialidad": "sin_especialidad",
+      "count": 1374,
+      "average": 164.28,
+      "std_dev": 46.54,
+      "expected_range": {
+        "min": 71.2,
+        "max": 257.36
+      }
+    }
+  ],
+  "anomalies": []
+}
