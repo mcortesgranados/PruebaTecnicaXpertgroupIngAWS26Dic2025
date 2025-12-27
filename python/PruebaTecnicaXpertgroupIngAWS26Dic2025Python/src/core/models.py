@@ -471,3 +471,41 @@ class AppointmentReviewReport:
             },
             "entries": [entry.to_dict() for entry in self.entries],
         }
+
+
+@dataclass
+class AgeSpecialtyMismatchEntry:
+    id_cita: str
+    id_paciente: Optional[int]
+    especialidad: Optional[str]
+    edad_calculada: Optional[int]
+    expected_min: Optional[int]
+    expected_max: Optional[int]
+    note: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "id_paciente": self.id_paciente,
+            "especialidad": self.especialidad,
+            "edad_calculada": self.edad_calculada,
+            "expected_min": self.expected_min,
+            "expected_max": self.expected_max,
+            "note": self.note,
+        }
+
+
+@dataclass
+class AgeSpecialtyMismatchReport:
+    total_citas: int
+    flagged_citas: int
+    entries: List[AgeSpecialtyMismatchEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_citas": self.total_citas,
+                "flagged_citas": self.flagged_citas,
+            },
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
