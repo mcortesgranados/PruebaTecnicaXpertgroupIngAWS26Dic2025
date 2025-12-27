@@ -615,3 +615,57 @@ class BusinessRulesCatalog:
             "created_at": self.created_at,
             "rules": [rule.to_dict() for rule in self.rules],
         }
+
+
+@dataclass
+class FieldResponsibility:
+    table: str
+    field: str
+    owner: str
+    contact: str
+    notes: Optional[str] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "table": self.table,
+            "field": self.field,
+            "owner": self.owner,
+            "contact": self.contact,
+            "notes": self.notes,
+        }
+
+
+@dataclass
+class CleaningAuditEntry:
+    table: str
+    field: str
+    action: str
+    user: str
+    timestamp: str
+    owner: str
+    contact: str
+    note: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "table": self.table,
+            "field": self.field,
+            "action": self.action,
+            "user": self.user,
+            "timestamp": self.timestamp,
+            "owner": self.owner,
+            "contact": self.contact,
+            "note": self.note,
+        }
+
+
+@dataclass
+class CleaningAuditReport:
+    generated_at: str
+    entries: List[CleaningAuditEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
