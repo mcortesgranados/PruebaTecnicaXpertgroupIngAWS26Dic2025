@@ -437,3 +437,37 @@ class ReferentialIntegrityReport:
             },
             "orphan_entries": [entry.to_dict() for entry in self.entries],
         }
+
+
+@dataclass
+class AppointmentReviewEntry:
+    id_cita: str
+    estado_cita: Optional[str]
+    fecha_cita: Optional[str]
+    medico: Optional[str]
+    issues: List[str]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "estado_cita": self.estado_cita,
+            "fecha_cita": self.fecha_cita,
+            "medico": self.medico,
+            "issues": self.issues,
+        }
+
+
+@dataclass
+class AppointmentReviewReport:
+    total_citas: int
+    reviewed_citas: int
+    entries: List[AppointmentReviewEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_citas": self.total_citas,
+                "reviewed_citas": self.reviewed_citas,
+            },
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
