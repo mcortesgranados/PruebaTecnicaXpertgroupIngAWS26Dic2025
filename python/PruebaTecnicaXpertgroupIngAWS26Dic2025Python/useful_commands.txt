@@ -19,5 +19,10 @@ python scripts/run_appointment_indicators.py
 Use case 2.2 validation
 python scripts/run_appointment_alerts.py
 
+Use case 2.3 validation
+python scripts/run_appointment_cost_audit.py
+
+Use case 2.4 validation
+python scripts/run_appointment_state_timeline.py
 
 
