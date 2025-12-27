@@ -289,3 +289,67 @@ class AppointmentAlertReport:
             },
             "alerts": [entry.to_dict() for entry in self.entries],
         }
+
+
+@dataclass
+class SpecialtyCostSummary:
+    especialidad: str
+    count: int
+    average: float
+    std_dev: float
+
+    @property
+    def expected_min(self) -> float:
+        return self.average - 2 * self.std_dev
+
+    @property
+    def expected_max(self) -> float:
+        return self.average + 2 * self.std_dev
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "especialidad": self.especialidad,
+            "count": self.count,
+            "average": round(self.average, 2),
+            "std_dev": round(self.std_dev, 2),
+            "expected_range": {
+                "min": round(self.expected_min, 2),
+                "max": round(self.expected_max, 2),
+            },
+        }
+
+
+@dataclass
+class CostAnomalyEntry:
+    id_cita: str
+    id_paciente: Optional[int]
+    especialidad: str
+    costo: Optional[float]
+    deviation: float
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "id_paciente": self.id_paciente,
+            "especialidad": self.especialidad,
+            "costo": self.costo,
+            "deviation": round(self.deviation, 2),
+        }
+
+
+@dataclass
+class CostAuditReport:
+    total_records: int
+    analyzed_records: int
+    summaries: List[SpecialtyCostSummary] = field(default_factory=list)
+    anomalies: List[CostAnomalyEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "total_records": self.total_records,
+                "analyzed_records": self.analyzed_records,
+            },
+            "summaries": [entry.to_dict() for entry in self.summaries],
+            "anomalies": [entry.to_dict() for entry in self.anomalies],
+        }
