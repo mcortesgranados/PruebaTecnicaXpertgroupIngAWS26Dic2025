@@ -13,3 +13,4 @@ from .referential_integrity_service import ReferentialIntegrityService
 from .completeness_service import CompletenessService
 from .duplicate_detection_service import DuplicateDetectionService
 from .text_normalization_service import TextNormalizationService
+from .executive_discrepancy_service import ExecutiveDiscrepancyService
