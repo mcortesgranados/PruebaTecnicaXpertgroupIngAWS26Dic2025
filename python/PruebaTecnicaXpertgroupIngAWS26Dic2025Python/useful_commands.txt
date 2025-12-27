@@ -10,6 +10,14 @@ python scripts/run_duplicate_detection.py
 Use case 1.4 validation
 python scripts/run_text_normalization.py
 
+Use case 1.5 validation
+python scripts/run_appointment_indicators.py
+
+Use case 2.1 validation
+python scripts/run_appointment_indicators.py
+
+Use case 2.2 validation
+python scripts/run_appointment_alerts.py
 
 
 
