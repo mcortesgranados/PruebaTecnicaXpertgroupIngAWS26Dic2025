@@ -1,0 +1,330 @@
+{
+  "generated_at": "2025-12-28T11:06:22.930777",
+  "total_appointments": 7419,
+  "entries": [
+    {
+      "city": "Sin ciudad",
+      "specialty": "Pediatría",
+      "completed": 80,
+      "canceled": 65,
+      "reprogrammed": 100,
+      "total": 245,
+      "completion_rate": 0.327
+    },
+    {
+      "city": "Sin ciudad",
+      "specialty": "Neurología",
+      "completed": 72,
+      "canceled": 84,
+      "reprogrammed": 76,
+      "total": 232,
+      "completion_rate": 0.31
+    },
+    {
+      "city": "Cali",
+      "specialty": "General",
+      "completed": 74,
+      "canceled": 66,
+      "reprogrammed": 82,
+      "total": 222,
+      "completion_rate": 0.333
+    },
+    {
+      "city": "Sin ciudad",
+      "specialty": "General",
+      "completed": 71,
+      "canceled": 70,
+      "reprogrammed": 81,
+      "total": 222,
+      "completion_rate": 0.32
+    },
+    {
+      "city": "Bogotá",
+      "specialty": "Neurología",
+      "completed": 71,
+      "canceled": 76,
+      "reprogrammed": 74,
+      "total": 221,
+      "completion_rate": 0.321
+    },
+    {
+      "city": "Medellín",
+      "specialty": "Ginecología",
+      "completed": 69,
+      "canceled": 69,
+      "reprogrammed": 80,
+      "total": 218,
+      "completion_rate": 0.317
+    },
+    {
+      "city": "Bogotá",
+      "specialty": "General",
+      "completed": 70,
+      "canceled": 78,
+      "reprogrammed": 67,
+      "total": 215,
+      "completion_rate": 0.326
+    },
+    {
+      "city": "Medellín",
+      "specialty": "Neurología",
+      "completed": 66,
+      "canceled": 86,
+      "reprogrammed": 62,
+      "total": 214,
+      "completion_rate": 0.308
+    },
+    {
+      "city": "Bucaramanga",
+      "specialty": "General",
+      "completed": 68,
+      "canceled": 70,
+      "reprogrammed": 75,
+      "total": 213,
+      "completion_rate": 0.319
+    },
+    {
+      "city": "Bogotá",
+      "specialty": "Ortopedia",
+      "completed": 71,
+      "canceled": 74,
+      "reprogrammed": 68,
+      "total": 213,
+      "completion_rate": 0.333
+    },
+    {
+      "city": "Cali",
+      "specialty": "Cardiología",
+      "completed": 69,
+      "canceled": 69,
+      "reprogrammed": 75,
+      "total": 213,
+      "completion_rate": 0.324
+    },
+    {
+      "city": "Sin ciudad",
+      "specialty": "Ginecología",
+      "completed": 69,
+      "canceled": 68,
+      "reprogrammed": 74,
+      "total": 211,
+      "completion_rate": 0.327
+    },
+    {
+      "city": "Bogotá",
+      "specialty": "Ginecología",
+      "completed": 74,
+      "canceled": 68,
+      "reprogrammed": 68,
+      "total": 210,
+      "completion_rate": 0.352
+    },
+    {
+      "city": "Sin ciudad",
+      "specialty": "Cardiología",
+      "completed": 69,
+      "canceled": 69,
+      "reprogrammed": 72,
+      "total": 210,
+      "completion_rate": 0.329
+    },
+    {
+      "city": "Bogotá",
+      "specialty": "Cardiología",
+      "completed": 73,
+      "canceled": 70,
+      "reprogrammed": 66,
+      "total": 209,
+      "completion_rate": 0.349
+    },
+    {
+      "city": "Cali",
+      "specialty": "Ginecología",
+      "completed": 67,
+      "canceled": 65,
+      "reprogrammed": 75,
+      "total": 207,
+      "completion_rate": 0.324
+    },
+    {
+      "city": "Barranquilla",
+      "specialty": "Cardiología",
+      "completed": 62,
+      "canceled": 72,
+      "reprogrammed": 72,
+      "total": 206,
+      "completion_rate": 0.301
+    },
+    {
+      "city": "Cali",
+      "specialty": "Pediatría",
+      "completed": 73,
+      "canceled": 73,
+      "reprogrammed": 58,
+      "total": 204,
+      "completion_rate": 0.358
+    },
+    {
+      "city": "Sin ciudad",
+      "specialty": "Ortopedia",
+      "completed": 71,
+      "canceled": 71,
+      "reprogrammed": 62,
+      "total": 204,
+      "completion_rate": 0.348
+    },
+    {
+      "city": "Bucaramanga",
+      "specialty": "Pediatría",
+      "completed": 57,
+      "canceled": 73,
+      "reprogrammed": 73,
+      "total": 203,
+      "completion_rate": 0.281
+    },
+    {
+      "city": "Bogotá",
+      "specialty": "Pediatría",
+      "completed": 65,
+      "canceled": 69,
+      "reprogrammed": 69,
+      "total": 203,
+      "completion_rate": 0.32
+    },
+    {
+      "city": "Medellín",
+      "specialty": "General",
+      "completed": 58,
+      "canceled": 74,
+      "reprogrammed": 70,
+      "total": 202,
+      "completion_rate": 0.287
+    },
+    {
+      "city": "Barranquilla",
+      "specialty": "Ginecología",
+      "completed": 71,
+      "canceled": 67,
+      "reprogrammed": 63,
+      "total": 201,
+      "completion_rate": 0.353
+    },
+    {
+      "city": "Barranquilla",
+      "specialty": "General",
+      "completed": 66,
+      "canceled": 68,
+      "reprogrammed": 67,
+      "total": 201,
+      "completion_rate": 0.328
+    },
+    {
+      "city": "Bucaramanga",
+      "specialty": "Ortopedia",
+      "completed": 58,
+      "canceled": 75,
+      "reprogrammed": 68,
+      "total": 201,
+      "completion_rate": 0.289
+    },
+    {
+      "city": "Cali",
+      "specialty": "Neurología",
+      "completed": 80,
+      "canceled": 63,
+      "reprogrammed": 57,
+      "total": 200,
+      "completion_rate": 0.4
+    },
+    {
+      "city": "Medellín",
+      "specialty": "Ortopedia",
+      "completed": 60,
+      "canceled": 70,
+      "reprogrammed": 66,
+      "total": 196,
+      "completion_rate": 0.306
+    },
+    {
+      "city": "Barranquilla",
+      "specialty": "Pediatría",
+      "completed": 63,
+      "canceled": 60,
+      "reprogrammed": 72,
+      "total": 195,
+      "completion_rate": 0.323
+    },
+    {
+      "city": "Cali",
+      "specialty": "Ortopedia",
+      "completed": 66,
+      "canceled": 58,
+      "reprogrammed": 70,
+      "total": 194,
+      "completion_rate": 0.34
+    },
+    {
+      "city": "Bucaramanga",
+      "specialty": "Ginecología",
+      "completed": 49,
+      "canceled": 71,
+      "reprogrammed": 74,
+      "total": 194,
+      "completion_rate": 0.253
+    },
+    {
+      "city": "Barranquilla",
+      "specialty": "Ortopedia",
+      "completed": 62,
+      "canceled": 63,
+      "reprogrammed": 69,
+      "total": 194,
+      "completion_rate": 0.32
+    },
+    {
+      "city": "Barranquilla",
+      "specialty": "Neurología",
+      "completed": 70,
+      "canceled": 56,
+      "reprogrammed": 67,
+      "total": 193,
+      "completion_rate": 0.363
+    },
+    {
+      "city": "Bucaramanga",
+      "specialty": "Cardiología",
+      "completed": 66,
+      "canceled": 64,
+      "reprogrammed": 62,
+      "total": 192,
+      "completion_rate": 0.344
+    },
+    {
+      "city": "Bucaramanga",
+      "specialty": "Neurología",
+      "completed": 62,
+      "canceled": 55,
+      "reprogrammed": 75,
+      "total": 192,
+      "completion_rate": 0.323
+    },
+    {
+      "city": "Medellín",
+      "specialty": "Cardiología",
+      "completed": 49,
+      "canceled": 67,
+      "reprogrammed": 72,
+      "total": 188,
+      "completion_rate": 0.261
+    },
+    {
+      "city": "Medellín",
+      "specialty": "Pediatría",
+      "completed": 55,
+      "canceled": 74,
+      "reprogrammed": 52,
+      "total": 181,
+      "completion_rate": 0.304
+    }
+  ]
+}
