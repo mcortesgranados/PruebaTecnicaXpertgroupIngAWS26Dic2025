@@ -19,4 +19,5 @@ from .occupancy_dashboard_service import OccupancyDashboardService
 from .demand_forecast_service import DemandForecastService
 from .etl_pipeline_service import ETLPipelineService
 from .doctor_notification_service import DoctorNotificationService
+from .doctor_utilization_service import DoctorUtilizationService
 from .executive_discrepancy_service import ExecutiveDiscrepancyService
