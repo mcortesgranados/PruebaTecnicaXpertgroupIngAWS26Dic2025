@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -16,11 +17,26 @@ class ETLPipelineService:
         self.report_dir = report_dir
 
     def run(self) -> Dict[str, Any]:
+        start_iso = datetime.utcnow().isoformat()
+        start_clock = time.perf_counter()
+
         patients_raw, appointments_raw = self.extract()
         patients_df, appointments_df, summary = self.transform(patients_raw, appointments_raw)
         self.load(patients_df, appointments_df)
+
         summary["patients_exported"] = len(patients_df)
         summary["appointments_exported"] = len(appointments_df)
+        end_iso = datetime.utcnow().isoformat()
+        duration = time.perf_counter() - start_clock
+        summary.update(
+            {
+                "start_time": start_iso,
+                "end_time": end_iso,
+                "duration_seconds": round(duration, 3),
+            }
+        )
+
+        self._persist_metrics(summary)
         return summary
 
     def extract(self) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
@@ -67,6 +83,26 @@ class ETLPipelineService:
             df.to_parquet(parquet_path, index=False)
         except ImportError:
             parquet_path.write_text("", encoding="utf-8")
+
+    def _persist_metrics(self, summary: Dict[str, Any]) -> None:
+        metrics_path = self.report_dir / "etl" / "etl_metrics.json"
+        metrics_path.parent.mkdir(parents=True, exist_ok=True)
+        existing: List[Dict[str, Any]] = []
+        if metrics_path.exists():
+            try:
+                existing = json.loads(metrics_path.read_text(encoding="utf-8")) or []
+            except json.JSONDecodeError:
+                existing = []
+        entry = {
+            "start_time": summary["start_time"],
+            "end_time": summary["end_time"],
+            "duration_seconds": summary["duration_seconds"],
+            "patients": summary["patients_exported"],
+            "appointments": summary["appointments_exported"],
+            "orphans": len(summary.get("orphans", [])),
+        }
+        existing.append(entry)
+        metrics_path.write_text(json.dumps(existing, ensure_ascii=False, indent=2), encoding="utf-8")
 
     def _clean_patients(self, df: pd.DataFrame) -> pd.DataFrame:
         if df.empty:
