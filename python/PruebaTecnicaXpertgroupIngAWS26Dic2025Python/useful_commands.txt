@@ -319,6 +319,26 @@ __init__.py
 doctor_notification_service.py
 test_doctor_notification_service.py
 
+_______________________________________________________________________________________________
+
+Use case 7.2 validation
+
+Added DoctorUtilizationEntry/Report models (models.py (lines 580-620)) and DoctorUtilizationService (doctor_utilization_service.py) to compute utilization/cancellation rates per doctor-specialty, flag deviations below 75% utilization or above 20% cancellations, and sort alerts by deviation.
+Covered the logic in test_doctor_utilization_service.py and wired the service into __init__.py, ensuring doctor/specialty combos with poor compliance trigger alerts.
+Added run_doctor_utilization.py so you can generate doctor_utilization_log.json and the styled HTML dashboard at doctor_utilization_summary.html; running the script prints the artifact locations and alert count.
+Tests: python -m pytest; script: run_doctor_utilization.py (produces JSON + HTML).
+
+python scripts/run_doctor_utilization.py
+
+run_doctor_utilization.py
+models.py
+__init__.py
+doctor_utilization_service.py
+test_doctor_utilization_service.py
+
+_______________________________________________________________________________________________
+
+
 
 
 
