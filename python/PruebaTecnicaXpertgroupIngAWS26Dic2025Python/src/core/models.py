@@ -620,6 +620,40 @@ class OccupancyDashboardReport:
 
 
 @dataclass
+class DoctorNotificationEntry:
+    doctor: str
+    id_paciente: int
+    nombre: str
+    patterns: List[str]
+    severity: str
+    appointment_dates: List[str]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "doctor": self.doctor,
+            "id_paciente": self.id_paciente,
+            "nombre": self.nombre,
+            "patterns": self.patterns,
+            "severity": self.severity,
+            "appointment_dates": self.appointment_dates,
+        }
+
+
+@dataclass
+class DoctorNotificationReport:
+    generated_at: str
+    total_alerts: int
+    entries: List[DoctorNotificationEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "total_alerts": self.total_alerts,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
+@dataclass
 class DemandForecastEntry:
     doctor: str
     specialty: str
