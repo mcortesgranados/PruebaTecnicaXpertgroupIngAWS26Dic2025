@@ -59,7 +59,9 @@ Use case 5.3. validation
 python scripts/run_occupancy_dashboard.py
 
 Use case 5.4 validation
-python 
+python scripts/run_demand_forecast.py
+
+
 
 
 
