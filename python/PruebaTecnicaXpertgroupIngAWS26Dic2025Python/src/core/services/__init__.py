@@ -17,4 +17,5 @@ from .patient_segmentation_service import PatientSegmentationService
 from .cancellation_risk_service import CancellationRiskService
 from .occupancy_dashboard_service import OccupancyDashboardService
 from .demand_forecast_service import DemandForecastService
+from .etl_pipeline_service import ETLPipelineService
 from .executive_discrepancy_service import ExecutiveDiscrepancyService
