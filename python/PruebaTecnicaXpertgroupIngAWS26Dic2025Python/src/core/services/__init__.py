@@ -20,4 +20,5 @@ from .demand_forecast_service import DemandForecastService
 from .etl_pipeline_service import ETLPipelineService
 from .doctor_notification_service import DoctorNotificationService
 from .doctor_utilization_service import DoctorUtilizationService
+from .patient_travel_service import PatientTravelService
 from .executive_discrepancy_service import ExecutiveDiscrepancyService
