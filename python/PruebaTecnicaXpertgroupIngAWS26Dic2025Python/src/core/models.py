@@ -732,6 +732,38 @@ class PatientTravelReport:
 
 
 @dataclass
+class ManagementKpiEntry:
+    specialty: str
+    appointment_count: int
+    average_cost: float
+    average_wait_days: float
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "specialty": self.specialty,
+            "appointment_count": self.appointment_count,
+            "average_cost": round(self.average_cost, 2),
+            "average_wait_days": round(self.average_wait_days, 2),
+        }
+
+
+@dataclass
+class ManagementKpiReport:
+    generated_at: str
+    overall_average_cost: float
+    overall_average_wait_days: float
+    specialty_entries: List[ManagementKpiEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "overall_average_cost": round(self.overall_average_cost, 2),
+            "overall_average_wait_days": round(self.overall_average_wait_days, 2),
+            "specialty_entries": [entry.to_dict() for entry in self.specialty_entries],
+        }
+
+
+@dataclass
 class DemandForecastEntry:
     doctor: str
     specialty: str
