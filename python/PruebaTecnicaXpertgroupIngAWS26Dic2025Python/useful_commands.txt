@@ -1,68 +1,326 @@
 python -m pip install pytest
 
+_______________________________________________________________________________________________
 
 Use case 1.2 validation
 python scripts/run_age_consistency.py
 
+Implemented an age-consistency audit that compares reported edad with the cutoff-derived age, records inconsistencies/imputations, and exposes data classes for the log so use case 1.2 now has an automated pipeline.
+
+AgeConsistencyService now iterates every patient, computes the age relative to a cutoff, records imputations/inconsistencies, and emits AgeCorrectionLogEntry/AgeConsistencyReport structures that live alongside the domain models for downstream consumers (see age_consistency_service.py (line 12) and models.py (line 84) plus models.py (line 106)).
+
+Added run_age_consistency.py to parse cutoff/log options, call the new service, and persist a JSON audit log; running it (run_age_consistency.py) produced age_consistency_log.json and the summary at that file reports 5,010 records, 1,681 inconsistencies, 1,645 imputations, and 4 missing birthdates (script entry: run_age_consistency.py (line 44); log file: age_consistency_log.json (line 1) with the summary at age_consistency_log.json (line 3)).
+
+Created test_age_consistency_service.py to ensure mismatches, imputations, and missing-date paths behave as expected when the audit runs (see test_age_consistency_service.py (line 16)).
+
+Tests: python -m pytest (pass).
+
+Next steps:
+
+Hook run_age_consistency.py into your data refresh/orchestration so the log regenerates with each new snapshot.
+Surface AgeConsistencyReport/log entries in dashboards or governance tooling to track the evolution of the flagged records.
+
+Añadí generación de reporte HTML al caso de uso 1.2: el script ahora escribe un resumen navegable junto al log JSON y te dice explícitamente dónde encontrar ese archivo.
+
+run_age_consistency.py (lines 16-99) acepta --html-report, crea el HTML con los totales y las primeras 20 acciones detectadas, y siempre imprime tanto la ruta JSON como age_consistency_summary.html al terminar (se volvió a ejecutar con run_age_consistency.py para actualizar ambos artefactos).
+El archivo generado está en age_consistency_summary.html (line 1); ábrelo en tu navegador favorito (doble clic desde el explorador o age_consistency_summary.html en PowerShell) para ver la tabla resumida y las tarjetas de métricas.
+No puedo ejecutar Chrome desde aquí porque este entorno no dispone de GUI ni acceso a navegadores; cualquier navegador local puede abrir el HTML manualmente.
+
+_______________________________________________________________________________________________
+
 Use case 1.3 validation
 python scripts/run_duplicate_detection.py
+
+Implementé la lógica del caso de uso 1.3 para detectar duplicados por nombre + fecha de nacimiento/ciudad, elegir un registro “canónico” y registrar los ids archivados.
+
+models.py (lines 128-161) introduce DuplicateConsolidationLogEntry/Report para describir qué registros quedan como canon y qué ids fueron reemplazados, facilitando auditoría y exportación.
+duplicate_detection_service.py (lines 12-106) agrupa pacientes por nombre+fecha_nacimiento y nombre+ciudad, elige el registro más completo como canónico, descarta duplicados ya archivados y llena el resumen (grupos totales, duplicados).
+run_duplicate_detection.py (lines 1-55) añade el CLI que ejecuta el servicio sobre dataset_hospital 2 AWS.json, escribe el JSON en duplicate_detection_log.json (line 1) y despliega el conteo de registros/grupos/duplicados procesados.
+test_duplicate_detection_service.py (lines 1-77) cubre el flujo esperado (dos grupos, dos duplicados archivados, ids correctos) y pasa junto con el resto de la suite.
+Testing: python -m pytest.
+
+Para repetir el caso de uso 1.3 basta con run_duplicate_detection.py; el log completo está en duplicate_detection_log.json.
+
+Siguientes pasos:
+
+Integrar este script en el pipeline o cron que refresca dataset_hospital 2 AWS.json.
+Revisar el log generado cuando aparezcan discrepancias nuevas y decidir si se deben fusionar los registros canónicos identificados.
+
+Added default HTML output (duplicate_detection_summary.html) to the 1.3 runner and now emit emoji-rich console lines plus UTF-8 reconfiguration so Windows terminals show the icons (see run_duplicate_detection.py (lines 16-130)).
+The new HTML summarizes totals and up to 25 groups so auditors can scan canonical vs. archived IDs; it sits alongside the JSON audit created by the same script (duplicate_detection_summary.html (line 1)).
+Run run_duplicate_detection.py to regenerate both .json and .html outputs; the log stays at duplicate_detection_log.json and the HTML report at duplicate_detection_summary.html.
+Testing: python -m pytest.
+
+
+
+
+_______________________________________________________________________________________________
 
 Use case 1.4 validation
 python scripts/run_text_normalization.py
 
+Added TextNormalizationEntry/TextNormalizationReport so the domain captures per-field changes and summarizes how many nombre/ciudad values were normalized, including the normalization method string (strip() + lower()) for each entry (models.py (lines 163-194)).
+Implemented TextNormalizationService to iterate patients, apply strip(), lower() and diacritic removal, and collect log entries only when a value changes (text_normalization_service.py (lines 12-64)).
+Added run_text_normalization.py to run use case 1.4, write text_normalization_log.json, and print the emoji-rich summary that explicitly mentions the strip()/lower() functions used (run_text_normalization.py (lines 1-54)).
+Created test_text_normalization_service.py to ensure diacritics/spaces are removed, that both nombre and ciudad changes are tracked, and the log declares the method (test_text_normalization_service.py (lines 1-77)).
+Testing
+
+python -m pytest
+Next steps
+
+Re-run run_text_normalization.py whenever the patient dataset updates to refresh text_normalization_log.json.
+Consider persisting the normalized stream to a cleaned dataset if downstream processes need sanitized text.
+
+
+_______________________________________________________________________________________________
+
 Use case 1.5 validation
 python scripts/run_appointment_indicators.py
+
+
+_______________________________________________________________________________________________
 
 Use case 2.1 validation
 python scripts/run_appointment_indicators.py
 
+Added appointment-domain structures and repository support so appointments can feed the new indicators: AppointmentRecord/AppointmentIndicatorEntry/AppointmentIndicatorReport plus the AppointmentRepository contract and JSON adapter (models.py (lines 163-194), ports.py (lines 1-27), json_appointment_repository.py (lines 1-15)).
+Implemented AppointmentIndicatorService to count daily/weekly combinations of especialidad, estado_cita, and medico, flag the top bottlenecks, and wired the service into a new runner that writes both JSON and a styled HTML (matching your snippet) while printing the ASCII paths (appointment_indicator_service.py (lines 1-84), run_appointment_indicators.py (lines 1-91)); the artifacts live in appointment_indicators_log.json and appointment_indicators_summary.html.
+Added test_appointment_indicator_service.py (lines 1-33) to ensure the service counts both period types and exposes missing-date totals.
+Testing: python -m pytest.
+
+Run next with run_appointment_indicators.py whenever the dataset refreshes to regenerate the JSON log and HTML bottleneck report; open the HTML file to see the styled summary.
+
+_______________________________________________________________________________________________
+
 Use case 2.2 validation
 python scripts/run_appointment_alerts.py
+
+Added AppointmentAlertEntry/Report so alerts capture missing fecha_cita or medico, along with total counts (see models.py (lines 259-286)), and wired AppointmentAlertService to find those records, label them as automatic alerts, and prompt manual validation (appointment_alert_service.py (lines 1-47)).
+Created run_appointment_alerts.py to run the service, dump JSON/HTML artifacts (the HTML now uses the requested style block and enumerates the first 40 alerts), and print emoji-rich guidance plus absolute paths for the log and report (run_appointment_alerts.py (lines 1-118)); the artifacts live under appointment_alerts_log.json and the styled appointment_alerts_summary.html (lines 1-119).
+Added test_appointment_alert_service.py to ensure both missing-date and missing-doctor scenarios raise alerts with the expected notes and counters (test_appointment_alert_service.py (lines 1-55)).
+Testing:
+
+python -m pytest (passes).
+To rerun use case 2.2, execute run_appointment_alerts.py; it regenerates appointment_alerts_log.json and the HTML report noted above so the operations team can review the flagged appointments.
+
+_______________________________________________________________________________________________
 
 Use case 2.3 validation
 python scripts/run_appointment_cost_audit.py
 
+Added cost-audit constructs (SpecialtyCostSummary, CostAnomalyEntry, CostAuditReport) so we can capture per-specialty averages, expected ±2σ ranges, and any appointments that exceed those boundaries (models.py (lines 259-328)).
+Implemented AppointmentCostAuditService to compute those stats, compare each cost against the others in its specialty (excluding itself), and flag deviations >2σ, then wired the service into run_appointment_cost_audit.py which writes detailed JSON/HTML artifacts and prints the summary (appointment_cost_audit_service.py (lines 1-70), run_appointment_cost_audit.py (lines 1-135)). The HTML now uses the requested CSS block and shows totals, summaries, and the first 40 anomalies with contextual notes (appointment_cost_audit_summary.html (line 1)).
+Added regression coverage for the audit logic (test_appointment_cost_audit_service.py (lines 1-33)).
+Testing: python -m pytest.
+
+Run the new use case with run_appointment_cost_audit.py to regenerate appointment_cost_audit_log.json and the styled HTML summary referenced above.
+
+_______________________________________________________________________________________________
+
 Use case 2.4 validation
 python scripts/run_appointment_state_timeline.py
+
+Added timeline models (AppointmentStateHistoryEntry, OccupancyImpactEntry, AppointmentStateTimelineReport) to capture transition chains, reprogram counts, and weekly occupancy impacts per médico (models.py (lines 259-328)).
+Implemented AppointmentStateTimelineService to aggregate each id_cita, sort by fecha, count “Reprogramada” events, and accumulate doctor/week occupancy stats; the service is exposed via run_appointment_state_timeline.py, which now writes both appointment_state_timeline_log.json and a richly styled HTML summary (appointment_state_timeline_summary.html (line 1)) and prints absolute paths with emoji feedback.
+Added regression coverage (test_appointment_state_timeline_service.py) to ensure reprogramed citas and occupancy impacts are detected, and the entire suite passes (python -m pytest).
+Run run_appointment_state_timeline.py to regenerate the JSON/HTML artifacts and see the console summary.
+
+_______________________________________________________________________________________________
 
 Use case 3.1 validation
 scripts/run_referential_integrity.py
 
+Added ReferentialIntegrityEntry/Report so each orphan id_cita can be logged with its id_paciente and motivo (models.py (lines 259-328)), plus a ReferentialIntegrityService that compares appointment IDs against those from the patient repository (referential_integrity_service.py).
+Created run_referential_integrity.py to run the service, write referential_integrity_log.json, render the styled HTML referential_integrity_summary.html (with the requested CSS block), and print emoji-enhanced totals/paths for console fans.
+Added coverage (test_referential_integrity_service.py) to ensure missing id_paciente values and non-existent patients generate orphan entries.
+Tests: python -m pytest (passes).
+
+To validate the use case end-to-end, run run_referential_integrity.py—it updates both the JSON log and the styled HTML report while printing where to find them.
+_______________________________________________________________________________________________
+
 Use case 3.2. validation
 python scripts/run_appointment_review.py
+
+Added review-domain artifacts (AppointmentReviewEntry/Report) so each Completada/Cancelada faltante de fecha_cita o médico se documenta con sus issues (models.py (lines 259-328)).
+Implemented AppointmentReviewService to filter estos estados y acumular las entradas de revisión, then expose it through run_appointment_review.py, which writes both appointment_review_log.json and a styled HTML report matching the requested template while printing emoji-led totals and absolute file paths (HTML at appointment_review_summary.html (line 1)).
+Created test_appointment_review_service.py to assert that missing date/doctor combinations are flagged; the whole suite passes (python -m pytest).
+Run run_appointment_review.py to regenerate the JSON/HTML audit and confirm 2,301 reviewed citas from 9,961 processed; console output now includes the exact paths for the artifacts.
+
+_______________________________________________________________________________________________
 
 Use case 3.3 validation
 python scripts/run_age_specialty_mismatch.py
 
+Added AgeSpecialtyMismatch domain types and a service (age_specialty_mismatch_service.py (lines 1-70)) that compares patient age (from fecha_nacimiento vs. each appointment’s fecha_cita) against expected ranges per especialidad (pediatría/geriatría/adultos) and flags outliers for audit, then wired it into run_age_specialty_mismatch.py (lines 1-74) so you can emit JSON/HTML reports that list the deviations with the requested styling.
+Added dedicated regression coverage (test_age_specialty_mismatch_service.py (lines 1-33)) to make sure pediatric and geriatric misclassifications are caught.
+Tests: python -m pytest.
+To rerun the use case, execute run_age_specialty_mismatch.py; it regenerates age_specialty_mismatch_log.json and the styled age_specialty_mismatch_summary.html while printing the summary and full output paths.
+
+_______________________________________________________________________________________________
+
 Use case 3.4 validation
 python scripts/run_accessibility.py
+
+Added AccessibilityEntry/Report to model the mapping of appointment counts to each patient’s city, then built AccessibilityService to flag patients whose appointment volume significantly exceeds their city peers (using local + overall stats) and produce JSON/HTML outputs (accessibility_log.json + accessibility_summary.html).
+Created run_accessibility.py for the workflow, which now writes the artifacts, prints the emoji-enhanced summary with full paths, and displays the custom-styled HTML matching your template.
+Covering tests in test_accessibility_service.py ensure the service flags high-volume outliers; python -m pytest passes.
+Run run_accessibility.py to refresh the accessibility report and surface patients who may be traveling long distances based on their appointment load vs. local averages.
+
+_______________________________________________________________________________________________
 
 Use case 4.1. validation
 python scripts/run_quality_kpis.py
 
+Added KPI domain types (FieldQualityMetric, TableQualityMetrics, QualityKpiReport) so each table can store before/after percentages for completitud, unicidad y validez de formatos (models.py (lines 259-328)).
+Implemented QualityKpiService to compute those metrics for pacientes y citas_medicas, using ISO-date/email validators plus duplicate ratios, and expose the report through run_quality_kpis.py, which writes quality_kpis.json and a styled quality_kpis_summary.html and prints their absolute paths (run_quality_kpis.py (lines 1-119)).
+Added test_quality_kpi_service.py to ensure the service captures the expected fields and metrics (test_quality_kpi_service.py (lines 1-33)).
+
+
+
+_______________________________________________________________________________________________
+
 Use case 4.2 validation
  python scripts/run_business_rules_catalog.py
- 
+
+ Added BusinessRule/BusinessRulesCatalog models to capture every documented rule (states, age ranges, format requirements) and a dedicated BusinessRulesCatalogService that timestamps the catalog (models.py (lines 511-566), business_rules_catalog_service.py (lines 1-31)).
+Created run_business_rules_catalog.py to produce the JSON catalog and a styled HTML page (matching your corporate look) that presents each rule and its structured details, plus console lines with the absolute paths to business_rules_catalog.json and business_rules_catalog.html.
+Wrote test_business_rules_catalog_service.py to ensure the critical rule IDs appear in the catalog, and the full suite still passes (python -m pytest), though binding-level warnings about datetime.utcnow() persist.
+Run run_business_rules_catalog.py whenever you want to regenerate the catalog artifacts for auditors or governance channels.
+
+
+
+_______________________________________________________________________________________________
+
 Use case 4.3 validation
 python scripts/run_cleaning_audit.py
+
+Implemented the audit trail for case 4.3:
+
+Added FieldResponsibility, CleaningAuditEntry, and CleaningAuditReport domain models plus CleaningAuditService that annotates each bulk-change event with the responsible owner/contact, timestamp, and user (models.py (lines 511-566), cleaning_audit_service.py (lines 1-34)).
+Created run_cleaning_audit.py, which defines the responsibilities catalog, simulates three mass-change events, writes both cleaning_audit_log.json and the HTML summary (cleaning_audit_summary.html) with the requested styling, and prints the artifact paths (run_cleaning_audit.py (lines 1-101)).
+Added test_cleaning_audit_service.py to ensure entries inherit owner/contact details from the catalog (test_cleaning_audit_service.py (lines 1-15)).
+Testing: python -m pytest.
+Artifact generation: run_cleaning_audit.py (updates the JSON/HTML audit files noted above).
+
+_______________________________________________________________________________________________
 
 Use case 4.4 validation
 python scripts/run_executive_discrepancy.py
 
+Built the missing case 4.4 runner: run_executive_discrepancy.py (line 1) now compiles the ExecutiveDiscrepancyService output, writes executive_discrepancies_log.json, and renders a Chart.js-powered summary (executive_discrepancies_summary.html includes the provided CSS palette, cards per discrepancy, and the governance channel note).
+
+Added coverage (test_executive_discrepancy_service.py (line 1)) to ensure the service reads each log source and gracefully handles missing files, registered the service in __init__.py (line 1), and documented the new validation command in useful_commands.txt (line 1).
+
+Generated artifacts (executive_discrepancies_summary.html at executive_discrepancies_summary.html and executive_discrepancies_log.json) and simulated the governance notification in the console; I can’t launch Chrome here, so please open the HTML manually if you want to review it in-browser.
+
+Testing: python -m pytest (passes with the existing datetime.utcnow() deprecation warnings) and run_executive_discrepancy.py (creates the JSON/HTML and prints the emoji-enhanced summary).
+
+_______________________________________________________________________________________________
+
 Use case 5.1. validation
 python scripts/run_patient_segmentation.py
+
+Added PatientSegment/PatientSegmentationReport to the core models (models.py (line 550)) and implemented PatientSegmentationService (patient_segmentation_service.py (line 1)) so each patient is bucketed by age bracket, normalized sex label and appointment-frequency tier, with cohorts sorted by size for targeted communications.
+Created run_patient_segmentation.py (line 1) to drive the service, emit the JSON log (patient_segmentation_log.json (line 1)) and an HTML recap (patient_segmentation_summary.html (line 1)) styled with the requested CSS, Chart.js bar chart, and emoji-backed console output; also recorded the new validation command inside useful_commands.txt (line 52).
+Added coverage in test_patient_segmentation_service.py (line 1) to exercise high-frequency vs. missing-data scenarios and confirm the resulting segments.
+Tests run: python -m pytest and run_patient_segmentation.py.
+Next step: open patient_segmentation_summary.html (line 1) in your browser to review the cohort cards and chart before sharing the segments with the comms team.
+
+_______________________________________________________________________________________________
 
 Use case 5.2  validation
 python scripts/run_cancellation_risk.py
 
+Added the cancellation-risk dataclasses and heuristic model so each appointment inherits a sigmoid score from prior cancellations, interval gaps and specialty weights, and registered the service import path (models.py (line 550), cancellation_risk_service.py (line 1), __init__.py (line 1)).
+Verified the scoring logic with targeted unit tests that enforce history-aware factors and specialty summaries (test_cancellation_risk_service.py (line 1)).
+Built run_cancellation_risk.py (line 1), which writes cancellation_risk_log.json (line 1) and the Chart.js-enhanced summary at cancellation_risk_summary.html (line 1) (full path cancellation_risk_summary.html), spotlighting the top-risk appointments and specialty averages for prioritizing reminders.
+Documented how to validate case 5.2 in useful_commands.txt (line 52).
+Testing: python -m pytest, run_cancellation_risk.py
+
+_______________________________________________________________________________________________
+
 Use case 5.3. validation
 python scripts/run_occupancy_dashboard.py
+
+Occupancy Dashboard
+
+Added CitySpecialtyOccupancy/OccupancyDashboardReport to the core models (models.py (lines 580-619)) and the new OccupancyDashboardService (occupancy_dashboard_service.py (lines 13-87)) so appointments tally completed/canceled/reprogrammed counts per city-specialty pair before emitting a sorted dashboard report.
+Created run_occupancy_dashboard.py (lines 22-150) to drive the service, serialize occupancy_dashboard_log.json, and render the Chart.js HTML dashboard (occupancy_dashboard_summary.html) that shows status share, totals, and the top city/specialty combinations; console output now prints the full report paths for easy browsing.
+Added test_occupancy_dashboard_service.py (lines 1-87) to exercise the service with mock patients/appointments and to assert that colored buckets reflect expected completed/canceled/reprogrammed volumes.
+Testing: python -m pytest; run_occupancy_dashboard.py (produced occupancy_dashboard_summary.html at occupancy_dashboard_summary.html, plus the JSON log).
+
+_______________________________________________________________________________________________
 
 Use case 5.4 validation
 python scripts/run_demand_forecast.py
 
+Added DemandForecastEntry/Report to models.py (lines 580-619) and introduced DemandForecastService (demand_forecast_service.py (lines 1-104)) that tracks monthly growth, projects the next three months per doctor and calculates capacity gaps using a 15‑appointment baseline and the average fill rate.
+Wired the service into __init__.py (line 1) and covered the logic with test_demand_forecast_service.py (lines 1-61), ensuring growth, projection months and a sample gap behave as expected.
+Implemented run_demand_forecast.py (lines 1-118) to call the service, write demand_forecast_log.json, render a Chart.js-enhanced HTML (demand_forecast_summary.html) with the requested styling, and log the exact paths (no modifications were made to useful_commands.txt per your instruction).
+Generated artifacts via run_demand_forecast.py (HTML/JSON placed under reports/; the console now lists the precise files) and confirmed behavior with python -m pytest.
+Next steps: open demand_forecast_summary.html in your browser to review the demand vs. capacity chart; you might also compare the JSON log with other KPIs or plug future inputs into the service for additional what-if scenarios.
+
+_______________________________________________________________________________________________
+
 Use case 6.1 validation 
 python scripts/run_etl_pipeline.py
+
+Added ETLPipelineService (new file etl_pipeline_service.py (lines 1-104)) that extracts the JSON, normalizes patient/appointment text, enforces valid dates/referential integrity, and exports cleaned tables to reports/etl as CSV (+ Parquet when pyarrow is available); keeping the summary of raw counts, removed orphans, and exported rows tied to the run.
+Created run_etl_pipeline.py (lines 1-32) plus test_etl_pipeline_service.py (lines 1-32) so you can trigger case 6.1 from the CLI, capture the console summary/paths, and verify the transform logic in isolation; the run now writes pacientes_cleaned.csv, pacientes_cleaned.parquet, citas_cleaned.csv, and citas_cleaned.parquet.
+Tests executed: python -m pytest (passes) and run_etl_pipeline.py (produced clean tables under E:\PruebaTecnicaXpertgroupIngAWS26Dic2025\python\PruebaTecnicaXpertgroupIngAWS26Dic2025Python\reports\etl).
+
+
+_______________________________________________________________________________________________
+
+Use case 6.3 validation
+python scripts/run_etl_pipeline.py
+
+
+_______________________________________________________________________________________________
+
+Use case 6.2
+
+Added a validation suite for the ETL outputs (test_etl_validation.py (lines 1-48)) that runs the pipeline, then reads the cleaned CSV exports to assert cardinality, referential integrity, required fields, and status/date formatting—mirroring a lightweight “Great Expectations” check without changing useful_commands.txt.
+Tests keep verifying the pipeline’s transform stage (test_etl_pipeline_service.py already existed) and now exercise the exported artifacts for format/cardinality integrity, so you can trust each run produces warehouse-ready tables.
+Tests executed: python -m pytest (passes).
+
+_______________________________________________________________________________________________
+
+Use case 6.3 validation
+
+Added runtime instrumentation to ETLPipelineService.run so each execution records start/end timestamps, duration seconds, counts, and persists them to etl_metrics.json, giving you a regression-ready history of every ETL event.
+Extended the pipeline script (run_etl_pipeline.py) to keep the HTML report (etl_summary.html) and now the console lists the exact HTML/metrics files plus the standard summary.
+Introduced validation coverage (test_etl_validation.py) that double-checks cardinality, referential integrity, format expectations, and the new metrics log after each run to satisfy case 6.2.
+
+2 files changed
+etl_pipeline_service.py
+test_etl_validation.py
+
+_______________________________________________________________________________________________
+
+Use case 6.4 validation
+
+Added a schema catalog (data_warehouse_schema.md: new file) that records destination tables such as dim_pacientes and fact_citas, describing their columns, data types, purpose, and the current version tag (v1.0) plus a changelog section for future migrations.
+Documented how each ETL output maps to a destination schema, including cardinality expectations, referential keys, and notes on where to increment the schema version when changes occur.
+
+
+_______________________________________________________________________________________________
+
+Use case 7.1 validation
+Created DoctorNotificationService (doctor_notification_service.py) that checks each doctor/patient history for clustered appointments and repeated cancellations, produces severity-tagged entries, and registers them in a report model (DoctorNotificationEntry/Report) for downstream use.
+Built run_doctor_notifications.py plus the HTML/JSON reporter (doctor_notifications_summary.html and doctor_notifications_log.json) so running the script (run_doctor_notifications.py) logs the alert count and the exact artifact paths for review.
+Added coverage via test_doctor_notification_service.py, which verifies that frequent visits and cancelations trigger a high-severity alert; the broader pipeline suite (python -m pytest) now passes 28 tests, confirming the new service and helpers integrate safely.
+Next step: open doctor_notifications_summary.html to review the alerted doctor/patient patterns before reaching out to the medical team.
+
+5 files changed
+run_doctor_notifications.py
+models.py
+__init__.py
+doctor_notification_service.py
+test_doctor_notification_service.py
+
+
+
 
 
 
