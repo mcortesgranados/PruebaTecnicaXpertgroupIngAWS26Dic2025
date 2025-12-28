@@ -49,14 +49,14 @@ python scripts/run_cleaning_audit.py
 Use case 4.4 validation
 python scripts/run_executive_discrepancy.py
 
-Use case 5.2 validation
-python scripts/run_cancellation_risk.py
-
-Use case 5.5 validation
+Use case 5.1. validation
 python scripts/run_patient_segmentation.py
 
+Use case 5.2  validation
+python scripts/run_cancellation_risk.py
 
-
+Use case 5.3. validation
+python scripts/run_occupancy_dashboard.py
 
 
 
