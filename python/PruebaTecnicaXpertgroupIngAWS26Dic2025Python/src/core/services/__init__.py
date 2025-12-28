@@ -21,4 +21,5 @@ from .etl_pipeline_service import ETLPipelineService
 from .doctor_notification_service import DoctorNotificationService
 from .doctor_utilization_service import DoctorUtilizationService
 from .patient_travel_service import PatientTravelService
+from .management_kpi_service import ManagementKpiService
 from .executive_discrepancy_service import ExecutiveDiscrepancyService
