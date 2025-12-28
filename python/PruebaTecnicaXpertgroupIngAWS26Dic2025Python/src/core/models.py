@@ -22,7 +22,7 @@ class PatientRecord:
     sexo: Optional[str]
     email: Optional[str]
     telefono: Optional[str]
-    ciudad: Optional[str]
+    ciudad: Optional[str] = None
     categoria: PatientCategory = PatientCategory.UNKNOWN
 
     @staticmethod
@@ -203,6 +203,7 @@ class AppointmentRecord:
     medico: Optional[str]
     costo: Optional[float]
     estado_cita: Optional[str]
+    ciudad: Optional[str] = None
 
     @staticmethod
     def from_dict(source: Dict[str, Any]) -> "AppointmentRecord":
@@ -214,6 +215,7 @@ class AppointmentRecord:
             medico=source.get("medico"),
             costo=source.get("costo"),
             estado_cita=source.get("estado_cita"),
+            ciudad=source.get("ciudad") or source.get("ciudad_cita"),
         )
 
 
@@ -689,6 +691,42 @@ class DoctorUtilizationReport:
             "generated_at": self.generated_at,
             "threshold": self.threshold,
             "cancellation_threshold": self.cancellation_threshold,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
+@dataclass
+class PatientTravelEntry:
+    id_paciente: int
+    nombre: str
+    residence: str
+    travel_cities: List[str]
+    travel_count: int
+    severity: str
+    last_travel_dates: List[str]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_paciente": self.id_paciente,
+            "nombre": self.nombre,
+            "residence": self.residence,
+            "travel_cities": self.travel_cities,
+            "travel_count": self.travel_count,
+            "severity": self.severity,
+            "last_travel_dates": self.last_travel_dates,
+        }
+
+
+@dataclass
+class PatientTravelReport:
+    generated_at: str
+    total_travelers: int
+    entries: List[PatientTravelEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "total_travelers": self.total_travelers,
             "entries": [entry.to_dict() for entry in self.entries],
         }
 
