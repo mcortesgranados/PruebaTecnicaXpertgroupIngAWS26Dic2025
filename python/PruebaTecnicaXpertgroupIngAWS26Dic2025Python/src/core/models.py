@@ -548,6 +548,36 @@ class AccessibilityReport:
 
 
 @dataclass
+class PatientSegment:
+    age_segment: str
+    sexo: str
+    frequency_bucket: str
+    count: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "age_segment": self.age_segment,
+            "sexo": self.sexo,
+            "frequency_bucket": self.frequency_bucket,
+            "count": self.count,
+        }
+
+
+@dataclass
+class PatientSegmentationReport:
+    generated_at: str
+    total_patients: int
+    cohorts: List[PatientSegment] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "total_patients": self.total_patients,
+            "cohorts": [entry.to_dict() for entry in self.cohorts],
+        }
+
+
+@dataclass
 class FieldQualityMetric:
     field: str
     completeness: float
