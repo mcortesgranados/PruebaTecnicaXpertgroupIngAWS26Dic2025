@@ -620,6 +620,46 @@ class OccupancyDashboardReport:
 
 
 @dataclass
+class DemandForecastEntry:
+    doctor: str
+    specialty: str
+    month: str
+    predicted_demand: int
+    capacity: int
+    gap: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "doctor": self.doctor,
+            "specialty": self.specialty,
+            "month": self.month,
+            "predicted_demand": self.predicted_demand,
+            "capacity": self.capacity,
+            "gap": self.gap,
+        }
+
+
+@dataclass
+class DemandForecastReport:
+    generated_at: str
+    avg_monthly_growth: float
+    months_ahead: int
+    future_months: List[str] = field(default_factory=list)
+    total_capacity: int = 0
+    entries: List[DemandForecastEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "avg_monthly_growth": round(self.avg_monthly_growth, 4),
+            "months_ahead": self.months_ahead,
+            "future_months": self.future_months,
+            "total_capacity": self.total_capacity,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
+@dataclass
 class CancellationRiskEntry:
     id_cita: str
     id_paciente: Optional[int]
