@@ -61,6 +61,10 @@ python scripts/run_occupancy_dashboard.py
 Use case 5.4 validation
 python scripts/run_demand_forecast.py
 
+Use case 6.1 validation 
+python scripts/run_etl_pipeline.py
+
+
 
 
 
