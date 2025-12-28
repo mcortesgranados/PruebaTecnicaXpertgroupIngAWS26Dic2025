@@ -15,4 +15,5 @@ from .duplicate_detection_service import DuplicateDetectionService
 from .text_normalization_service import TextNormalizationService
 from .patient_segmentation_service import PatientSegmentationService
 from .cancellation_risk_service import CancellationRiskService
+from .occupancy_dashboard_service import OccupancyDashboardService
 from .executive_discrepancy_service import ExecutiveDiscrepancyService
