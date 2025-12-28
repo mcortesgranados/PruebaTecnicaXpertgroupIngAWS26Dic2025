@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segmentación pacientes 5.5</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h1, h2, h3 { margin-top: 0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .tag { background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 3px 8px; margin-left: 6px; font-size: 0.95em; }
+  dt { color: #2e7d32; font-weight: bold; margin-top: 10px; }
+  dd { margin-bottom: 10px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+  .sideEffects ul, .solid ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  pre { background: #f6f8fa; padding: 14px; border-radius: 8px; overflow: auto; font-size: 0.92em; }
+  code { font-family: Consolas, 'Courier New', monospace; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  .json { white-space: pre; font-family: Consolas, 'Courier New', monospace; font-size: 0.95em; }
+  .success { color: #2e7d32; font-weight: 600; }
+  .error { color: #c62828; font-weight: 600; }
+  canvas { width: 100%; height: auto; margin-top: 20px; }
+  .note-grid { display: flex; gap: 16px; }
+  .note-grid div { flex: 1; }
+  .card-list { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Segmentación de pacientes</h1>
+    <p class="note">Identificamos combinaciones de edad, sexo y frecuencia de citas para personalizar comunicaciones y programas de prevención.</p>
+    <div class="row">
+      <div class="col endpoint">
+        <h2>Resumen</h2>
+        <dl class="params">
+          <dt>Generado el</dt>
+          <dd>2025-12-28T01:13:30.460199</dd>
+          <dt>Total de pacientes segmentados</dt>
+          <dd>5010</dd>
+          <dt>Cohortes únicas</dt>
+          <dd>32</dd>
+        </dl>
+      </div>
+      <div class="col endpoint">
+        <h2>Distribuciones clave</h2>
+        <div class="note-grid">
+          <div>
+            <h3>Frecuencia</h3>
+            <ul><li><strong>Frecuencia baja (1-2 citas):</strong> 13 pacientes</li>
+<li><strong>Frecuencia moderada (3-4 citas):</strong> 13 pacientes</li>
+<li><strong>Sin citas registradas:</strong> 6 pacientes</li></ul>
+          </div>
+          <div>
+            <h3>Sexo</h3>
+            <ul><li><strong>Masculino:</strong> 12 combinaciones</li>
+<li><strong>Femenino:</strong> 11 combinaciones</li>
+<li><strong>No declarado:</strong> 9 combinaciones</li></ul>
+          </div>
+          <div>
+            <h3>Edad</h3>
+            <ul><li><strong>35-64 (Adultos):</strong> 8 segmentos</li>
+<li><strong>18-34 (Adultos jóvenes):</strong> 8 segmentos</li>
+<li><strong>65+ (Adultos mayores):</strong> 8 segmentos</li>
+<li><strong>0-17 (Niños):</strong> 6 segmentos</li>
+<li><strong>Edad desconocida:</strong> 2 segmentos</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <canvas id="segmentChart"></canvas>
+    <h2>Cohortes destacadas</h2>
+    <div class="row">
+      <div class="col endpoint"><h3>35-64 (Adultos)</h3><p><strong>Sexo:</strong> Masculino</p><p><strong>Frecuencia:</strong> Frecuencia baja (1-2 citas)</p><p><strong>Pacientes:</strong> 646</p></div>
+<div class="col endpoint"><h3>35-64 (Adultos)</h3><p><strong>Sexo:</strong> Femenino</p><p><strong>Frecuencia:</strong> Frecuencia baja (1-2 citas)</p><p><strong>Pacientes:</strong> 623</p></div>
+<div class="col endpoint"><h3>18-34 (Adultos jóvenes)</h3><p><strong>Sexo:</strong> Masculino</p><p><strong>Frecuencia:</strong> Frecuencia baja (1-2 citas)</p><p><strong>Pacientes:</strong> 342</p></div>
+<div class="col endpoint"><h3>35-64 (Adultos)</h3><p><strong>Sexo:</strong> No declarado</p><p><strong>Frecuencia:</strong> Frecuencia baja (1-2 citas)</p><p><strong>Pacientes:</strong> 326</p></div>
+<div class="col endpoint"><h3>18-34 (Adultos jóvenes)</h3><p><strong>Sexo:</strong> Femenino</p><p><strong>Frecuencia:</strong> Frecuencia baja (1-2 citas)</p><p><strong>Pacientes:</strong> 321</p></div>
+<div class="col endpoint"><h3>65+ (Adultos mayores)</h3><p><strong>Sexo:</strong> Masculino</p><p><strong>Frecuencia:</strong> Frecuencia baja (1-2 citas)</p><p><strong>Pacientes:</strong> 309</p></div>
+    </div>
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_patient_segmentation.py</code>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const labels = ["35-64 (Adultos) \u00b7 Masculino \u00b7 Frecuencia baja (1-2 citas)", "35-64 (Adultos) \u00b7 Femenino \u00b7 Frecuencia baja (1-2 citas)", "18-34 (Adultos j\u00f3venes) \u00b7 Masculino \u00b7 Frecuencia baja (1-2 citas)", "35-64 (Adultos) \u00b7 No declarado \u00b7 Frecuencia baja (1-2 citas)", "18-34 (Adultos j\u00f3venes) \u00b7 Femenino \u00b7 Frecuencia baja (1-2 citas)", "65+ (Adultos mayores) \u00b7 Masculino \u00b7 Frecuencia baja (1-2 citas)"];
+    const data = [646, 623, 342, 326, 321, 309];
+    const ctx = document.getElementById('segmentChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Pacientes por cohorte',
+          data,
+          backgroundColor: '#2563eb',
+          borderRadius: 6,
+        }],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: item => 'Pacientes: ' + item.raw } }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 1 }
+          }
+        },
+      },
+    });
+  </script>
+</body>
+</html>
