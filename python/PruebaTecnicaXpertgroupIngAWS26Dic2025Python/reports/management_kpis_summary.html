@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPIs gerenciales 7.4</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 980px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 32px 40px; }
+  h1 { color: #0f172a; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: center; }
+  th { background: #e0e7ff; }
+  .note { background: #e0f2fe; border-left: 4px solid #0ea5e9; padding: 16px; border-radius: 6px; }
+  .footer { margin-top: 24px; text-align: right; color: #555; }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>KPIs gerenciales: espera y costo por cita</h1>
+    <p class="note">Presentamos costos promedio y tiempos de espera para monitorear cumplimiento ejecutivo.</p>
+    <p><strong>Espera promedio total:</strong> 478.41 días</p>
+    <p><strong>Costo promedio total:</strong> $164.39</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Especialidad</th>
+          <th>Conteo citas completadas</th>
+          <th>Costo promedio</th>
+          <th>Espera promedio (días)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Cardiología</td><td>331</td><td>$164.77341389728096</td><td>490.5339805825243 días</td></tr>
+<tr><td>General</td><td>334</td><td>$164.07185628742516</td><td>484.7931034482759 días</td></tr>
+<tr><td>Ginecología</td><td>337</td><td>$166.94362017804156</td><td>463.11965811965814 días</td></tr>
+<tr><td>Neurología</td><td>344</td><td>$164.88372093023256</td><td>441.25714285714287 días</td></tr>
+<tr><td>Ortopedia</td><td>327</td><td>$161.7737003058104</td><td>533.9624060150376 días</td></tr>
+<tr><td>Pediatría</td><td>324</td><td>$163.76543209876544</td><td>443.93457943925233 días</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Generado desde <code>scripts/run_management_kpis.py</code>
+    </div>
+  </div>
+</body>
+</html>
