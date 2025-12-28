@@ -654,6 +654,46 @@ class DoctorNotificationReport:
 
 
 @dataclass
+class DoctorUtilizationEntry:
+    doctor: str
+    specialty: str
+    completed: int
+    scheduled: int
+    utilization_rate: float
+    cancellation_rate: float
+    deviation: float
+    status: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "doctor": self.doctor,
+            "specialty": self.specialty,
+            "completed": self.completed,
+            "scheduled": self.scheduled,
+            "utilization_rate": round(self.utilization_rate, 3),
+            "cancellation_rate": round(self.cancellation_rate, 3),
+            "deviation": round(self.deviation, 3),
+            "status": self.status,
+        }
+
+
+@dataclass
+class DoctorUtilizationReport:
+    generated_at: str
+    threshold: float
+    cancellation_threshold: float
+    entries: List[DoctorUtilizationEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "threshold": self.threshold,
+            "cancellation_threshold": self.cancellation_threshold,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
+@dataclass
 class DemandForecastEntry:
     doctor: str
     specialty: str
