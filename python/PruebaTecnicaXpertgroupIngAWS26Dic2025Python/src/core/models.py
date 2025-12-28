@@ -578,6 +578,48 @@ class PatientSegmentationReport:
 
 
 @dataclass
+class CitySpecialtyOccupancy:
+    city: str
+    specialty: str
+    completed: int
+    canceled: int
+    reprogrammed: int
+
+    @property
+    def total(self) -> int:
+        return self.completed + self.canceled + self.reprogrammed
+
+    @property
+    def completion_rate(self) -> float:
+        return (self.completed / self.total) if self.total else 0.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "city": self.city,
+            "specialty": self.specialty,
+            "completed": self.completed,
+            "canceled": self.canceled,
+            "reprogrammed": self.reprogrammed,
+            "total": self.total,
+            "completion_rate": round(self.completion_rate, 3),
+        }
+
+
+@dataclass
+class OccupancyDashboardReport:
+    generated_at: str
+    total_appointments: int
+    entries: List[CitySpecialtyOccupancy] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "total_appointments": self.total_appointments,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
+@dataclass
 class CancellationRiskEntry:
     id_cita: str
     id_paciente: Optional[int]
