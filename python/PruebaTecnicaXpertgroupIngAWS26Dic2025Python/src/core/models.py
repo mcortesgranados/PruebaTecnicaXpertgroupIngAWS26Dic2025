@@ -578,6 +578,48 @@ class PatientSegmentationReport:
 
 
 @dataclass
+class CancellationRiskEntry:
+    id_cita: str
+    id_paciente: Optional[int]
+    especialidad: Optional[str]
+    estado_cita: Optional[str]
+    risk_score: float
+    days_since_last: Optional[int]
+    factors: List[str]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id_cita": self.id_cita,
+            "id_paciente": self.id_paciente,
+            "especialidad": self.especialidad,
+            "estado_cita": self.estado_cita,
+            "risk_score": round(self.risk_score, 3),
+            "days_since_last": self.days_since_last,
+            "factors": self.factors,
+        }
+
+
+@dataclass
+class CancellationRiskReport:
+    generated_at: str
+    total_records: int
+    high_risk_count: int
+    average_risk: float
+    specialty_risk: Dict[str, float] = field(default_factory=dict)
+    entries: List[CancellationRiskEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "generated_at": self.generated_at,
+            "total_records": self.total_records,
+            "high_risk_count": self.high_risk_count,
+            "average_risk": round(self.average_risk, 4),
+            "specialty_risk": {k: round(v, 4) for k, v in self.specialty_risk.items()},
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
+@dataclass
 class FieldQualityMetric:
     field: str
     completeness: float
