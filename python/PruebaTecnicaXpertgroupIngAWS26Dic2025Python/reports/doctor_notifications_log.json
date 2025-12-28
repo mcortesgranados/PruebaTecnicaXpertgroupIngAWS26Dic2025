@@ -1,0 +1,1011 @@
+{
+  "generated_at": "2025-12-28T11:58:16.528900",
+  "total_alerts": 88,
+  "entries": [
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 3,
+      "nombre": "Carlos Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 77,
+      "nombre": "Andrea Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 194,
+      "nombre": "Andrea Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-11-09"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 233,
+      "nombre": "Claudia López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 291,
+      "nombre": "Claudia Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-10-07",
+        "2025-03-18"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 297,
+      "nombre": "María Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-09-19",
+        "2023-06-27"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 302,
+      "nombre": "María Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-05-21"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 329,
+      "nombre": "Juan Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-03-11"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 330,
+      "nombre": "Juan López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-04-17",
+        "2025-08-31"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 380,
+      "nombre": "Claudia López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 426,
+      "nombre": "Carlos Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-09-19"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 437,
+      "nombre": "Andrea Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 456,
+      "nombre": "Claudia Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-06-28"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 459,
+      "nombre": "María Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-08-24"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 567,
+      "nombre": "Andrea Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-02-15"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 589,
+      "nombre": "Claudia Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 628,
+      "nombre": "Claudia Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-06-20"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 690,
+      "nombre": "María Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 780,
+      "nombre": "María Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-03-19"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 834,
+      "nombre": "Carlos Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-10-16"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 849,
+      "nombre": "María López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 867,
+      "nombre": "Juan Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 926,
+      "nombre": "Andrea Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-01-14",
+        "2025-09-30"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 1010,
+      "nombre": "Juan López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 1045,
+      "nombre": "Andrea Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-12-25"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 1194,
+      "nombre": "María López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 1225,
+      "nombre": "Carlos Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-06-26"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 1415,
+      "nombre": "Carlos López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-06-24",
+        "2023-07-28"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 1463,
+      "nombre": "Carlos Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-03-26"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 1475,
+      "nombre": "María Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-08-13"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 1479,
+      "nombre": "Carlos Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-06-20",
+        "2022-08-20"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 1494,
+      "nombre": "Juan Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-03-20",
+        "2025-09-24"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 1538,
+      "nombre": "Carlos Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 1611,
+      "nombre": "Andrea Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 1714,
+      "nombre": "Andrea Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-02-23"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 1879,
+      "nombre": "Carlos López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 1901,
+      "nombre": "Claudia Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-02-17"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2107,
+      "nombre": "Juan Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 2115,
+      "nombre": "Claudia Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2125,
+      "nombre": "Juan Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 2133,
+      "nombre": "María López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-05-21"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2148,
+      "nombre": "Carlos Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-03-16"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2201,
+      "nombre": "Carlos Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 2223,
+      "nombre": "Juan Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 2344,
+      "nombre": "María Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-07-02"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 2354,
+      "nombre": "Claudia Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 2450,
+      "nombre": "Andrea Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 2480,
+      "nombre": "Carlos Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-03-25"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 2482,
+      "nombre": "Andrea Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-11-08"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 2488,
+      "nombre": "Juan Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-03-09",
+        "2023-11-19"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2597,
+      "nombre": "Juan López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-01-12",
+        "2023-01-25"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2729,
+      "nombre": "Carlos Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-07-26"
+      ]
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 2762,
+      "nombre": "Juan Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-02-01"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 2952,
+      "nombre": "Claudia Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 3189,
+      "nombre": "Carlos Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-12-16"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 3230,
+      "nombre": "Juan Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-11-22"
+      ]
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 3363,
+      "nombre": "Claudia Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 3439,
+      "nombre": "Juan López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 3499,
+      "nombre": "Claudia López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-05-22"
+      ]
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 3642,
+      "nombre": "Juan Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-08-26"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 3652,
+      "nombre": "Claudia Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-01-24"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 3677,
+      "nombre": "Andrea López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-11-05",
+        "2024-06-15"
+      ]
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 3700,
+      "nombre": "Andrea Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-09-02"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 3717,
+      "nombre": "Juan Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-02-03",
+        "2023-12-22"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 3798,
+      "nombre": "Carlos Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 3839,
+      "nombre": "María Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 3856,
+      "nombre": "Carlos Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-03-29",
+        "2024-08-14"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 3877,
+      "nombre": "Carlos Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-09-17",
+        "2023-09-20"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 3894,
+      "nombre": "Claudia Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-05-11",
+        "2025-12-04"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 4004,
+      "nombre": "Andrea López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 4041,
+      "nombre": "Carlos Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 4117,
+      "nombre": "María López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-05-13"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 4120,
+      "nombre": "María Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-07-24"
+      ]
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 4475,
+      "nombre": "Juan Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-06-09"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 4489,
+      "nombre": "Carlos López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-11-13"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 4512,
+      "nombre": "Andrea Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2022-02-24"
+      ]
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "id_paciente": 4534,
+      "nombre": "Andrea Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-10-19"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 4560,
+      "nombre": "Andrea Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 4642,
+      "nombre": "Andrea Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-06-24"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 4741,
+      "nombre": "Carlos Pérez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 4763,
+      "nombre": "Carlos Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "id_paciente": 4788,
+      "nombre": "Juan Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 4804,
+      "nombre": "Juan Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-04-29",
+        "2023-10-15"
+      ]
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "id_paciente": 4831,
+      "nombre": "Claudia Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2024-12-03"
+      ]
+    },
+    {
+      "doctor": "Sin Médico",
+      "id_paciente": 4908,
+      "nombre": "Andrea Gómez",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": []
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 4915,
+      "nombre": "María Rojas",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-06-15"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 4951,
+      "nombre": "Carlos López",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2023-02-26"
+      ]
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "id_paciente": 4969,
+      "nombre": "María Torres",
+      "patterns": [
+        "Cancelaciones recurrentes"
+      ],
+      "severity": "medium",
+      "appointment_dates": [
+        "2025-09-10"
+      ]
+    }
+  ]
+}
