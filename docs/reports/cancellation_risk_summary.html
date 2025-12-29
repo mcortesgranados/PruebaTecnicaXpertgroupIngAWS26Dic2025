@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte cancelaciones 5.2</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .tag { background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 3px 8px; margin-left: 6px; font-size: 0.95em; }
+  dt { color: #2e7d32; font-weight: bold; margin-top: 10px; }
+  dd { margin-bottom: 10px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+  .sideEffects ul, .solid ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  pre { background: #f6f8fa; padding: 14px; border-radius: 8px; overflow: auto; font-size: 0.92em; }
+  code { font-family: Consolas, 'Courier New', monospace; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  canvas { width: 100%; height: auto; margin-top: 20px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 8px; text-align: center; }
+  th { background: #dbeafe; }
+  .row-list { list-style: none; margin-left: 0; padding-left: 0; }
+  .row-list li { margin-bottom: 4px; }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Probabilidad de cancelación (5.2)</h1>
+    <p class="note">Usamos estados previos, especialidad y tiempos entre citas para detectar riesgos y priorizar recordatorios.</p>
+    <div class="row">
+      <div class="col endpoint">
+        <h2>Resumen</h2>
+        <table class="params">
+          <tr><th>Total analizados</th><td>9961</td></tr>
+          <tr><th>Riesgo medio</th><td>0.399</td></tr>
+          <tr><th>Alertas críticas</th><td>1236</td></tr>
+        </table>
+      </div>
+      <div class="col endpoint">
+        <h2>Riesgo por especialidad</h2>
+        <ul class="row-list">
+          <li><strong>Cardiología:</strong> 0.431</li>
+<li><strong>Pediatría:</strong> 0.443</li>
+<li><strong>Neurología:</strong> 0.379</li>
+<li><strong>Ginecología:</strong> 0.373</li>
+<li><strong>General:</strong> 0.4</li>
+<li><strong>Ortopedia:</strong> 0.372</li>
+        </ul>
+      </div>
+    </div>
+    <canvas id="riskChart"></canvas>
+    <h2>Top riesgos</h2>
+    <div class="note">
+      <p>Los valores indican la distancia al umbral crítico de recordatorios.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>id_cita</th>
+          <th>id_paciente</th>
+          <th>Especialidad</th>
+          <th>Estado</th>
+          <th>Días desde anterior</th>
+          <th>Factores</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>15efb4ac-2f66-46d3-967a-94e498364656</td><td>297</td><td>pediatría</td><td>Cancelada</td><td>281</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>edb79149-7abf-4d98-8469-2fe5b23cd67f</td><td>302</td><td>pediatría</td><td>Cancelada</td><td>8</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>a195663d-b8fc-4cf4-86c8-29ebc4e94071</td><td>338</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>60dae54e-862f-415a-a0cd-284c70712839</td><td>389</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>4b38ecb6-b0b8-4e6c-b1de-37502567efb3</td><td>493</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>70da6730-8dbf-4893-8343-a3b2ff93a8cf</td><td>526</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>8addaa63-2e6e-4462-a4a0-025a6508d99f</td><td>567</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>11519bc4-1e1b-41fa-b671-384060533bb4</td><td>780</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>f6895217-b2cf-49a1-9e52-3ae9b44f019b</td><td>834</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>055b36a7-87ea-422b-a6c7-9d09e7727346</td><td>849</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>ecaf487b-caff-45f9-8632-bed9d6a643d5</td><td>856</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>08bf9d7d-15fa-4ebf-a838-7098b8cd42cd</td><td>1004</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>09490977-80ea-464b-907b-d28613657c97</td><td>1039</td><td>pediatría</td><td>Cancelada</td><td>372</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>e993e995-97de-4e7d-b4f6-e5fabdf6749f</td><td>1111</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>9d3294b0-e526-433a-8728-34a53bb98745</td><td>1181</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>1c26b37e-32f4-41fe-a7a0-295384d2f8a3</td><td>1195</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>a4049630-2f20-49c1-b179-fd85b446fe94</td><td>1251</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>1ae3585c-93a6-4afe-9c8f-fc25f05235fe</td><td>1290</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>2b018a32-f70f-4ad1-893b-e309de9077b9</td><td>1315</td><td>pediatría</td><td>Cancelada</td><td>nd</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+<tr><td>9108b9c9-7628-4ae4-acfe-661976746409</td><td>1415</td><td>pediatría</td><td>Cancelada</td><td>34</td><td>Cancelación previa, Estado actual Cancelada, Especialidad: Pediatría</td><td>0.846</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_cancellation_risk.py</code>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const labels = ["15efb4ac-2f66-46d3-967a-94e498364656", "edb79149-7abf-4d98-8469-2fe5b23cd67f", "a195663d-b8fc-4cf4-86c8-29ebc4e94071", "60dae54e-862f-415a-a0cd-284c70712839", "4b38ecb6-b0b8-4e6c-b1de-37502567efb3", "70da6730-8dbf-4893-8343-a3b2ff93a8cf", "8addaa63-2e6e-4462-a4a0-025a6508d99f", "11519bc4-1e1b-41fa-b671-384060533bb4", "f6895217-b2cf-49a1-9e52-3ae9b44f019b", "055b36a7-87ea-422b-a6c7-9d09e7727346"];
+    const data = [0.846, 0.846, 0.846, 0.846, 0.846, 0.846, 0.846, 0.846, 0.846, 0.846];
+    const ctx = document.getElementById('riskChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Score de riesgo',
+          data,
+          backgroundColor: '#ef4444',
+          borderRadius: 5,
+        }],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 1,
+            ticks: { stepSize: 0.1 }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: item => 'Riesgo: ' + item.raw } }
+        },
+      },
+    });
+  </script>
+</body>
+</html>
