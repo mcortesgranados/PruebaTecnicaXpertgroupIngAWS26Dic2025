@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estrategias de Solución y Arquitectura</title>
   <style>
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
-  .container { max-width: 980px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f3f5fb; color: #1f2933; margin: 0; padding: 0; }
+  .container { max-width: 980px; margin: 40px auto; background: #fff; box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08); border-radius: 12px; padding: 32px 40px; }
   h1 { color: #1565c0; }
   h2 { color: #2e7d32; margin-top: 32px; }
   h3 { color: #7b1fa2; margin-top: 24px; }
@@ -15,21 +15,25 @@
   ul { padding-left: 1.4em; }
   .row { display:flex; gap:24px; flex-wrap:wrap; margin-top: 16px; }
   .card { flex:1 1 320px; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-  .footer { text-align: right; color: #888; font-size: 0.95em; margin-top: 24px; }
-  pre { background: #f6f8fa; padding: 12px; border-radius: 8px; overflow: auto; }
+  .footer { text-align: right; color: #475569; font-size: 0.95em; margin-top: 24px; }
+  pre { background: #0f172a; color: #e0f2fe; padding: 12px; border-radius: 8px; overflow: auto; }
+  code { background: linear-gradient(120deg, #0f172a, #1d4ed8); color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3); }
+  .highlight { background: #fef3c7; color: #92400e; border-radius: 4px; padding: 2px 6px; font-weight: 600; }
+  .command-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+  .command-chip { background: #1d4ed8; color: #fff; padding: 8px 14px; border-radius: 999px; font-size: 0.95em; font-weight: 600; box-shadow: 0 6px 18px rgba(29, 78, 216, 0.35); border: 1px solid rgba(15, 23, 42, 0.2); }
   @media (max-width: 600px) { .row { flex-direction: column; } }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Estrategias de solución en Python</h1>
-    <p>El pipeline comienza desde el JSON <code>dataset_hospital 2 AWS.json</code>. Se propone el siguiente modelo por capas para asegurar limpieza, validación y entrega de tablas limpias.</p>
+    <p>El pipeline comienza desde el JSON <code>dataset_hospital 2 AWS.json</code>. Se propone el siguiente modelo por capas para asegurar <span class="highlight">limpieza, validación y entrega</span> de tablas limpias.</p>
 
     <div class="section">
       <h2>1. Ingesta y perfilado inicial</h2>
       <ul>
-        <li><strong>Pandas + pathlib.</strong> Leer el JSON con <code>pd.read_json()</code> apuntando a cada tabla y establecer tipos básicos (int, datetime, category) para reducir sorpresas.</li>
-        <li>Perfilado con <code>pandas_profiling</code> o <code>dataprep.eda</code> para identificar nulos, duplicados y distribuciones, generando reportes HTML.</li>
+        <li><strong class="highlight">Pandas + pathlib.</strong> Leer el JSON con <code>pd.read_json()</code> apuntando a cada tabla y establecer tipos básicos (int, datetime, category) para reducir sorpresas.</li>
+        <li>Perfilado con <span class="highlight">pandas_profiling</span> o <span class="highlight">dataprep.eda</span> para identificar nulos, duplicados y distribuciones, generando reportes HTML.</li>
         <li>Registrar métricas iniciales de completitud/validez por campo en un artefacto (CSV o JSON).</li>
       </ul>
     </div>
@@ -39,7 +43,7 @@
       <ul>
         <li>Normalizar texto (strip, lower, eliminar tildes) para campos como <code>nombre</code>, <code>ciudad</code> y <code>especialidad</code>.</li>
         <li>Imputar edades faltantes con la diferencia entre la fecha de corte y <code>fecha_nacimiento</code>; si la fecha falta, dejar <code>edad</code> como <code>NaN</code> y documentar la restricción.</li>
-        <li>Interpolar contactos (correo/teléfono) dejando registros preparados para validación externa y marcando campos con <code>missing_contact</code> para seguimiento.</li>
+        <li>Interpolar contactos (correo/teléfono) dejando registros preparados para validación externa y marcando campos con <span class="highlight">missing_contact</span> para seguimiento.</li>
         <li>Eliminar duplicados por <code>id_paciente</code> y consolidar los registros con preferencia por los valores no nulos recientes.</li>
       </ul>
     </div>
@@ -47,7 +51,7 @@
     <div class="section">
       <h2>3. Validaciones cruzadas</h2>
       <ul>
-        <li>Usar <code>pandas.merge()</code> para validar que cada <code>id_paciente</code> de citas exista en <code>pacientes</code>; los huérfanos se exportan a un CSV de discrepancias.</li>
+        <li>Usar <code>pandas.merge()</code> para validar que cada <code>id_paciente</code> de citas exista en <code>pacientes</code>; los <span class="highlight">huérfanos</span> se exportan a un CSV de discrepancias.</li>
         <li>Validar estados válidos en <code>estado_cita</code> con un <code>Enum</code> (p.ej., {Completada, Cancelada, Reprogramada}).</li>
         <li>Verificar que citas con estado completado tengan fecha y médico no nulos, generando un registro de errores si no.</li>
         <li>Calcular edad real (de fecha) y comparar con la registrada para detectar errores de captura, complementado con un reporte de diferencias.</li>
@@ -67,7 +71,7 @@
       <h2>5. Exportación y pruebas</h2>
       <ul>
         <li>Exportar tablas limpias a <code>.csv</code> o <code>.parquet</code> en carpetas con timestamp (por ejemplo: <code>outputs/pacientes/</code>).</li>
-        <li>Crear pruebas automáticas usando <code>pytest</code> y <code>great_expectations</code> para cubrir: tipos contrato, integridad referencial, no null en campos críticos.</li>
+        <li>Crear pruebas automáticas usando <code>pytest</code> y <span class="highlight">Great Expectations</span> para cubrir: tipos contrato, integridad referencial, no null en campos críticos.</li>
         <li>Agregar un script que invoque cada validación y falle con código distinto si se detecta violación.</li>
       </ul>
     </div>
@@ -107,11 +111,22 @@
     <div class="row">
       <div class="card">
         <h3>Orquestación</h3>
-        <p>Airflow o Prefect para encadenar pasos: ingestión → limpieza → validaciones → exportación → pruebas automáticas.</p>
+        <p><span class="highlight">Airflow o Prefect</span> para encadenar pasos: ingestión → limpieza → validaciones → exportación → pruebas automáticas.</p>
       </div>
       <div class="card">
         <h3>Entrega</h3>
         <p>Exportar datasets limpios, reportes y pruebas en un ZIP, junto al informe PDF para cumplir con requisitos de la prueba técnica.</p>
+      </div>
+    </div>
+
+    <div class="section commands">
+      <h2>Comandos destacados</h2>
+      <p class="note">Estos scripts resumen los pasos clave del pipeline y conviene ejecutarlos tras cada carga para refrescar métricas, artefactos y reportes HTML.</p>
+      <div class="command-chips">
+        <span class="command-chip">python scripts/run_etl_pipeline.py</span>
+        <span class="command-chip">python -m pytest</span>
+        <span class="command-chip">python scripts/run_quality_kpis.py</span>
+        <span class="command-chip">python scripts/run_appointment_indicators.py</span>
       </div>
     </div>
 
