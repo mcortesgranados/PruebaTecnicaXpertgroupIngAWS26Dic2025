@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen caso de uso 1.2</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8fafc; color:#1f2933; margin:0; padding:20px; }
+    .container { max-width:1100px; margin:0 auto; background:#fff; border-radius:10px; box-shadow:0 12px 24px rgba(15,23,42,0.15); padding:32px; }
+    h1 { color:#1d4ed8; }
+    table { width:100%; border-collapse:collapse; margin-top:24px; font-size:0.95rem; }
+    th, td { border:1px solid #e5e7eb; padding:10px; text-align:left; }
+    th { background:#e0f2fe; color:#0369a1; }
+    .summary { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:16px; margin-top:16px; }
+    .card { background:#f1f5f9; border-radius:8px; padding:16px; }
+    .card span { display:block; font-size:1.5rem; font-weight:600; }
+    .note { margin-top:24px; font-size:0.9rem; color:#555; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Caso de uso 1.2 – Consistencia edad vs fecha de nacimiento</h1>
+    <p>Fecha de corte utilizada: 2025-12-31</p>
+    <div class="summary">
+      <div class="card">
+        <p>Total procesados</p>
+        <span>5010</span>
+      </div>
+      <div class="card">
+        <p>Inconsistencias</p>
+        <span>1681</span>
+      </div>
+      <div class="card">
+        <p>Edades imputadas</p>
+        <span>1645</span>
+      </div>
+      <div class="card">
+        <p>Sin fecha válida</p>
+        <span>4</span>
+      </div>
+    </div>
+    <p class="note">
+      Se muestran los primeros 20 registros con acciones detectadas; revise el JSON si requiere el historial completo.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>id_paciente</th>
+          <th>nombre</th>
+          <th>acción</th>
+          <th>edad registrada</th>
+          <th>edad calculada</th>
+          <th>nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Claudia Torres</td><td>imputed_age</td><td>—</td><td>71</td><td>Edad imputada usando la diferencia entre 2025-12-31 y la fecha de nacimiento.</td></tr>
+<tr><td>2</td><td>Carlos Gómez</td><td>inconsistent_age</td><td>58</td><td>60</td><td>La edad registrada (58) no coincide con la calculada (60) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>4</td><td>Andrea López</td><td>inconsistent_age</td><td>47</td><td>74</td><td>La edad registrada (47) no coincide con la calculada (74) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>5</td><td>Juan Gómez</td><td>inconsistent_age</td><td>81</td><td>64</td><td>La edad registrada (81) no coincide con la calculada (64) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>7</td><td>María Torres</td><td>inconsistent_age</td><td>72</td><td>71</td><td>La edad registrada (72) no coincide con la calculada (71) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>9</td><td>María Torres</td><td>inconsistent_age</td><td>47</td><td>51</td><td>La edad registrada (47) no coincide con la calculada (51) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>10</td><td>Juan López</td><td>imputed_age</td><td>—</td><td>64</td><td>Edad imputada usando la diferencia entre 2025-12-31 y la fecha de nacimiento.</td></tr>
+<tr><td>11</td><td>María López</td><td>inconsistent_age</td><td>23</td><td>64</td><td>La edad registrada (23) no coincide con la calculada (64) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>12</td><td>Carlos López</td><td>inconsistent_age</td><td>53</td><td>70</td><td>La edad registrada (53) no coincide con la calculada (70) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>13</td><td>Juan Rojas</td><td>inconsistent_age</td><td>56</td><td>16</td><td>La edad registrada (56) no coincide con la calculada (16) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>14</td><td>María López</td><td>inconsistent_age</td><td>40</td><td>43</td><td>La edad registrada (40) no coincide con la calculada (43) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>17</td><td>Carlos Pérez</td><td>imputed_age</td><td>—</td><td>34</td><td>Edad imputada usando la diferencia entre 2025-12-31 y la fecha de nacimiento.</td></tr>
+<tr><td>18</td><td>Claudia López</td><td>inconsistent_age</td><td>66</td><td>48</td><td>La edad registrada (66) no coincide con la calculada (48) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>19</td><td>María Pérez</td><td>inconsistent_age</td><td>13</td><td>41</td><td>La edad registrada (13) no coincide con la calculada (41) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>21</td><td>Andrea Rojas</td><td>imputed_age</td><td>—</td><td>66</td><td>Edad imputada usando la diferencia entre 2025-12-31 y la fecha de nacimiento.</td></tr>
+<tr><td>22</td><td>Juan Pérez</td><td>inconsistent_age</td><td>34</td><td>48</td><td>La edad registrada (34) no coincide con la calculada (48) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>25</td><td>Andrea López</td><td>imputed_age</td><td>—</td><td>32</td><td>Edad imputada usando la diferencia entre 2025-12-31 y la fecha de nacimiento.</td></tr>
+<tr><td>26</td><td>Juan Rojas</td><td>inconsistent_age</td><td>80</td><td>31</td><td>La edad registrada (80) no coincide con la calculada (31) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>27</td><td>Carlos Pérez</td><td>inconsistent_age</td><td>63</td><td>56</td><td>La edad registrada (63) no coincide con la calculada (56) para la fecha de corte 2025-12-31.</td></tr>
+<tr><td>28</td><td>Juan Pérez</td><td>imputed_age</td><td>—</td><td>56</td><td>Edad imputada usando la diferencia entre 2025-12-31 y la fecha de nacimiento.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
