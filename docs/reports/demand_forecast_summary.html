@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyección demanda 5.4</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 8px; text-align: center; }
+  th { background: #dbeafe; }
+  canvas { width: 100%; height: auto; margin-top: 20px; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  .highlight { font-weight: 600; }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Proyección de demanda futura</h1>
+    <p class="note">Aplicamos el crecimiento mensual promedio para estimar los próximos 3 meses y calcular brechas de capacidad por médico.</p>
+    <div class="row">
+      <div class="col endpoint">
+        <h2>Indicadores</h2>
+        <p><span class="highlight">Crecimiento mensual medio:</span> 0.02</p>
+        <p><span class="highlight">Capacidad total proyectada:</span> 270</p>
+      </div>
+      <div class="col endpoint">
+        <h2>Meses proyectados</h2>
+        <ul class="note">
+          <li>2026-01</li><li>2026-02</li><li>2026-03</li>
+        </ul>
+      </div>
+    </div>
+    <canvas id="trendChart"></canvas>
+    <h2>Top brechas por médico</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Médico</th>
+          <th>Especialidad</th>
+          <th>Demanda proyectada</th>
+          <th>Capacidad</th>
+          <th>Brecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>2026-02</td><td>Dr. Andrés Murcia</td><td>Ginecología</td><td>21</td><td>24</td><td>-3</td></tr>
+<tr><td>2026-03</td><td>Dr. Andrés Murcia</td><td>Ginecología</td><td>21</td><td>24</td><td>-3</td></tr>
+<tr><td>2026-01</td><td>Dr. Andrés Murcia</td><td>Ginecología</td><td>20</td><td>24</td><td>-4</td></tr>
+<tr><td>2026-02</td><td>Sin médico</td><td>Ginecología</td><td>18</td><td>20</td><td>-2</td></tr>
+<tr><td>2026-03</td><td>Sin médico</td><td>Ginecología</td><td>18</td><td>20</td><td>-2</td></tr>
+<tr><td>2026-01</td><td>Sin médico</td><td>Ginecología</td><td>17</td><td>20</td><td>-3</td></tr>
+<tr><td>2026-03</td><td>Dr. Camilo Rojas</td><td>Neurología</td><td>14</td><td>16</td><td>-2</td></tr>
+<tr><td>2026-03</td><td>Dr. Juan Valdez</td><td>Ortopedia</td><td>13</td><td>15</td><td>-2</td></tr>
+<tr><td>2026-01</td><td>Dr. Camilo Rojas</td><td>Neurología</td><td>13</td><td>16</td><td>-3</td></tr>
+<tr><td>2026-02</td><td>Dr. Camilo Rojas</td><td>Neurología</td><td>13</td><td>16</td><td>-3</td></tr>
+<tr><td>2026-01</td><td>Dr. Juan Valdez</td><td>Ortopedia</td><td>12</td><td>15</td><td>-3</td></tr>
+<tr><td>2026-02</td><td>Dr. Juan Valdez</td><td>Ortopedia</td><td>12</td><td>15</td><td>-3</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_demand_forecast.py</code>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const labels = ["2026-01", "2026-02", "2026-03"];
+    const predicted = [71, 73, 76];
+    const capacity = [90, 90, 90];
+    const ctx = document.getElementById('trendChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Demanda proyectada',
+            data: predicted,
+            borderColor: '#2563eb',
+            fill: false,
+            tension: 0.3,
+          },
+          {
+            label: 'Capacidad',
+            data: capacity,
+            borderColor: '#16a34a',
+            fill: false,
+            tension: 0.3,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          }
+        },
+      },
+    });
+  </script>
+</body>
+</html>
