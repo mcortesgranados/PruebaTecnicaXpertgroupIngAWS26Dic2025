@@ -12,22 +12,36 @@
   h3 { color: #7b1fa2; margin-top: 24px; }
   .section { margin-top: 24px; }
   .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .key-highlights { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 6px; }
+  .key-highlights p { margin: 0; font-size: 0.95em; color: #1f2933; }
   ul { padding-left: 1.4em; }
   .row { display:flex; gap:24px; flex-wrap:wrap; margin-top: 16px; }
   .card { flex:1 1 320px; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
   .footer { text-align: right; color: #475569; font-size: 0.95em; margin-top: 24px; }
   pre { background: #0f172a; color: #e0f2fe; padding: 12px; border-radius: 8px; overflow: auto; }
   code { background: linear-gradient(120deg, #0f172a, #1d4ed8); color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3); }
-  .highlight { background: #fef3c7; color: #92400e; border-radius: 4px; padding: 2px 6px; font-weight: 600; }
+  .highlight { background: linear-gradient(120deg, #fef3c7, #fde68a); color: #92400e; border-radius: 4px; padding: 2px 6px; font-weight: 600; }
   .command-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
   .command-chip { background: #1d4ed8; color: #fff; padding: 8px 14px; border-radius: 999px; font-size: 0.95em; font-weight: 600; box-shadow: 0 6px 18px rgba(29, 78, 216, 0.35); border: 1px solid rgba(15, 23, 42, 0.2); }
+  .command-chip--run { background: linear-gradient(120deg, #0ea5e9, #312e81); }
+  .command-chip--test { background: linear-gradient(120deg, #34d399, #059669); }
+  .chip-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; font-size: 0.85em; color: #475569; }
+  .legend-item { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0; background: #f8fafc; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.1); }
+  .legend-color { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .legend-color.run { background: linear-gradient(180deg, #0ea5e9, #312e81); }
+  .legend-color.test { background: linear-gradient(180deg, #34d399, #059669); }
   @media (max-width: 600px) { .row { flex-direction: column; } }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Estrategias de solución en Python</h1>
-    <p>El pipeline comienza desde el JSON <code>dataset_hospital 2 AWS.json</code>. Se propone el siguiente modelo por capas para asegurar <span class="highlight">limpieza, validación y entrega</span> de tablas limpias.</p>
+    <p>El pipeline comienza desde el JSON <code>dataset_hospital 2 AWS.json</code>. Se propone el siguiente modelo por capas para asegurar <span class="highlight">limpieza</span>, <span class="highlight">validación</span> y <span class="highlight">entrega</span> de tablas limpias.</p>
+    <div class="key-highlights">
+      <p><span class="highlight">Perfilado inicial</span> con tipos estrictos y reportes tempranos.</p>
+      <p><span class="highlight">Transformaciones guiadas</span> por reglas documentadas.</p>
+      <p><span class="highlight">Métricas y pruebas</span> para gobernar cada entrega.</p>
+    </div>
 
     <div class="section">
       <h2>1. Ingesta y perfilado inicial</h2>
@@ -121,17 +135,21 @@
 
     <div class="section commands">
       <h2>Comandos destacados</h2>
-      <p class="note">Estos scripts resumen los pasos clave del pipeline y conviene ejecutarlos tras cada carga para refrescar métricas, artefactos y reportes HTML.</p>
+      <p class="note"><span class="highlight">Comandos clave</span> para refrescar métricas, artefactos y reportes HTML tras cada carga.</p>
       <div class="command-chips">
-        <span class="command-chip">python scripts/run_etl_pipeline.py</span>
-        <span class="command-chip">python -m pytest</span>
-        <span class="command-chip">python scripts/run_quality_kpis.py</span>
-        <span class="command-chip">python scripts/run_appointment_indicators.py</span>
+        <span class="command-chip command-chip--run">python scripts/run_etl_pipeline.py</span>
+        <span class="command-chip command-chip--test">python -m pytest</span>
+        <span class="command-chip command-chip--run">python scripts/run_quality_kpis.py</span>
+        <span class="command-chip command-chip--run">python scripts/run_appointment_indicators.py</span>
+      </div>
+      <div class="chip-legend">
+        <span class="legend-item"><span class="legend-color run" aria-hidden="true"></span>Procesamiento y generación</span>
+        <span class="legend-item"><span class="legend-color test" aria-hidden="true"></span>Pruebas y validaciones</span>
       </div>
     </div>
 
     <div class="note">
-      <p>Esta propuesta se puede implementar como script monolítico o a través de notebooks modulares, siempre dejando artefactos (logs, métricas) que respalden las decisiones.</p>
+      <p>Esta propuesta se puede implementar como <span class="highlight">script monolítico</span> o a través de notebooks modulares, siempre dejando <span class="highlight">artefactos (logs, métricas)</span> que respalden las decisiones.</p>
     </div>
 
     <div class="footer">
