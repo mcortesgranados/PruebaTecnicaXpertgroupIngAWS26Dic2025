@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte caso de uso 3.2</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: left; }
+  th { background: #dbeafe; }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Citas completadas/canceladas marcadas para revisión</h1>
+    <div class="note">
+      <p>Revisamos estados <strong>Completada</strong> y <strong>Cancelada</strong> para asegurarnos de que tengan <code>fecha_cita</code> y <code>medico</code> correctos.</p>
+    </div>
+    <div class="note">
+      <p><strong>Resumen:</strong> 2301 citas (de 9961) necesitan atención.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>id_cita</th>
+          <th>estado</th>
+          <th>fecha_cita</th>
+          <th>médico</th>
+          <th>issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>2f38fd84-4db6-48d5-989d-8c7e4a34dcaa</td><td>Cancelada</td><td>—</td><td>—</td><td>fecha_cita inválida o ausente, médico no asignado</td></tr>
+<tr><td>fc660b15-69c7-4de9-a860-9c73c1174350</td><td>Completada</td><td>2025-06-16</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>b22ff34b-7976-4610-a64a-aac85511c4e4</td><td>Completada</td><td>2025-04-12</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>a6f50bf0-f4ca-4bba-8b2e-42d67485773c</td><td>Completada</td><td>—</td><td>—</td><td>fecha_cita inválida o ausente, médico no asignado</td></tr>
+<tr><td>5ea4825e-e7b3-4515-8900-07d1a419837d</td><td>Completada</td><td>—</td><td>Dr. Andrés Murcia</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>38416d65-90dd-4d07-9b3f-ddf294c166f8</td><td>Completada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>2202d310-6183-4400-b359-2b41cdba6f9f</td><td>Cancelada</td><td>—</td><td>—</td><td>fecha_cita inválida o ausente, médico no asignado</td></tr>
+<tr><td>e6047dac-0329-471a-a72f-b68ca2748ee0</td><td>Completada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>7fe682c1-e2b6-4e34-a680-78f54f103309</td><td>Cancelada</td><td>—</td><td>Dr. Andrés Murcia</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>0d3dffa0-7691-4d40-bf84-0e87c6879ba6</td><td>Completada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>0dcf52d9-5762-40dd-b075-918683adc375</td><td>Cancelada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>eff73ceb-caf4-4fca-8304-2af0a9bb0356</td><td>Cancelada</td><td>—</td><td>—</td><td>fecha_cita inválida o ausente, médico no asignado</td></tr>
+<tr><td>71ccf319-82cf-4d60-b6ee-bca497fa2a56</td><td>Cancelada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>d3c242c3-5f88-44cb-89fc-43ba9f34f640</td><td>Completada</td><td>2023-10-26</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>d3f834d3-24f1-436c-b9f9-4b2192b46107</td><td>Completada</td><td>—</td><td>Dr. Andrés Murcia</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>93910278-3af0-432e-be2f-5902b267e7bf</td><td>Completada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>7a4207d5-a79d-407d-8044-021a8eb45e44</td><td>Cancelada</td><td>2025-07-08</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>7c08eca8-14dc-48fe-8973-a6a92bb7f62a</td><td>Completada</td><td>2023-13-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>37f9fabc-84ff-4414-93dc-5770fd8e2af2</td><td>Cancelada</td><td>2023-17-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>3bc5c9f5-6fb3-4905-9f61-4aaccb116ac9</td><td>Completada</td><td>—</td><td>Dr. Andrés Murcia</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>33908b15-d9d3-46a8-8de6-c1701f6db4c8</td><td>Cancelada</td><td>2023-20-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>00219f3f-5007-4af1-b307-fbfa9989df29</td><td>Completada</td><td>—</td><td>Dr. Camilo Rojas</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>98c8b5ab-149d-4ff1-b240-61f6484be07a</td><td>Completada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>6e2e02e8-4979-4dec-ac34-170dea1c431c</td><td>Completada</td><td>—</td><td>Dr. Camilo Rojas</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>1464fdab-0930-49fc-823a-fe488a3d14c8</td><td>Completada</td><td>2025-11-21</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>c024c0de-a135-4b25-a33f-daf94b6765f4</td><td>Cancelada</td><td>2023-13-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>e1774dfd-0ab3-43de-bd04-a04e06bd2a3a</td><td>Cancelada</td><td>2023-20-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>c1529fd8-5c85-4308-81ef-6b420ff03275</td><td>Completada</td><td>2022-02-13</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>5446aac7-c6ba-47d5-b11a-363b34c5406a</td><td>Cancelada</td><td>—</td><td>Dr. Camilo Rojas</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>bbf8900d-71dc-412f-b770-f958f3ce6a27</td><td>Completada</td><td>—</td><td>—</td><td>fecha_cita inválida o ausente, médico no asignado</td></tr>
+<tr><td>95f7a1d1-5a32-4463-b954-54209a53713b</td><td>Completada</td><td>—</td><td>Dr. Andrés Murcia</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>46d23bba-fd32-41d0-ba8a-7fcd9a80bd28</td><td>Completada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>316b2359-847d-4649-9dd6-4c7bb4f99f02</td><td>Cancelada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>03d8afcd-e820-4fd7-8317-5eaa06ee163b</td><td>Completada</td><td>—</td><td>Dr. Andrés Murcia</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>7954ea9b-b613-4370-a46b-3024af59eda5</td><td>Completada</td><td>—</td><td>Dr. Camilo Rojas</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>7dd382a7-0dc7-4fd6-8087-e67cbba7c670</td><td>Cancelada</td><td>—</td><td>Dr. Camilo Rojas</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>f0832a4f-85c6-4747-85ef-ed904fab7a4d</td><td>Completada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>19f8f7cd-e682-422b-b078-cc2b37dc2f08</td><td>Cancelada</td><td>2024-08-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>298be652-01b8-434f-b7b6-1ed15f712afb</td><td>Completada</td><td>—</td><td>Dr. Camilo Rojas</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>28610988-f8bc-41bb-b53e-ca49285cbd1c</td><td>Completada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>11a75495-bb94-4b79-aad3-d0416d9d193c</td><td>Cancelada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>5636a5e6-99df-4bcc-b1c1-564e93b6735f</td><td>Cancelada</td><td>2024-05-12</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>5dcae0dc-19b6-4820-9fdf-f149e920983e</td><td>Completada</td><td>2023-19-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>0dbe1962-02b2-40ef-b70b-c83fda58db95</td><td>Cancelada</td><td>2023-18-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>da06cc15-8f7f-4c11-ae4f-a104cd411aa3</td><td>Cancelada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>debf8455-f7fe-4412-a55c-0b300ab77214</td><td>Cancelada</td><td>—</td><td>—</td><td>fecha_cita inválida o ausente, médico no asignado</td></tr>
+<tr><td>99bcf70f-d456-43e2-97ff-904f1ccd9d96</td><td>Cancelada</td><td>—</td><td>Dra. Lina Torres</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>a861d227-aa88-43cf-94b8-57f33bf04a89</td><td>Cancelada</td><td>—</td><td>Dr. Juan Valdez</td><td>fecha_cita inválida o ausente</td></tr>
+<tr><td>0f0ea4e9-95a1-4a6d-8e73-3ec0b63e08bc</td><td>Completada</td><td>2023-13-01</td><td>—</td><td>médico no asignado</td></tr>
+<tr><td>6d62370e-2827-4eed-858f-9a7eec95cdc4</td><td>Completada</td><td>2025-08-12</td><td>—</td><td>médico no asignado</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_appointment_review.py</code>.
+    </div>
+  </div>
+</body>
+</html>
