@@ -1,39 +1,324 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soluciones paso a paso</title>
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; color: #1d2333; margin: 0; padding: 0; }
-    .container { max-width: 1100px; margin: 32px auto 56px; background: #fff; border-radius: 10px; padding: 32px 40px; box-shadow: 0 10px 35px rgba(0,0,0,0.08); }
-    h1 { color: #0c4a6e; margin-bottom: 14px; }
-    .intro { margin-bottom: 24px; line-height: 1.7; }
-    .toc { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 12px; margin-bottom: 28px; }
-    .toc a { text-decoration: none; color: #0f172a; font-weight: 600; }
-    .case { border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; margin-bottom: 22px; background: #fff; box-shadow: 0 15px 30px rgba(15,23,42,0.08); }
-    .case:nth-child(even) { background: #f8fafc; }
-    .case-heading { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; gap: 12px; }
-    .case-number { font-size: 0.85em; color: #475569; margin: 0 0 4px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .case-heading h2 { margin: 0; color: #1d4ed8; font-size: 1.3em; }
-    .tag { font-size: 0.85em; padding: 4px 10px; background: #e0f2fe; border-radius: 999px; color: #0f172a; }
-    .requirement { background: #eef2ff; border-left: 3px solid #6366f1; padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
-    .steps { padding-left: 1.4em; margin: 0; }
-    .steps li { margin-bottom: 10px; line-height: 1.5; }
-    .emoji { margin-right: 6px; display: inline-block; font-size: 1.2em; }
-    .steps code { background: #0f172a; color: #e0f2fe; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
-    .tagline { margin-top: 30px; font-size: 0.9em; color: #475569; }
-    @media (max-width: 720px) { .case-heading { flex-direction: column; align-items: flex-start; } .toc { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #eff2ff;
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 32px auto 56px;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 36px 42px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+    h1 {
+      color: #0c4a6e;
+      margin-bottom: 8px;
+    }
+    .intro {
+      margin: 0;
+      margin-bottom: 18px;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #1e293b;
+    }
+    .intro .emoji {
+      margin-right: 6px;
+    }
+    .note {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ecfeff;
+      color: #083344;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      border: 1px solid #bae6fd;
+      font-size: 0.95em;
+    }
+    .note strong {
+      color: #0f172a;
+    }
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px 14px;
+    }
+    .toc a {
+      text-decoration: none;
+      color: #0f172a;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px dashed #b4c6ff;
+      background: #f8fafc;
+      display: block;
+      transition: background 0.2s ease, border 0.2s ease;
+    }
+    .toc a:hover {
+      background: #e0f2fe;
+      border-color: #60a5fa;
+    }
+    .case {
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 22px;
+      background: #fff;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+    }
+    .case:nth-child(even) {
+      background: #f8fafc;
+    }
+    .case-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .case-number {
+      font-size: 0.82em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #475569;
+      margin: 0 0 4px;
+    }
+    .case-heading h2 {
+      margin: 0;
+      color: #2563eb;
+      font-size: 1.4em;
+    }
+    .tag {
+      font-size: 0.85em;
+      background: #eef2ff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+    .requirement {
+      background: #f8fafc;
+      padding: 10px 16px;
+      border-left: 4px solid #2563eb;
+      border-radius: 8px;
+      color: #0f172a;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .steps {
+      padding-left: 1.4em;
+      margin: 0;
+    }
+    .steps li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+      font-size: 0.98em;
+    }
+    .emoji {
+      margin-right: 6px;
+      font-size: 1.1em;
+    }
+    .inline-command {
+      background: linear-gradient(120deg, #312f81, #2563eb);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.92em;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+    .resources {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #0ea5e9, #4c1d95);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(14, 165, 233, 0.35);
+      transition: transform 0.15s ease;
+    }
+    .resource-link:active {
+      transform: translateY(1px);
+    }
+    .resource-link.disabled {
+      background: #cbd5f5;
+      color: #475569;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    .summary-button {
+      border: none;
+      font-family: inherit;
+    }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      z-index: 1000;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      width: min(960px, 100%);
+      max-height: 90vh;
+      border-radius: 16px;
+      background: #0f172a;
+      color: #f1f5f9;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.55);
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: #0f172a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+    }
+    .modal-url-row {
+      padding: 12px 24px;
+      background: #f8fafc;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .modal-url-row input {
+      flex: 1;
+      border-radius: 10px;
+      border: 1px solid #cbd5f5;
+      padding: 8px 12px;
+      font-size: 0.95em;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #0f172a;
+    }
+    .modal-url-row button {
+      border: none;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-weight: 600;
+      background: #2563eb;
+      color: #fff;
+      cursor: pointer;
+    }
+    .modal-local-path {
+      padding: 0 24px;
+      margin: 4px 0 0;
+      font-size: 0.9em;
+      color: #dbeafe;
+    }
+    .modal-body {
+      flex: 1;
+      padding: 0 0 14px;
+    }
+    .modal-code {
+      margin: 0;
+      padding: 16px 24px;
+      background: #020617;
+      color: #e0f2fe;
+      font-family: 'Source Code Pro', 'Courier New', monospace;
+      font-size: 0.85em;
+      overflow: auto;
+      height: 100%;
+      white-space: pre-wrap;
+    }
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    @media (max-width: 720px) {
+      .container {
+        padding: 24px;
+        margin: 0;
+        border-radius: 0;
+      }
+      .case-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .modal {
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+      .modal-url-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Soluciones paso a paso</h1>
-    <p class="intro"><span>&#x1F4D8;</span> Cada caso incluye pasos numerados, emojis y un recorrido breve para seguir la ejecución de la solución.</p>
+    <p class="intro"><span class="emoji" aria-hidden="true">📘</span> Cada caso ofrece pasos estructurados, comandos destacados y recursos que respetan las URLs del repositorio (https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/) y los resúmenes en https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/.</p>
+    <div class="note"><span class="inline-command">python -m pip install pytest</span> Instala primero las dependencias antes de ejecutar los scripts.</div>
     <ul class="toc">
-      <li><a href="#use-case-1-1">Caso 1.1</a></li><li><a href="#use-case-1-2">Caso 1.2</a></li><li><a href="#use-case-1-3">Caso 1.3</a></li><li><a href="#use-case-1-4">Caso 1.4</a></li><li><a href="#use-case-2-1">Caso 2.1</a></li><li><a href="#use-case-2-2">Caso 2.2</a></li><li><a href="#use-case-2-3">Caso 2.3</a></li><li><a href="#use-case-2-4">Caso 2.4</a></li><li><a href="#use-case-3-1">Caso 3.1</a></li><li><a href="#use-case-3-2">Caso 3.2</a></li><li><a href="#use-case-3-3">Caso 3.3</a></li><li><a href="#use-case-3-4">Caso 3.4</a></li><li><a href="#use-case-4-1">Caso 4.1</a></li><li><a href="#use-case-4-2">Caso 4.2</a></li><li><a href="#use-case-4-3">Caso 4.3</a></li><li><a href="#use-case-4-4">Caso 4.4</a></li><li><a href="#use-case-5-1">Caso 5.1</a></li><li><a href="#use-case-5-2">Caso 5.2</a></li><li><a href="#use-case-5-3">Caso 5.3</a></li><li><a href="#use-case-5-4">Caso 5.4</a></li><li><a href="#use-case-6-1">Caso 6.1</a></li><li><a href="#use-case-6-2">Caso 6.2</a></li><li><a href="#use-case-6-3">Caso 6.3</a></li><li><a href="#use-case-6-4">Caso 6.4</a></li><li><a href="#use-case-7-1">Caso 7.1</a></li><li><a href="#use-case-7-2">Caso 7.2</a></li><li><a href="#use-case-7-3">Caso 7.3</a></li><li><a href="#use-case-7-4">Caso 7.4</a></li>
+      <li><a href="#use-case-1-1">Caso 1.1</a></li>
+      <li><a href="#use-case-1-2">Caso 1.2</a></li>
+      <li><a href="#use-case-1-3">Caso 1.3</a></li>
+      <li><a href="#use-case-1-4">Caso 1.4</a></li>
+      <li><a href="#use-case-2-1">Caso 2.1</a></li>
+      <li><a href="#use-case-2-2">Caso 2.2</a></li>
+      <li><a href="#use-case-2-3">Caso 2.3</a></li>
+      <li><a href="#use-case-2-4">Caso 2.4</a></li>
+      <li><a href="#use-case-3-1">Caso 3.1</a></li>
+      <li><a href="#use-case-3-2">Caso 3.2</a></li>
+      <li><a href="#use-case-3-3">Caso 3.3</a></li>
+      <li><a href="#use-case-3-4">Caso 3.4</a></li>
+      <li><a href="#use-case-4-1">Caso 4.1</a></li>
+      <li><a href="#use-case-4-2">Caso 4.2</a></li>
+      <li><a href="#use-case-4-3">Caso 4.3</a></li>
+      <li><a href="#use-case-4-4">Caso 4.4</a></li>
+      <li><a href="#use-case-5-1">Caso 5.1</a></li>
+      <li><a href="#use-case-5-2">Caso 5.2</a></li>
+      <li><a href="#use-case-5-3">Caso 5.3</a></li>
+      <li><a href="#use-case-5-4">Caso 5.4</a></li>
+      <li><a href="#use-case-6-1">Caso 6.1</a></li>
+      <li><a href="#use-case-6-2">Caso 6.2</a></li>
+      <li><a href="#use-case-6-3">Caso 6.3</a></li>
+      <li><a href="#use-case-6-4">Caso 6.4</a></li>
+      <li><a href="#use-case-7-1">Caso 7.1</a></li>
+      <li><a href="#use-case-7-2">Caso 7.2</a></li>
+      <li><a href="#use-case-7-3">Caso 7.3</a></li>
+      <li><a href="#use-case-7-4">Caso 7.4</a></li>
     </ul>
-    
+
     <section class="case" id="use-case-1-1">
       <div class="case-heading">
         <div>
@@ -42,12 +327,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Revisar completitud de campos críticos (email, telefono, ciudad) y definir estrategias de imputación por ciudad o categoría de paciente. Solution details</p>
+      <p class="requirement">Revisar completitud de campos críticos (email, teléfono, ciudad) y establecer estrategias de imputación por ciudad o categoría de paciente.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Revisar completitud de campos críticos (email, telefono, ciudad) y definir estrategias de imputación por ciudad o categoría de paciente. Solution details</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Revisar completitud de campos críticos (email, teléfono, ciudad) y establecer estrategias de imputación por ciudad o categoría de paciente.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_completeness.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/completeness_summary.html</code> y <code>reports/completeness_metrics.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_completeness.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/completeness_summary.html" data-modal-title="Resumen completeness_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/completeness_summary.html">Resumen completeness_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-1-2">
       <div class="case-heading">
         <div>
@@ -56,12 +346,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Detectar inconsistencias entre fecha_nacimiento y edad, reconstruyendo las edades faltantes con la fecha de corte, y guardar un log de cambios. Solution details</p>
+      <p class="requirement">Detectar inconsistencias entre fecha_nacimiento y edad, reconstruyendo las edades faltantes con la fecha de corte y guardando un log de cambios.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Detectar inconsistencias entre fecha_nacimiento y edad, reconstruyendo las edades faltantes con la fecha de corte, y guardar un log de cambios. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_age_consistency.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>age_consistency_log.json</code>, <code>age_consistency_log.json</code>, <code>age_consistency_log.json</code>, <code>age_consistency_summary.html</code>, <code>age_consistency_summary.html</code>, <code>age_consistency_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_age_consistency.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Detectar inconsistencias entre fecha_nacimiento y edad, reconstruyendo las edades faltantes con la fecha de corte y guardando un log de cambios.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_age_consistency.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/age_consistency_summary.html</code> y <code>reports/age_consistency_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_age_consistency.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/age_consistency_summary.html" data-modal-title="Resumen age_consistency_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/age_consistency_summary.html">Resumen age_consistency_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-1-3">
       <div class="case-heading">
         <div>
@@ -70,12 +365,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Identificar duplicados potenciales usando nombre + fecha_nacimiento/ciudad y decidir si se consolidan, archivando los id_paciente reemplazados. Solution details</p>
+      <p class="requirement">Identificar duplicados potenciales usando nombre + fecha_nacimiento/ciudad y consolidar los id_paciente reemplazados.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Identificar duplicados potenciales usando nombre + fecha_nacimiento/ciudad y decidir si se consolidan, archivando los id_paciente reemplazados. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_duplicate_detection.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>AWS.json</code>, <code>duplicate_detection_log.json</code>, <code>duplicate_detection_log.json</code>, <code>AWS.json</code>, <code>duplicate_detection_summary.html</code>, <code>duplicate_detection_summary.html</code>, <code>duplicate_detection_log.json</code>, <code>duplicate_detection_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_duplicate_detection.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Identificar duplicados potenciales usando nombre + fecha_nacimiento/ciudad y consolidar los id_paciente reemplazados.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_duplicate_detection.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/duplicate_detection_summary.html</code> y <code>reports/duplicate_detection_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_duplicate_detection.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/duplicate_detection_summary.html" data-modal-title="Resumen duplicate_detection_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/duplicate_detection_summary.html">Resumen duplicate_detection_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-1-4">
       <div class="case-heading">
         <div>
@@ -84,12 +384,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Normalizar campos de texto (capitalización, tildes) para facilitar posteriores cruces y reportes, documentando la función usada (lower(), strip()). Solution details</p>
+      <p class="requirement">Normalizar campos de texto (capitalización, tildes y espacios) para facilitar cruces y reportes posteriores.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Normalizar campos de texto (capitalización, tildes) para facilitar posteriores cruces y reportes, documentando la función usada (lower(), strip()). Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_text_normalization.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>text_normalization_log.json</code>, <code>text_normalization_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_text_normalization.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Normalizar campos de texto (capitalización, tildes y espacios) para facilitar cruces y reportes posteriores.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_text_normalization.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/text_normalization_summary.html</code> y <code>reports/text_normalization_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_text_normalization.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/text_normalization_summary.html" data-modal-title="Resumen text_normalization_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/text_normalization_summary.html">Resumen text_normalization_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-2-1">
       <div class="case-heading">
         <div>
@@ -98,12 +403,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Medir indicadores diarios/semana de citas por especialidad, estado_cita y medico para detectar cuellos de botella. Solution details</p>
+      <p class="requirement">Medir indicadores diarios y semanales de citas por especialidad, estado_cita y médico para detectar cuellos de botella.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Medir indicadores diarios/semana de citas por especialidad, estado_cita y medico para detectar cuellos de botella. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_indicators.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_indicators_log.json</code>, <code>appointment_indicators_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_indicators.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Medir indicadores diarios y semanales de citas por especialidad, estado_cita y médico para detectar cuellos de botella.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_appointment_indicators.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/appointment_indicators_summary.html</code> y <code>reports/appointment_indicators_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_appointment_indicators.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/appointment_indicators_summary.html" data-modal-title="Resumen appointment_indicators_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/appointment_indicators_summary.html">Resumen appointment_indicators_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-2-2">
       <div class="case-heading">
         <div>
@@ -112,12 +422,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Reportar citas sin fecha_cita o medico asignado y definir alertas automáticas para validación manual por el equipo de operaciones. Solution details</p>
+      <p class="requirement">Reportar citas sin fecha_cita o médico asignado y generar alertas automáticas para la revisión del equipo operativo.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Reportar citas sin fecha_cita o medico asignado y definir alertas automáticas para validación manual por el equipo de operaciones. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_alerts.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_alerts_log.json</code>, <code>appointment_alerts_summary.html</code>, <code>appointment_alerts_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_alerts.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Reportar citas sin fecha_cita o médico asignado y generar alertas automáticas para la revisión del equipo operativo.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_appointment_alerts.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/appointment_alerts_summary.html</code> y <code>reports/appointment_alerts_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_appointment_alerts.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/appointment_alerts_summary.html" data-modal-title="Resumen appointment_alerts_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/appointment_alerts_summary.html">Resumen appointment_alerts_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-2-3">
       <div class="case-heading">
         <div>
@@ -126,12 +441,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Analizar la distribución de costo frente a rangos esperados por especialidad y generar anotaciones para auditoría si sobresale (desviaciones &gt; 2 desviaciones estándar). Solution details</p>
+      <p class="requirement">Analizar la distribución del costo frente a rangos esperados por especialidad y anotar desviaciones mayores a dos desviaciones estándar.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Analizar la distribución de costo frente a rangos esperados por especialidad y generar anotaciones para auditoría si sobresale (desviaciones &gt; 2 desviaciones estándar). Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_cost_audit.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_cost_audit_summary.html</code>, <code>appointment_cost_audit_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_cost_audit.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Analizar la distribución del costo frente a rangos esperados por especialidad y anotar desviaciones mayores a dos desviaciones estándar.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_appointment_cost_audit.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/appointment_cost_audit_summary.html</code> y <code>reports/appointment_cost_audit_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_appointment_cost_audit.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/appointment_cost_audit_summary.html" data-modal-title="Resumen appointment_cost_audit_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/appointment_cost_audit_summary.html">Resumen appointment_cost_audit_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-2-4">
       <div class="case-heading">
         <div>
@@ -140,12 +460,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Consolidar histórico de estados para cada id_cita, identificando reprogramaciones múltiples y su impacto en ocupación de agenda. Solution details</p>
+      <p class="requirement">Consolidar el histórico de estados por id_cita para identificar reprogramaciones múltiples y su impacto en ocupación de agenda.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Consolidar histórico de estados para cada id_cita, identificando reprogramaciones múltiples y su impacto en ocupación de agenda. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_state_timeline.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_state_timeline_log.json</code>, <code>appointment_state_timeline_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_state_timeline.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Consolidar el histórico de estados por id_cita para identificar reprogramaciones múltiples y su impacto en ocupación de agenda.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_appointment_state_timeline.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/appointment_state_timeline_summary.html</code> y <code>reports/appointment_state_timeline_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_appointment_state_timeline.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/appointment_state_timeline_summary.html" data-modal-title="Resumen appointment_state_timeline_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/appointment_state_timeline_summary.html">Resumen appointment_state_timeline_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-3-1">
       <div class="case-heading">
         <div>
@@ -154,12 +479,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Verificar la integridad referencial: cada id_paciente en citas_medicas debe existir en pacientes. Registrar entradas huérfanas para análisis posterior. Solution details</p>
+      <p class="requirement">Verificar integridad referencial: cada id_paciente en citas_medicas debe existir en pacientes y registrar huérfanos para auditoría.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Verificar la integridad referencial: cada id_paciente en citas_medicas debe existir en pacientes. Registrar entradas huérfanas para análisis posterior. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>scripts/run_referential_integrity.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>referential_integrity_log.json</code>, <code>referential_integrity_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_referential_integrity.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Verificar integridad referencial: cada id_paciente en citas_medicas debe existir en pacientes y registrar huérfanos para auditoría.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_referential_integrity.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/referential_integrity_summary.html</code> y <code>reports/referential_integrity_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_referential_integrity.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/referential_integrity_summary.html" data-modal-title="Resumen referential_integrity_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/referential_integrity_summary.html">Resumen referential_integrity_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-3-2">
       <div class="case-heading">
         <div>
@@ -168,12 +498,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Asegurar que citas marcadas como Completada/Cancelada tengan fecha_cita válida y médico asignado; si no, marcar para revisión. Solution details</p>
+      <p class="requirement">Asegurar que citas completadas o canceladas tengan fecha y médico válidos; marcar las que no lo cumplan para revisión.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Asegurar que citas marcadas como Completada/Cancelada tengan fecha_cita válida y médico asignado; si no, marcar para revisión. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_review.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_review_log.json</code>, <code>appointment_review_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_review.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Asegurar que citas completadas o canceladas tengan fecha y médico válidos; marcar las que no lo cumplan para revisión.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_appointment_review.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/appointment_review_summary.html</code> y <code>reports/appointment_review_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_appointment_review.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/appointment_review_summary.html" data-modal-title="Resumen appointment_review_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/appointment_review_summary.html">Resumen appointment_review_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-3-3">
       <div class="case-heading">
         <div>
@@ -182,12 +517,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Comparar edad calculada desde fecha_nacimiento con la aparente en la especialidad (ej.: pediatría vs geriatría) y flaggear desvíos. Solution details</p>
+      <p class="requirement">Comparar la edad calculada desde fecha_nacimiento con la edad esperada por especialidad para identificar desviaciones.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Comparar edad calculada desde fecha_nacimiento con la aparente en la especialidad (ej.: pediatría vs geriatría) y flaggear desvíos. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_age_specialty_mismatch.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>age_specialty_mismatch_log.json</code>, <code>age_specialty_mismatch_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_age_specialty_mismatch.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Comparar la edad calculada desde fecha_nacimiento con la edad esperada por especialidad para identificar desviaciones.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_age_specialty_mismatch.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/age_specialty_mismatch_summary.html</code> y <code>reports/age_specialty_mismatch_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_age_specialty_mismatch.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/age_specialty_mismatch_summary.html" data-modal-title="Resumen age_specialty_mismatch_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/age_specialty_mismatch_summary.html">Resumen age_specialty_mismatch_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-3-4">
       <div class="case-heading">
         <div>
@@ -196,12 +536,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Cruzar el número de citas por paciente con la localidad de residencia para monitorear accesibilidad y detectar pacientes que viajan largas distancias. Solution details</p>
+      <p class="requirement">Cruzar el número de citas por paciente con su localidad de residencia para monitorear accesibilidad y viajes largos.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Cruzar el número de citas por paciente con la localidad de residencia para monitorear accesibilidad y detectar pacientes que viajan largas distancias. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_accessibility.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>accessibility_log.json</code>, <code>accessibility_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_accessibility.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Cruzar el número de citas por paciente con su localidad de residencia para monitorear accesibilidad y viajes largos.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_accessibility.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/accessibility_summary.html</code> y <code>reports/accessibility_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_accessibility.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/accessibility_summary.html" data-modal-title="Resumen accessibility_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/accessibility_summary.html">Resumen accessibility_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-4-1">
       <div class="case-heading">
         <div>
@@ -210,12 +555,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Determinar KPIs de calidad (completitud, unicidad, validez de formatos) para cada tabla antes y después de la limpieza, almacenando métricas en JSON o CSV. Solution details</p>
+      <p class="requirement">Determinar KPIs de calidad (completitud, unicidad y validez) antes y después de la limpieza y guardarlos en un artefacto.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Determinar KPIs de calidad (completitud, unicidad, validez de formatos) para cada tabla antes y después de la limpieza, almacenando métricas en JSON o CSV. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_quality_kpis.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>quality_kpis.json</code>, <code>quality_kpis_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_quality_kpis.py</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Determinar KPIs de calidad (completitud, unicidad y validez) antes y después de la limpieza y guardarlos en un artefacto.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_quality_kpis.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/quality_kpis_summary.html</code> y <code>reports/quality_kpis.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_quality_kpis.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/quality_kpis_summary.html" data-modal-title="Resumen quality_kpis_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/quality_kpis_summary.html">Resumen quality_kpis_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-4-2">
       <div class="case-heading">
         <div>
@@ -224,12 +574,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Documentar reglas de negocio clave (estado válido de cita, rango de edades por especialidad, formatos de correo/teléfono) en un catálogo accesible. Solution details</p>
+      <p class="requirement">Documentar reglas de negocio clave (estados válidos, rangos de edad y formatos) en un catálogo accesible.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Documentar reglas de negocio clave (estado válido de cita, rango de edades por especialidad, formatos de correo/teléfono) en un catálogo accesible. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_business_rules_catalog.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>business_rules_catalog.json</code>, <code>business_rules_catalog.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_business_rules_catalog.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Documentar reglas de negocio clave (estados válidos, rangos de edad y formatos) en un catálogo accesible.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_business_rules_catalog.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/business_rules_catalog.html</code> y <code>reports/business_rules_catalog.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_business_rules_catalog.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/business_rules_catalog.html" data-modal-title="Resumen business_rules_catalog.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/business_rules_catalog.html">Resumen business_rules_catalog.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-4-3">
       <div class="case-heading">
         <div>
@@ -238,12 +593,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Establecer responsables por tabla/campo y registrar timestamp + usuario para cada cambio masivo de limpieza para apoyar auditorías. Solution details</p>
+      <p class="requirement">Registrar responsables por tabla/campo y anotar cada cambio masivo para respaldar auditorías.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Establecer responsables por tabla/campo y registrar timestamp + usuario para cada cambio masivo de limpieza para apoyar auditorías. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_cleaning_audit.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>cleaning_audit_log.json</code>, <code>cleaning_audit_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_cleaning_audit.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Registrar responsables por tabla/campo y anotar cada cambio masivo para respaldar auditorías.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_cleaning_audit.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/cleaning_audit_summary.html</code> y <code>reports/cleaning_audit_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_cleaning_audit.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/cleaning_audit_summary.html" data-modal-title="Resumen cleaning_audit_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/cleaning_audit_summary.html">Resumen cleaning_audit_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-4-4">
       <div class="case-heading">
         <div>
@@ -252,12 +612,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Crear reportes ejecutivos mismated (discrepancias) y enviarlos a un canal de gobernanza antes de las cargas a producción. Solution details</p>
+      <p class="requirement">Crear reportes ejecutivos de discrepancias y enviarlos a gobernanza antes de las cargas a producción.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Crear reportes ejecutivos mismated (discrepancias) y enviarlos a un canal de gobernanza antes de las cargas a producción. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_executive_discrepancy.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>executive_discrepancies_log.json</code>, <code>executive_discrepancies_summary.html</code>, <code>executive_discrepancies_summary.html</code>, <code>executive_discrepancies_summary.html</code>, <code>executive_discrepancies_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_executive_discrepancy.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Crear reportes ejecutivos de discrepancias y enviarlos a gobernanza antes de las cargas a producción.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_executive_discrepancy.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/executive_discrepancies_summary.html</code> y <code>reports/executive_discrepancies_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_executive_discrepancy.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/executive_discrepancies_summary.html" data-modal-title="Resumen executive_discrepancies_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/executive_discrepancies_summary.html">Resumen executive_discrepancies_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-5-1">
       <div class="case-heading">
         <div>
@@ -266,12 +631,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Generar segmentos de pacientes por edad, sexo y frecuencia de citas para personalizar comunicaciones o programas de prevención. Solution details</p>
+      <p class="requirement">Generar segmentos de pacientes por edad, sexo y frecuencia de citas para comunicaciones personalizadas.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Generar segmentos de pacientes por edad, sexo y frecuencia de citas para personalizar comunicaciones o programas de prevención. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_patient_segmentation.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>patient_segmentation_log.json</code>, <code>patient_segmentation_summary.html</code>, <code>patient_segmentation_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_patient_segmentation.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Generar segmentos de pacientes por edad, sexo y frecuencia de citas para comunicaciones personalizadas.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_patient_segmentation.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/patient_segmentation_summary.html</code> y <code>reports/patient_segmentation_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_patient_segmentation.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/patient_segmentation_summary.html" data-modal-title="Resumen patient_segmentation_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/patient_segmentation_summary.html">Resumen patient_segmentation_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-5-2">
       <div class="case-heading">
         <div>
@@ -280,12 +650,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas para priorizar recordatorios. Solution details</p>
+      <p class="requirement">Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas para priorizar recordatorios. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_cancellation_risk.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>cancellation_risk_log.json</code>, <code>cancellation_risk_summary.html</code>, <code>cancellation_risk_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_cancellation_risk.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_cancellation_risk.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/cancellation_risk_summary.html</code> y <code>reports/cancellation_risk_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_cancellation_risk.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/cancellation_risk_summary.html" data-modal-title="Resumen cancellation_risk_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/cancellation_risk_summary.html">Resumen cancellation_risk_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-5-3">
       <div class="case-heading">
         <div>
@@ -294,12 +669,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Construir dashboards de ocupación por ciudad y especialidad, comparando citas completadas vs canceladas y reprogramadas. Solution details</p>
+      <p class="requirement">Construir dashboards de ocupación por ciudad y especialidad comparando citas completadas, canceladas y reprogramadas.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Construir dashboards de ocupación por ciudad y especialidad, comparando citas completadas vs canceladas y reprogramadas. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_occupancy_dashboard.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>occupancy_dashboard_log.json</code>, <code>occupancy_dashboard_summary.html</code>, <code>occupancy_dashboard_summary.html</code>, <code>occupancy_dashboard_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_occupancy_dashboard.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Construir dashboards de ocupación por ciudad y especialidad comparando citas completadas, canceladas y reprogramadas.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_occupancy_dashboard.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/occupancy_dashboard_summary.html</code> y <code>reports/occupancy_dashboard_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_occupancy_dashboard.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/occupancy_dashboard_summary.html" data-modal-title="Resumen occupancy_dashboard_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/occupancy_dashboard_summary.html">Resumen occupancy_dashboard_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-5-4">
       <div class="case-heading">
         <div>
@@ -308,12 +688,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizar brechas de capacidad de médicos. Solution details</p>
+      <p class="requirement">Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizando brechas de capacidad.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizar brechas de capacidad de médicos. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_demand_forecast.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>demand_forecast_log.json</code>, <code>demand_forecast_summary.html</code>, <code>demand_forecast_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_demand_forecast.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizando brechas de capacidad.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_demand_forecast.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/demand_forecast_summary.html</code> y <code>reports/demand_forecast_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_demand_forecast.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/demand_forecast_summary.html" data-modal-title="Resumen demand_forecast_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/demand_forecast_summary.html">Resumen demand_forecast_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-6-1">
       <div class="case-heading">
         <div>
@@ -322,12 +707,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Diseñar pipeline ETL que tome el JSON original, aplique limpiezas y validaciones, y exporte tablas limpias (parquet/csv) listas para el Data Warehouse. Solution details</p>
+      <p class="requirement">Diseñar un pipeline ETL que lea el JSON original, limpie los datos y exporte tablas limpias en CSV/Parquet.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Diseñar pipeline ETL que tome el JSON original, aplique limpiezas y validaciones, y exporte tablas limpias (parquet/csv) listas para el Data Warehouse. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_etl_pipeline.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>pacientes_cleaned.csv</code>, <code>pacientes_cleaned.parquet</code>, <code>citas_cleaned.csv</code>, <code>citas_cleaned.parquet</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_etl_pipeline.py</code> y <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Diseñar un pipeline ETL que lea el JSON original, limpie los datos y exporte tablas limpias en CSV/Parquet.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_etl_pipeline.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/etl/etl_summary.html</code> y <code>reports/etl/etl_metrics.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_etl_pipeline.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/etl/etl_summary.html" data-modal-title="Resumen etl_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/etl/etl_summary.html">Resumen etl_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-6-2">
       <div class="case-heading">
         <div>
@@ -336,12 +726,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Incluir pruebas automáticas (pytest/Great Expectations) que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline. Solution details</p>
+      <p class="requirement">Agregar pruebas automáticas que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Incluir pruebas automáticas (pytest/Great Expectations) que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline. Solution details</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>python -m pytest</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Agregar pruebas automáticas que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python -m pytest tests/test_etl_validation.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> 📦 Paso 3: Revisa <code>reports/etl/etl_metrics.json</code> para observar cómo responden las métricas cuando las pruebas corren.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/tests/test_etl_validation.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <span class="resource-link disabled">Resumen no disponible</span></div>
     </section>
-    
+
+
     <section class="case" id="use-case-6-3">
       <div class="case-heading">
         <div>
@@ -350,12 +745,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones en el pipeline. Solution details</p>
+      <p class="requirement">Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones del pipeline.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones en el pipeline. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_etl_pipeline.py</code> para automatizar el análisis y generar registros consolidados.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones del pipeline.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_etl_pipeline.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/etl/etl_summary.html</code> y <code>reports/etl/etl_metrics.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_etl_pipeline.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/etl/etl_summary.html" data-modal-title="Resumen etl_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/etl/etl_summary.html">Resumen etl_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-6-4">
       <div class="case-heading">
         <div>
@@ -364,12 +764,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Documentar y versionar cada esquema destino (por ejemplo: tabla fact_citas, dim_pacientes) para facilitar futuras migraciones. Solution details</p>
+      <p class="requirement">Documentar y versionar cada esquema destino (por ejemplo fact_citas y dim_pacientes) para futuras migraciones.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Documentar y versionar cada esquema destino (por ejemplo: tabla fact_citas, dim_pacientes) para facilitar futuras migraciones. Solution details</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Documentar y versionar cada esquema destino (por ejemplo fact_citas y dim_pacientes) para futuras migraciones.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> ⚙️ Paso 2: Mantén <span class="inline-command">data_warehouse_schema.md</span> al día con columnas, llaves y versión.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> 📦 Paso 3: Convalida el catálogo y registra la versión que se deployará.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><span class="resource-link disabled">Script no definido</span> <span class="resource-link disabled">Resumen no disponible</span></div>
     </section>
-    
+
+
     <section class="case" id="use-case-7-1">
       <div class="case-heading">
         <div>
@@ -378,12 +783,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Alertar a los médicos cuando un paciente muestra patrón de múltiples citas en períodos cortos o cancelaciones recurrentes. Solution details</p>
+      <p class="requirement">Alertar a los médicos cuando un paciente registra múltiples citas en periodos cortos o cancelaciones recurrentes.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Alertar a los médicos cuando un paciente muestra patrón de múltiples citas en períodos cortos o cancelaciones recurrentes. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>run_doctor_notifications.py</code> para automatizar el análisis y generar registros consolidados.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Alertar a los médicos cuando un paciente registra múltiples citas en periodos cortos o cancelaciones recurrentes.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_doctor_notifications.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/doctor_notifications_summary.html</code> y <code>reports/doctor_notifications_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_doctor_notifications.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/doctor_notifications_summary.html" data-modal-title="Resumen doctor_notifications_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/doctor_notifications_summary.html">Resumen doctor_notifications_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-7-2">
       <div class="case-heading">
         <div>
@@ -392,12 +802,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Monitorear cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada. Solution details</p>
+      <p class="requirement">Monitorear el cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Monitorear cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_doctor_utilization.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_doctor_utilization.py</code>.</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Monitorear el cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_doctor_utilization.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/doctor_utilization_summary.html</code> y <code>reports/doctor_utilization_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_doctor_utilization.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/doctor_utilization_summary.html" data-modal-title="Resumen doctor_utilization_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/doctor_utilization_summary.html">Resumen doctor_utilization_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-7-3">
       <div class="case-heading">
         <div>
@@ -406,12 +821,17 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles. Solution details</p>
+      <p class="requirement">Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles. Solution details</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_patient_travel.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/patient_travel_summary.html</code> y <code>reports/patient_travel_log.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_patient_travel.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/patient_travel_summary.html" data-modal-title="Resumen patient_travel_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/patient_travel_summary.html">Resumen patient_travel_summary.html</button></div>
     </section>
-    
+
+
     <section class="case" id="use-case-7-4">
       <div class="case-heading">
         <div>
@@ -420,13 +840,130 @@
         </div>
         <span class="tag">Requisito</span>
       </div>
-      <p class="requirement">Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida. Solution details</p>
+      <p class="requirement">Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida.</p>
       <ol class="steps">
-        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida. Solution details</li>
+          <li><span class="emoji" aria-hidden="true">🧭</span> Paso 1: Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida.</li>
+          <li><span class="emoji" aria-hidden="true">⚙️</span> Paso 2: Ejecuta <span class="inline-command">python scripts/run_management_kpis.py</span> para automatizar el flujo.</li>
+          <li><span class="emoji" aria-hidden="true">📦</span> Paso 3: Revisa <code>reports/management_kpis_summary.html</code> y <code>reports/management_kpis.json</code> para documentar hallazgos y métricas.</li>
+          <li><span class="emoji" aria-hidden="true">✅</span> Paso 4: Valida con <span class="inline-command">python -m pytest</span>.</li>
       </ol>
+      <div class="resources"><a class="resource-link" href="https://github.com/mcortesgranados/PruebaTecnicaXpertgroupIngAWS26Dic2025/tree/main/python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python/scripts/run_management_kpis.py" target="_blank" rel="noopener noreferrer">Ver script fuente</a> <button type="button" class="resource-link summary-button" data-local-path="reports/management_kpis_summary.html" data-modal-title="Resumen management_kpis_summary.html" data-remote-url="https://mcortesgranados.github.io/PruebaTecnicaXpertgroupIngAWS26Dic2025/reports/management_kpis_summary.html">Resumen management_kpis_summary.html</button></div>
     </section>
-    
-    <p class="tagline">?? Consulta <code>useful_commands.txt</code> para los comandos completos y actualiza esta guía cuando los artefactos evolucionen.</p>
+
   </div>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span id="modalTitle">Resumen</span>
+        <button class="close-btn" id="closeModal" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-url-row">
+        <input type="text" id="modalUrlInput" readonly placeholder="URL remoto del resumen">
+        <button id="copyModalUrl" type="button" disabled>Copiar URL</button>
+      </div>
+      <p class="modal-local-path" id="modalLocalPath">Archivo local: pendiente</p>
+      <div class="modal-body">
+        <pre class="modal-code" id="modalCode">Selecciona un resumen para ver su contenido local.</pre>
+      </div>
+    </div>
+  </div>
+  <script>
+    const modal = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalUrlInput = document.getElementById('modalUrlInput');
+    const modalLocalPath = document.getElementById('modalLocalPath');
+    const modalCode = document.getElementById('modalCode');
+    const copyBtn = document.getElementById('copyModalUrl');
+    const closeButton = document.getElementById('closeModal');
+
+    function setModalURL(remoteUrl) {
+      if (!remoteUrl) {
+        modalUrlInput.value = '';
+        copyBtn.disabled = true;
+      } else {
+        modalUrlInput.value = remoteUrl;
+        copyBtn.disabled = false;
+      }
+    }
+
+    async function loadLocalPreview(localPath) {
+      if (!localPath) {
+        return 'Ruta local no especificada.';
+      }
+      try {
+        const response = await fetch(localPath);
+        if (!response.ok) {
+          throw new Error(response.statusText || 'no disponible');
+        }
+        const text = await response.text();
+        return text.trim() || 'El archivo no contiene texto.';
+      } catch (error) {
+        return `No se pudo cargar ${localPath}. ${error.message || 'Verifica el archivo local.'}`;
+      }
+    }
+
+    function openModal(remoteUrl, titleText, localPath) {
+      modalTitle.textContent = titleText || 'Resumen';
+      modalLocalPath.textContent = localPath ? `Archivo local: ${localPath}` : 'Archivo local: no disponible';
+      setModalURL(remoteUrl);
+      modalCode.textContent = 'Cargando vista previa local...';
+      modal.classList.add('active');
+    }
+
+    async function handleSummaryButton(event) {
+      event.preventDefault();
+      const button = event.currentTarget;
+      const remoteUrl = button.dataset.remoteUrl;
+      const localPath = button.dataset.localPath;
+      const titleText = button.dataset.modalTitle;
+      openModal(remoteUrl, titleText, localPath);
+      const preview = await loadLocalPreview(localPath);
+      modalCode.textContent = preview;
+    }
+
+    document.querySelectorAll('.summary-button').forEach(btn => {
+      btn.addEventListener('click', handleSummaryButton);
+    });
+
+    async function copyURL() {
+      const text = modalUrlInput.value;
+      if (!text) return;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          modalUrlInput.select();
+          document.execCommand('copy');
+          window.getSelection().removeAllRanges();
+        }
+        copyBtn.textContent = 'Copiado';
+        setTimeout(() => copyBtn.textContent = 'Copiar URL', 1400);
+      } catch (error) {
+        copyBtn.textContent = 'Error';
+        setTimeout(() => copyBtn.textContent = 'Copiar URL', 1400);
+      }
+    }
+
+    copyBtn.addEventListener('click', copyURL);
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modalCode.textContent = 'Selecciona un resumen para ver su contenido local.';
+      modalLocalPath.textContent = 'Archivo local: pendiente';
+      setModalURL('');
+    }
+
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', event => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
