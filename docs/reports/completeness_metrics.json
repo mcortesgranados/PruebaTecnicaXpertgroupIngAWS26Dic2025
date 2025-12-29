@@ -1,0 +1,62 @@
+[
+  {
+    "field": "email",
+    "total": 5010,
+    "missing": 2506,
+    "completeness_percentage": 49.98,
+    "per_city_missing": {
+      "Barranquilla": 48.2,
+      "Cali": 51.57,
+      "Bucaramanga": 49.35,
+      "Bogotá": 50.58,
+      "Medellín": 51.85,
+      "sin_ciudad": 48.49
+    },
+    "per_category_missing": {
+      "senior": 50.27,
+      "adult": 49.69,
+      "child": 52.99,
+      "unknown": 0.0
+    }
+  },
+  {
+    "field": "telefono",
+    "total": 5010,
+    "missing": 1668,
+    "completeness_percentage": 66.71,
+    "per_city_missing": {
+      "Barranquilla": 32.96,
+      "Cali": 34.03,
+      "Bucaramanga": 34.24,
+      "Bogotá": 32.59,
+      "Medellín": 31.03,
+      "sin_ciudad": 34.82
+    },
+    "per_category_missing": {
+      "senior": 31.86,
+      "adult": 33.44,
+      "child": 36.23,
+      "unknown": 100.0
+    }
+  },
+  {
+    "field": "ciudad",
+    "total": 5010,
+    "missing": 827,
+    "completeness_percentage": 83.49,
+    "per_city_missing": {
+      "Barranquilla": 0.0,
+      "Cali": 0.0,
+      "Bucaramanga": 0.0,
+      "Bogotá": 0.0,
+      "Medellín": 0.0,
+      "sin_ciudad": 100.0
+    },
+    "per_category_missing": {
+      "senior": 16.81,
+      "adult": 16.65,
+      "child": 13.77,
+      "unknown": 50.0
+    }
+  }
+]
