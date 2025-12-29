@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soluciones paso a paso</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; color: #1d2333; margin: 0; padding: 0; }
+    .container { max-width: 1100px; margin: 32px auto 56px; background: #fff; border-radius: 10px; padding: 32px 40px; box-shadow: 0 10px 35px rgba(0,0,0,0.08); }
+    h1 { color: #0c4a6e; margin-bottom: 14px; }
+    .intro { margin-bottom: 24px; line-height: 1.7; }
+    .toc { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 12px; margin-bottom: 28px; }
+    .toc a { text-decoration: none; color: #0f172a; font-weight: 600; }
+    .case { border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; margin-bottom: 22px; background: #fff; box-shadow: 0 15px 30px rgba(15,23,42,0.08); }
+    .case:nth-child(even) { background: #f8fafc; }
+    .case-heading { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; gap: 12px; }
+    .case-number { font-size: 0.85em; color: #475569; margin: 0 0 4px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .case-heading h2 { margin: 0; color: #1d4ed8; font-size: 1.3em; }
+    .tag { font-size: 0.85em; padding: 4px 10px; background: #e0f2fe; border-radius: 999px; color: #0f172a; }
+    .requirement { background: #eef2ff; border-left: 3px solid #6366f1; padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .steps { padding-left: 1.4em; margin: 0; }
+    .steps li { margin-bottom: 10px; line-height: 1.5; }
+    .emoji { margin-right: 6px; display: inline-block; font-size: 1.2em; }
+    .steps code { background: #0f172a; color: #e0f2fe; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
+    .tagline { margin-top: 30px; font-size: 0.9em; color: #475569; }
+    @media (max-width: 720px) { .case-heading { flex-direction: column; align-items: flex-start; } .toc { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Soluciones paso a paso</h1>
+    <p class="intro"><span>&#x1F4D8;</span> Cada caso incluye pasos numerados, emojis y un recorrido breve para seguir la ejecución de la solución.</p>
+    <ul class="toc">
+      <li><a href="#use-case-1-1">Caso 1.1</a></li><li><a href="#use-case-1-2">Caso 1.2</a></li><li><a href="#use-case-1-3">Caso 1.3</a></li><li><a href="#use-case-1-4">Caso 1.4</a></li><li><a href="#use-case-2-1">Caso 2.1</a></li><li><a href="#use-case-2-2">Caso 2.2</a></li><li><a href="#use-case-2-3">Caso 2.3</a></li><li><a href="#use-case-2-4">Caso 2.4</a></li><li><a href="#use-case-3-1">Caso 3.1</a></li><li><a href="#use-case-3-2">Caso 3.2</a></li><li><a href="#use-case-3-3">Caso 3.3</a></li><li><a href="#use-case-3-4">Caso 3.4</a></li><li><a href="#use-case-4-1">Caso 4.1</a></li><li><a href="#use-case-4-2">Caso 4.2</a></li><li><a href="#use-case-4-3">Caso 4.3</a></li><li><a href="#use-case-4-4">Caso 4.4</a></li><li><a href="#use-case-5-1">Caso 5.1</a></li><li><a href="#use-case-5-2">Caso 5.2</a></li><li><a href="#use-case-5-3">Caso 5.3</a></li><li><a href="#use-case-5-4">Caso 5.4</a></li><li><a href="#use-case-6-1">Caso 6.1</a></li><li><a href="#use-case-6-2">Caso 6.2</a></li><li><a href="#use-case-6-3">Caso 6.3</a></li><li><a href="#use-case-6-4">Caso 6.4</a></li><li><a href="#use-case-7-1">Caso 7.1</a></li><li><a href="#use-case-7-2">Caso 7.2</a></li><li><a href="#use-case-7-3">Caso 7.3</a></li><li><a href="#use-case-7-4">Caso 7.4</a></li>
+    </ul>
+    
+    <section class="case" id="use-case-1-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 1.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Revisar completitud de campos críticos (email, telefono, ciudad) y definir estrategias de imputación por ciudad o categoría de paciente. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Revisar completitud de campos críticos (email, telefono, ciudad) y definir estrategias de imputación por ciudad o categoría de paciente. Solution details</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-1-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 1.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Detectar inconsistencias entre fecha_nacimiento y edad, reconstruyendo las edades faltantes con la fecha de corte, y guardar un log de cambios. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Detectar inconsistencias entre fecha_nacimiento y edad, reconstruyendo las edades faltantes con la fecha de corte, y guardar un log de cambios. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_age_consistency.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>age_consistency_log.json</code>, <code>age_consistency_log.json</code>, <code>age_consistency_log.json</code>, <code>age_consistency_summary.html</code>, <code>age_consistency_summary.html</code>, <code>age_consistency_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_age_consistency.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-1-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 1.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Identificar duplicados potenciales usando nombre + fecha_nacimiento/ciudad y decidir si se consolidan, archivando los id_paciente reemplazados. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Identificar duplicados potenciales usando nombre + fecha_nacimiento/ciudad y decidir si se consolidan, archivando los id_paciente reemplazados. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_duplicate_detection.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>AWS.json</code>, <code>duplicate_detection_log.json</code>, <code>duplicate_detection_log.json</code>, <code>AWS.json</code>, <code>duplicate_detection_summary.html</code>, <code>duplicate_detection_summary.html</code>, <code>duplicate_detection_log.json</code>, <code>duplicate_detection_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_duplicate_detection.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-1-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 1.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Normalizar campos de texto (capitalización, tildes) para facilitar posteriores cruces y reportes, documentando la función usada (lower(), strip()). Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Normalizar campos de texto (capitalización, tildes) para facilitar posteriores cruces y reportes, documentando la función usada (lower(), strip()). Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_text_normalization.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>text_normalization_log.json</code>, <code>text_normalization_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_text_normalization.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-2-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 2.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Medir indicadores diarios/semana de citas por especialidad, estado_cita y medico para detectar cuellos de botella. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Medir indicadores diarios/semana de citas por especialidad, estado_cita y medico para detectar cuellos de botella. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_indicators.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_indicators_log.json</code>, <code>appointment_indicators_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_indicators.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-2-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 2.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Reportar citas sin fecha_cita o medico asignado y definir alertas automáticas para validación manual por el equipo de operaciones. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Reportar citas sin fecha_cita o medico asignado y definir alertas automáticas para validación manual por el equipo de operaciones. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_alerts.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_alerts_log.json</code>, <code>appointment_alerts_summary.html</code>, <code>appointment_alerts_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_alerts.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-2-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 2.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Analizar la distribución de costo frente a rangos esperados por especialidad y generar anotaciones para auditoría si sobresale (desviaciones &gt; 2 desviaciones estándar). Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Analizar la distribución de costo frente a rangos esperados por especialidad y generar anotaciones para auditoría si sobresale (desviaciones &gt; 2 desviaciones estándar). Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_cost_audit.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_cost_audit_summary.html</code>, <code>appointment_cost_audit_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_cost_audit.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-2-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 2.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Consolidar histórico de estados para cada id_cita, identificando reprogramaciones múltiples y su impacto en ocupación de agenda. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Consolidar histórico de estados para cada id_cita, identificando reprogramaciones múltiples y su impacto en ocupación de agenda. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_state_timeline.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_state_timeline_log.json</code>, <code>appointment_state_timeline_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_state_timeline.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-3-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 3.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Verificar la integridad referencial: cada id_paciente en citas_medicas debe existir en pacientes. Registrar entradas huérfanas para análisis posterior. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Verificar la integridad referencial: cada id_paciente en citas_medicas debe existir en pacientes. Registrar entradas huérfanas para análisis posterior. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>scripts/run_referential_integrity.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>referential_integrity_log.json</code>, <code>referential_integrity_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_referential_integrity.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-3-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 3.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Asegurar que citas marcadas como Completada/Cancelada tengan fecha_cita válida y médico asignado; si no, marcar para revisión. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Asegurar que citas marcadas como Completada/Cancelada tengan fecha_cita válida y médico asignado; si no, marcar para revisión. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_appointment_review.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>appointment_review_log.json</code>, <code>appointment_review_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_appointment_review.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-3-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 3.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Comparar edad calculada desde fecha_nacimiento con la aparente en la especialidad (ej.: pediatría vs geriatría) y flaggear desvíos. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Comparar edad calculada desde fecha_nacimiento con la aparente en la especialidad (ej.: pediatría vs geriatría) y flaggear desvíos. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_age_specialty_mismatch.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>age_specialty_mismatch_log.json</code>, <code>age_specialty_mismatch_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_age_specialty_mismatch.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-3-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 3.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Cruzar el número de citas por paciente con la localidad de residencia para monitorear accesibilidad y detectar pacientes que viajan largas distancias. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Cruzar el número de citas por paciente con la localidad de residencia para monitorear accesibilidad y detectar pacientes que viajan largas distancias. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_accessibility.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>accessibility_log.json</code>, <code>accessibility_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_accessibility.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-4-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 4.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Determinar KPIs de calidad (completitud, unicidad, validez de formatos) para cada tabla antes y después de la limpieza, almacenando métricas en JSON o CSV. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Determinar KPIs de calidad (completitud, unicidad, validez de formatos) para cada tabla antes y después de la limpieza, almacenando métricas en JSON o CSV. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_quality_kpis.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>quality_kpis.json</code>, <code>quality_kpis_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_quality_kpis.py</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-4-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 4.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Documentar reglas de negocio clave (estado válido de cita, rango de edades por especialidad, formatos de correo/teléfono) en un catálogo accesible. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Documentar reglas de negocio clave (estado válido de cita, rango de edades por especialidad, formatos de correo/teléfono) en un catálogo accesible. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_business_rules_catalog.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>business_rules_catalog.json</code>, <code>business_rules_catalog.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_business_rules_catalog.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-4-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 4.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Establecer responsables por tabla/campo y registrar timestamp + usuario para cada cambio masivo de limpieza para apoyar auditorías. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Establecer responsables por tabla/campo y registrar timestamp + usuario para cada cambio masivo de limpieza para apoyar auditorías. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_cleaning_audit.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>cleaning_audit_log.json</code>, <code>cleaning_audit_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_cleaning_audit.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-4-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 4.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Crear reportes ejecutivos mismated (discrepancias) y enviarlos a un canal de gobernanza antes de las cargas a producción. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Crear reportes ejecutivos mismated (discrepancias) y enviarlos a un canal de gobernanza antes de las cargas a producción. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_executive_discrepancy.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>executive_discrepancies_log.json</code>, <code>executive_discrepancies_summary.html</code>, <code>executive_discrepancies_summary.html</code>, <code>executive_discrepancies_summary.html</code>, <code>executive_discrepancies_log.json</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_executive_discrepancy.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-5-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 5.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Generar segmentos de pacientes por edad, sexo y frecuencia de citas para personalizar comunicaciones o programas de prevención. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Generar segmentos de pacientes por edad, sexo y frecuencia de citas para personalizar comunicaciones o programas de prevención. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_patient_segmentation.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>patient_segmentation_log.json</code>, <code>patient_segmentation_summary.html</code>, <code>patient_segmentation_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_patient_segmentation.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-5-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 5.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas para priorizar recordatorios. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas para priorizar recordatorios. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_cancellation_risk.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>cancellation_risk_log.json</code>, <code>cancellation_risk_summary.html</code>, <code>cancellation_risk_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_cancellation_risk.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-5-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 5.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Construir dashboards de ocupación por ciudad y especialidad, comparando citas completadas vs canceladas y reprogramadas. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Construir dashboards de ocupación por ciudad y especialidad, comparando citas completadas vs canceladas y reprogramadas. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_occupancy_dashboard.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>occupancy_dashboard_log.json</code>, <code>occupancy_dashboard_summary.html</code>, <code>occupancy_dashboard_summary.html</code>, <code>occupancy_dashboard_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_occupancy_dashboard.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-5-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 5.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizar brechas de capacidad de médicos. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizar brechas de capacidad de médicos. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_demand_forecast.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>demand_forecast_log.json</code>, <code>demand_forecast_summary.html</code>, <code>demand_forecast_summary.html</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_demand_forecast.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-6-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 6.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Diseñar pipeline ETL que tome el JSON original, aplique limpiezas y validaciones, y exporte tablas limpias (parquet/csv) listas para el Data Warehouse. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Diseñar pipeline ETL que tome el JSON original, aplique limpiezas y validaciones, y exporte tablas limpias (parquet/csv) listas para el Data Warehouse. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_etl_pipeline.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F4E6;</span> Paso 3: Revisar los artefactos generados (<code>pacientes_cleaned.csv</code>, <code>pacientes_cleaned.parquet</code>, <code>citas_cleaned.csv</code>, <code>citas_cleaned.parquet</code>) para documentar hallazgos y métricas.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_etl_pipeline.py</code> y <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-6-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 6.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Incluir pruebas automáticas (pytest/Great Expectations) que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Incluir pruebas automáticas (pytest/Great Expectations) que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline. Solution details</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>python -m pytest</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-6-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 6.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones en el pipeline. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones en el pipeline. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_etl_pipeline.py</code> para automatizar el análisis y generar registros consolidados.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-6-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 6.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Documentar y versionar cada esquema destino (por ejemplo: tabla fact_citas, dim_pacientes) para facilitar futuras migraciones. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Documentar y versionar cada esquema destino (por ejemplo: tabla fact_citas, dim_pacientes) para facilitar futuras migraciones. Solution details</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-7-1">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 7.1</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Alertar a los médicos cuando un paciente muestra patrón de múltiples citas en períodos cortos o cancelaciones recurrentes. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Alertar a los médicos cuando un paciente muestra patrón de múltiples citas en períodos cortos o cancelaciones recurrentes. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>run_doctor_notifications.py</code> para automatizar el análisis y generar registros consolidados.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-7-2">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 7.2</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Monitorear cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Monitorear cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada. Solution details</li><li><span class="emoji">&#x1F680;</span> Paso 2: Ejecutar <code>python scripts/run_doctor_utilization.py</code> para automatizar el análisis y generar registros consolidados.</li><li><span class="emoji">&#x1F9EA;</span> Paso 4: Validar el flujo con <code>run_doctor_utilization.py</code>.</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-7-3">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 7.3</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles. Solution details</li>
+      </ol>
+    </section>
+    
+    <section class="case" id="use-case-7-4">
+      <div class="case-heading">
+        <div>
+          <p class="case-number">Caso 7.4</p>
+          <h2>Descripción</h2>
+        </div>
+        <span class="tag">Requisito</span>
+      </div>
+      <p class="requirement">Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida. Solution details</p>
+      <ol class="steps">
+        <li><span class="emoji">&#x1F6E0;</span> Paso 1: Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida. Solution details</li>
+      </ol>
+    </section>
+    
+    <p class="tagline">?? Consulta <code>useful_commands.txt</code> para los comandos completos y actualiza esta guía cuando los artefactos evolucionen.</p>
+  </div>
+</body>
+</html>
