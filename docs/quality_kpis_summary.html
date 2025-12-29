@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPI Calidad 4.1</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: left; }
+  th { background: #dbeafe; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .footer { text-align: right; color: #888; margin-top: 24px; }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>KPIs de calidad (completitud, unicidad y validez)</h1>
+    <div class="note">
+      <p>Se calcula la completitud, unicidad y validez de formatos por campo antes y después de aplicar las limpiezas. Los porcentajes están en base 100.</p>
+    </div>
+    
+<h2>Pacientes</h2>
+<div class="note">
+  <canvas id="chart_pacientes"></canvas>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Campo</th>
+      <th>Completitud antes (%)</th>
+      <th>Completitud después (%)</th>
+      <th>Unicidad antes (%)</th>
+      <th>Unicidad después (%)</th>
+      <th>Validez antes (%)</th>
+      <th>Validez después (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr>
+  <td>nombre</td>
+  <td>1.00</td>
+  <td>1.00</td>
+  <td>0.00</td>
+  <td>0.00</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+<tr>
+  <td>fecha_nacimiento</td>
+  <td>1.00</td>
+  <td>1.00</td>
+  <td>0.90</td>
+  <td>0.90</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+<tr>
+  <td>email</td>
+  <td>0.50</td>
+  <td>0.50</td>
+  <td>0.50</td>
+  <td>0.50</td>
+  <td>0.50</td>
+  <td>0.50</td>
+</tr>
+
+<tr>
+  <td>telefono</td>
+  <td>0.67</td>
+  <td>0.67</td>
+  <td>0.67</td>
+  <td>0.67</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+<tr>
+  <td>ciudad</td>
+  <td>0.83</td>
+  <td>0.83</td>
+  <td>0.00</td>
+  <td>0.00</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+  </tbody>
+</table>
+
+<h2>Citas Medicas</h2>
+<div class="note">
+  <canvas id="chart_citas_medicas"></canvas>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Campo</th>
+      <th>Completitud antes (%)</th>
+      <th>Completitud después (%)</th>
+      <th>Unicidad antes (%)</th>
+      <th>Unicidad después (%)</th>
+      <th>Validez antes (%)</th>
+      <th>Validez después (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+<tr>
+  <td>fecha_cita</td>
+  <td>0.67</td>
+  <td>0.67</td>
+  <td>0.13</td>
+  <td>0.13</td>
+  <td>0.34</td>
+  <td>0.34</td>
+</tr>
+
+<tr>
+  <td>especialidad</td>
+  <td>0.83</td>
+  <td>0.83</td>
+  <td>0.00</td>
+  <td>0.00</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+<tr>
+  <td>medico</td>
+  <td>0.80</td>
+  <td>0.80</td>
+  <td>0.00</td>
+  <td>0.00</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+<tr>
+  <td>estado_cita</td>
+  <td>0.74</td>
+  <td>0.74</td>
+  <td>0.00</td>
+  <td>0.00</td>
+  <td>1.00</td>
+  <td>1.00</td>
+</tr>
+
+  </tbody>
+</table>
+
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_quality_kpis.py</code>.
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const chartData = [{"canvasId": "chart_pacientes", "labels": ["nombre", "fecha_nacimiento", "email", "telefono", "ciudad"], "before": [1.0, 1.0, 0.4998003992015968, 0.667065868263473, 0.8349301397205589], "after": [1.0, 1.0, 0.4998003992015968, 0.667065868263473, 0.8349301397205589], "title": "Pacientes"}, {"canvasId": "chart_citas_medicas", "labels": ["fecha_cita", "especialidad", "medico", "estado_cita"], "before": [0.6709165746411003, 0.8320449754040758, 0.7959040257002309, 0.7448047384800723], "after": [0.6709165746411003, 0.8320449754040758, 0.7959040257002309, 0.7448047384800723], "title": "Citas Medicas"}];
+    chartData.forEach(cfg => {
+      const ctx = document.getElementById(cfg.canvasId);
+      if (!ctx) return;
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: cfg.labels,
+          datasets: [
+            {
+              label: "Antes",
+              backgroundColor: "#2563eb",
+              data: cfg.before
+            },
+            {
+              label: "Después",
+              backgroundColor: "#16a34a",
+              data: cfg.after
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "top" },
+            title: {
+              display: true,
+              text: cfg.title
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
