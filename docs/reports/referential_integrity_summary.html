@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte caso de uso 3.1</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .tag { background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 3px 8px; margin-left: 6px; font-size: 0.95em; }
+  dt { color: #2e7d32; font-weight: bold; margin-top: 10px; }
+  dd { margin-bottom: 10px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+  .sideEffects ul, .solid ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  /* Code block styling */
+  pre { background: #f6f8fa; padding: 14px; border-radius: 8px; overflow: auto; font-size: 0.92em; }
+  code { font-family: Consolas, 'Courier New', monospace; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  /* Small visual helpers */
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  .json { white-space: pre; font-family: Consolas, 'Courier New', monospace; font-size: 0.95em; }
+  .success { color: #2e7d32; font-weight: 600; }
+  .error { color: #c62828; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Integridad referencial – Caso 3.1</h1>
+    <div class="note">
+      <p>Detectamos cada <code>id_cita</code> cuyo <code>id_paciente</code> no coincide con ningún paciente registrado y los dejamos para auditoría manual.</p>
+    </div>
+    <div class="note">
+      <strong>Resumen:</strong>
+      <ul>
+        <li>Total de citas examinadas: 9961</li>
+        <li>Citas huérfanas registradas: 190</li>
+      </ul>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>id_cita</th>
+          <th>id_paciente</th>
+          <th>motivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ff335846-cf4a-427c-a598-4d0c49019fcf</td><td>6416</td><td>paciente no registrado</td></tr>
+<tr><td>9ceaa50a-16dd-431e-8345-c5e4a32e7c6d</td><td>6148</td><td>paciente no registrado</td></tr>
+<tr><td>86fbd10f-c3ef-490c-a4f7-0ab55e4745fe</td><td>6141</td><td>paciente no registrado</td></tr>
+<tr><td>6f46ce42-8e1f-4ed8-b80a-cdb1f238a715</td><td>6095</td><td>paciente no registrado</td></tr>
+<tr><td>3f08c4ff-37c8-41e1-bea8-1e59172f0b6a</td><td>6000</td><td>paciente no registrado</td></tr>
+<tr><td>64bdd3cd-8a7b-48cc-8123-227f3ed4d23e</td><td>6327</td><td>paciente no registrado</td></tr>
+<tr><td>e6111e33-36b3-4065-92f1-68068598a3be</td><td>6157</td><td>paciente no registrado</td></tr>
+<tr><td>2933d6a4-e3b8-46dd-a3b8-85a2164adf32</td><td>6065</td><td>paciente no registrado</td></tr>
+<tr><td>de2dcdd7-50ad-4494-8772-34d91110b10a</td><td>6037</td><td>paciente no registrado</td></tr>
+<tr><td>b9c18dc9-51ce-45e2-b502-71fca15cf122</td><td>6477</td><td>paciente no registrado</td></tr>
+<tr><td>901987fc-1563-469f-9aac-38333201b551</td><td>6186</td><td>paciente no registrado</td></tr>
+<tr><td>9bd60575-0ebc-465f-b34b-c57243b4d63d</td><td>6368</td><td>paciente no registrado</td></tr>
+<tr><td>76aa3982-875b-4004-aba2-1297186fa4bc</td><td>6030</td><td>paciente no registrado</td></tr>
+<tr><td>61280b56-9d30-46ec-9a56-5cd13af3097f</td><td>6911</td><td>paciente no registrado</td></tr>
+<tr><td>397ffd62-f407-4217-93b1-5dcab7293c93</td><td>6277</td><td>paciente no registrado</td></tr>
+<tr><td>cc5d4d91-8843-4773-a0d5-069ac187aed6</td><td>6473</td><td>paciente no registrado</td></tr>
+<tr><td>a588d034-d26b-4d0e-b8cb-9e5abec69d6d</td><td>6434</td><td>paciente no registrado</td></tr>
+<tr><td>852ac72d-0b5a-4f52-8792-8fcb47c49e7b</td><td>6731</td><td>paciente no registrado</td></tr>
+<tr><td>85f79ce2-3944-4185-9ee4-cbe7307b118d</td><td>6543</td><td>paciente no registrado</td></tr>
+<tr><td>48a5a011-075b-47ca-827e-1be26b3460fa</td><td>6848</td><td>paciente no registrado</td></tr>
+<tr><td>a479d3c9-e0d2-4f05-9084-ed44e5c095bf</td><td>6936</td><td>paciente no registrado</td></tr>
+<tr><td>a797a242-e8fd-435d-a347-b0f2d5a86321</td><td>6974</td><td>paciente no registrado</td></tr>
+<tr><td>549db67f-ce1e-4eea-9a5a-32ce556e0f58</td><td>6608</td><td>paciente no registrado</td></tr>
+<tr><td>eb835a30-cf4c-4139-91c3-12a27c872d67</td><td>6676</td><td>paciente no registrado</td></tr>
+<tr><td>84d72a23-c4df-4943-87fe-554cc5160170</td><td>6880</td><td>paciente no registrado</td></tr>
+<tr><td>fa0116cf-6e0a-4270-8041-2618d1bb524d</td><td>6690</td><td>paciente no registrado</td></tr>
+<tr><td>707c9b66-e749-4f80-9d97-afe5434d052a</td><td>6897</td><td>paciente no registrado</td></tr>
+<tr><td>73e36b71-1df5-4209-a6bd-b9e9be3fa192</td><td>6381</td><td>paciente no registrado</td></tr>
+<tr><td>00c78844-db8c-4558-94fb-afae12aeaa2b</td><td>6024</td><td>paciente no registrado</td></tr>
+<tr><td>1dcdc345-a9d4-4c6b-b7e7-8aca1f9dc204</td><td>6324</td><td>paciente no registrado</td></tr>
+<tr><td>a0c8e109-f413-4430-8c45-a72691aa546f</td><td>6544</td><td>paciente no registrado</td></tr>
+<tr><td>af4b8683-5d4b-454e-b48e-2f402d3a0039</td><td>6454</td><td>paciente no registrado</td></tr>
+<tr><td>71df1713-24f1-4b7d-af71-a57c370a870f</td><td>6473</td><td>paciente no registrado</td></tr>
+<tr><td>f4886583-5ed4-4ac2-9387-d66857ac336e</td><td>6592</td><td>paciente no registrado</td></tr>
+<tr><td>871d2c84-eda3-4794-a939-bdb9ab09b2a4</td><td>6198</td><td>paciente no registrado</td></tr>
+<tr><td>0058979d-e21e-4e82-93fd-35d22a2f9476</td><td>6249</td><td>paciente no registrado</td></tr>
+<tr><td>803b6247-6f17-4b1c-838b-7da54876ffd0</td><td>6542</td><td>paciente no registrado</td></tr>
+<tr><td>64cd283c-ec0a-43b8-8212-c2b8004c239e</td><td>6370</td><td>paciente no registrado</td></tr>
+<tr><td>2da2cd51-1266-44ba-a884-7f9259477540</td><td>6742</td><td>paciente no registrado</td></tr>
+<tr><td>21ff6f76-18a3-4c0a-9e01-2bff31e8488b</td><td>6827</td><td>paciente no registrado</td></tr>
+<tr><td>0964dba2-e9f4-49fa-83a5-65bdc3f5b8fa</td><td>6546</td><td>paciente no registrado</td></tr>
+<tr><td>f582d7a2-0829-49be-945c-bdd6edca6801</td><td>6118</td><td>paciente no registrado</td></tr>
+<tr><td>a989037a-1f1d-4f7e-b374-67f7a8705a16</td><td>6786</td><td>paciente no registrado</td></tr>
+<tr><td>d47d003c-fe7c-461b-abef-19bcbe4fa5bc</td><td>6377</td><td>paciente no registrado</td></tr>
+<tr><td>8065581a-8962-4f07-9f46-0ff0b7d9100f</td><td>6175</td><td>paciente no registrado</td></tr>
+<tr><td>613491f0-5c69-44b6-86a1-f2c7f9c6f750</td><td>6948</td><td>paciente no registrado</td></tr>
+<tr><td>e858f704-1f92-4332-8a1f-5394703d2261</td><td>6489</td><td>paciente no registrado</td></tr>
+<tr><td>b7524450-062e-4048-bd87-d2350cc55793</td><td>6452</td><td>paciente no registrado</td></tr>
+<tr><td>3f3c4def-54d8-4a8c-ad5e-a46135f9670d</td><td>6150</td><td>paciente no registrado</td></tr>
+<tr><td>df49dd40-af56-4b56-a1e6-607a8ebb1607</td><td>6994</td><td>paciente no registrado</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_referential_integrity.py</code>.
+    </div>
+  </div>
+</body>
+</html>
