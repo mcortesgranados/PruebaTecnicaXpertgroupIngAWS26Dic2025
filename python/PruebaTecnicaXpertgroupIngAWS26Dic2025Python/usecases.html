@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casos de Uso Detallados – dataset_hospital 2 AWS.json</title>
-  <style>
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
-  .container { max-width: 1000px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
-  h1 { color: #1565c0; }
-  h2 { color: #2e7d32; margin-top: 32px; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casos de Uso Detallados – dataset_hospital 2 AWS.json</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 1000px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
   .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
   .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
   ol.main-list { counter-reset: section; padding-left: 0; }
@@ -18,151 +18,238 @@
   ol.sub-list { counter-reset: subsection; padding-left: 1.6em; margin-top: 12px; }
   ol.sub-list li { margin-bottom: 10px; }
   ol.sub-list li::before { counter-increment: subsection; content: counter(section) "." counter(subsection) " "; font-weight: 600; color: #1565c0; margin-right: 6px; }
+  .solution-link { margin-top: 8px; }
+  .solution-link a { display: inline-block; background: #1e40af; color: #fff; padding: 6px 12px; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.9em; }
+  .solution-link a:hover { background: #1d4ed8; }
   ul.activities { padding-left: 1.4em; margin: 6px 0 0; }
   .footer { text-align: right; color: #888; font-size: 0.95em; margin-top: 20px; }
-  @media (max-width: 600px) { .container { padding: 20px; } }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Casos de Uso Detallados</h1>
-    <p>El dataset <code>dataset_hospital 2 AWS.json</code> concentra las tablas <strong>pacientes</strong> y <strong>citas_medicas</strong>. Se proponen a continuación casos de uso numerados para guiar la implementación del reto.</p>
-
-    <ol class="main-list">
-      <li>
-        <h2>Calidad y limpieza de datos maestros</h2>
-        <ol class="sub-list">
-          <li>
-            Revisar completitud de campos críticos (<code>email</code>, <code>telefono</code>, <code>ciudad</code>) y definir estrategias de imputación por ciudad o categoría de paciente.
-          </li>
-          <li>
-            Detectar inconsistencias entre <code>fecha_nacimiento</code> y <code>edad</code>, reconstruyendo las edades faltantes con la fecha de corte, y guardar un log de cambios.
-          </li>
-          <li>
-            Identificar duplicados potenciales usando <code>nombre</code> + <code>fecha_nacimiento</code>/<code>ciudad</code> y decidir si se consolidan, archivando los <code>id_paciente</code> reemplazados.
-          </li>
-          <li>
-            Normalizar campos de texto (capitalización, tildes) para facilitar posteriores cruces y reportes, documentando la función usada (lower(), strip()).
-          </li>
-        </ol>
-      </li>
-
-      <li>
-        <h2>Gestión operativa de citas</h2>
-        <ol class="sub-list">
-          <li>
-            Medir indicadores diarios/semana de citas por <code>especialidad</code>, <code>estado_cita</code> y <code>medico</code> para detectar cuellos de botella.
-          </li>
-          <li>
-            Reportar citas sin <code>fecha_cita</code> o <code>medico</code> asignado y definir alertas automáticas para validación manual por el equipo de operaciones.
-          </li>
-          <li>
-            Analizar la distribución de <code>costo</code> frente a rangos esperados por especialidad y generar anotaciones para auditoría si sobresale (desviaciones > 2 desviaciones estándar).
-          </li>
-          <li>
-            Consolidar histórico de estados para cada <code>id_cita</code>, identificando reprogramaciones múltiples y su impacto en ocupación de agenda.
-          </li>
-        </ol>
-      </li>
-
-      <li>
-        <h2>Validaciones cruzadas entre tablas</h2>
-        <ol class="sub-list">
-          <li>
-            Verificar la integridad referencial: cada <code>id_paciente</code> en <code>citas_medicas</code> debe existir en <code>pacientes</code>. Registrar entradas huérfanas para análisis posterior.
-          </li>
-          <li>
-            Asegurar que citas marcadas como <code>Completada</code>/<code>Cancelada</code> tengan <code>fecha_cita</code> válida y médico asignado; si no, marcar para revisión.
-          </li>
-          <li>
-            Comparar edad calculada desde <code>fecha_nacimiento</code> con la aparente en la especialidad (ej.: pediatría vs geriatría) y flaggear desvíos.
-          </li>
-          <li>
-            Cruzar el número de citas por paciente con la localidad de residencia para monitorear accesibilidad y detectar pacientes que viajan largas distancias.
-          </li>
-        </ol>
-      </li>
-
-      <li>
-        <h2>Indicadores y gobernanza de datos</h2>
-        <ol class="sub-list">
-          <li>
-            Determinar KPIs de calidad (completitud, unicidad, validez de formatos) para cada tabla antes y después de la limpieza, almacenando métricas en JSON o CSV.
-          </li>
-          <li>
-            Documentar reglas de negocio clave (estado válido de cita, rango de edades por especialidad, formatos de correo/teléfono) en un catálogo accesible.
-          </li>
-          <li>
-            Establecer responsables por tabla/campo y registrar timestamp + usuario para cada cambio masivo de limpieza para apoyar auditorías.
-          </li>
-          <li>
-            Crear reportes ejecutivos mismated (discrepancias) y enviarlos a un canal de gobernanza antes de las cargas a producción.
-          </li>
-        </ol>
-      </li>
-
-      <li>
-        <h2>Analítica avanzada y segmentación</h2>
-        <ol class="sub-list">
-          <li>
-            Generar segmentos de pacientes por edad, sexo y frecuencia de citas para personalizar comunicaciones o programas de prevención.
-          </li>
-          <li>
-            Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas para priorizar recordatorios.
-          </li>
-          <li>
-            Construir dashboards de ocupación por ciudad y especialidad, comparando citas completadas vs canceladas y reprogramadas.
-          </li>
-          <li>
-            Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizar brechas de capacidad de médicos.
-          </li>
-        </ol>
-      </li>
-
-      <li>
-        <h2>Orquestación y migración controlada</h2>
-        <ol class="sub-list">
-          <li>
-            Diseñar pipeline ETL que tome el JSON original, aplique limpiezas y validaciones, y exporte tablas limpias (parquet/csv) listas para el Data Warehouse.
-          </li>
-          <li>
-            Incluir pruebas automáticas (pytest/Great Expectations) que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline.
-          </li>
-          <li>
-            Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones en el pipeline.
-          </li>
-          <li>
-            Documentar y versionar cada esquema destino (por ejemplo: tabla fact_citas, dim_pacientes) para facilitar futuras migraciones.
-          </li>
-        </ol>
-      </li>
-
-      <li>
-        <h2>Soporte a decisión clínica y administrativa</h2>
-        <ol class="sub-list">
-          <li>
-            Alertar a los médicos cuando un paciente muestra patrón de múltiples citas en períodos cortos o cancelaciones recurrentes.
-          </li>
-          <li>
-            Monitorear cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada.
-          </li>
-          <li>
-            Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles.
-          </li>
-          <li>
-            Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida.
-          </li>
-        </ol>
-      </li>
-    </ol>
-
-    <div class="note">
-      <p>Cada caso puede desarrollarse de manera incremental: iniciar con limpieza y validaciones, luego avanzar a indicadores y automatizaciones, y finalmente alimentar analítica y reportes.</p>
-    </div>
-
-    <div class="footer">
-      Documento generado para guiar la implementación completa del reto sobre <code>dataset_hospital 2 AWS.json</code>.
-    </div>
-  </div>
-</body>
-</html>
+  @media (max-width: 600px) { .container { padding: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Casos de Uso Detallados</h1>
+    <p>El dataset <code>dataset_hospital 2 AWS.json</code> concentra las tablas <strong>pacientes</strong> y <strong>citas_medicas</strong>. Se proponen a continuación casos de uso numerados para guiar la implementación del reto.</p>
+
+    <ol class="main-list">
+      <li>
+        <h2>Calidad y limpieza de datos maestros</h2>
+        <ol class="sub-list">
+          <li>
+            Revisar completitud de campos críticos (<code>email</code>, <code>telefono</code>, <code>ciudad</code>) y definir estrategias de imputación por ciudad o categoría de paciente.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-1-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Detectar inconsistencias entre <code>fecha_nacimiento</code> y <code>edad</code>, reconstruyendo las edades faltantes con la fecha de corte, y guardar un log de cambios.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-1-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Identificar duplicados potenciales usando <code>nombre</code> + <code>fecha_nacimiento</code>/<code>ciudad</code> y decidir si se consolidan, archivando los <code>id_paciente</code> reemplazados.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-1-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Normalizar campos de texto (capitalización, tildes) para facilitar posteriores cruces y reportes, documentando la función usada (lower(), strip()).
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-1-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <h2>Gestión operativa de citas</h2>
+        <ol class="sub-list">
+          <li>
+            Medir indicadores diarios/semana de citas por <code>especialidad</code>, <code>estado_cita</code> y <code>medico</code> para detectar cuellos de botella.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-2-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Reportar citas sin <code>fecha_cita</code> o <code>medico</code> asignado y definir alertas automáticas para validación manual por el equipo de operaciones.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-2-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Analizar la distribución de <code>costo</code> frente a rangos esperados por especialidad y generar anotaciones para auditoría si sobresale (desviaciones > 2 desviaciones estándar).
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-2-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Consolidar histórico de estados para cada <code>id_cita</code>, identificando reprogramaciones múltiples y su impacto en ocupación de agenda.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-2-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <h2>Validaciones cruzadas entre tablas</h2>
+        <ol class="sub-list">
+          <li>
+            Verificar la integridad referencial: cada <code>id_paciente</code> en <code>citas_medicas</code> debe existir en <code>pacientes</code>. Registrar entradas huérfanas para análisis posterior.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-3-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Asegurar que citas marcadas como <code>Completada</code>/<code>Cancelada</code> tengan <code>fecha_cita</code> válida y médico asignado; si no, marcar para revisión.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-3-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Comparar edad calculada desde <code>fecha_nacimiento</code> con la aparente en la especialidad (ej.: pediatría vs geriatría) y flaggear desvíos.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-3-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Cruzar el número de citas por paciente con la localidad de residencia para monitorear accesibilidad y detectar pacientes que viajan largas distancias.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-3-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <h2>Indicadores y gobernanza de datos</h2>
+        <ol class="sub-list">
+          <li>
+            Determinar KPIs de calidad (completitud, unicidad, validez de formatos) para cada tabla antes y después de la limpieza, almacenando métricas en JSON o CSV.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-4-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Documentar reglas de negocio clave (estado válido de cita, rango de edades por especialidad, formatos de correo/teléfono) en un catálogo accesible.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-4-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Establecer responsables por tabla/campo y registrar timestamp + usuario para cada cambio masivo de limpieza para apoyar auditorías.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-4-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Crear reportes ejecutivos mismated (discrepancias) y enviarlos a un canal de gobernanza antes de las cargas a producción.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-4-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <h2>Analítica avanzada y segmentación</h2>
+        <ol class="sub-list">
+          <li>
+            Generar segmentos de pacientes por edad, sexo y frecuencia de citas para personalizar comunicaciones o programas de prevención.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-5-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Entrenar modelos de probabilidad de cancelación considerando estados previos, especialidad y tiempos entre citas para priorizar recordatorios.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-5-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Construir dashboards de ocupación por ciudad y especialidad, comparando citas completadas vs canceladas y reprogramadas.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-5-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Simular escenarios de demanda futura aplicando crecimiento mensual promedio y visualizar brechas de capacidad de médicos.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-5-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <h2>Orquestación y migración controlada</h2>
+        <ol class="sub-list">
+          <li>
+            Diseñar pipeline ETL que tome el JSON original, aplique limpiezas y validaciones, y exporte tablas limpias (parquet/csv) listas para el Data Warehouse.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-6-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Incluir pruebas automáticas (pytest/Great Expectations) que validen formatos, cardinalidad y referencialidad tras cada ejecución del pipeline.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-6-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Registrar métricas de volumen y tiempo de ejecución en cada run para detectar regresiones en el pipeline.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-6-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Documentar y versionar cada esquema destino (por ejemplo: tabla fact_citas, dim_pacientes) para facilitar futuras migraciones.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-6-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <h2>Soporte a decisión clínica y administrativa</h2>
+        <ol class="sub-list">
+          <li>
+            Alertar a los médicos cuando un paciente muestra patrón de múltiples citas en períodos cortos o cancelaciones recurrentes.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-7-1">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Monitorear cumplimiento de agenda por médico/especialidad y notificar desviaciones en la utilización esperada.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-7-2">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Identificar pacientes con viajes entre ciudades (residencia vs cita) para planificar telemedicina o brigadas móviles.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-7-3">Solution details</a>
+          </div>
+          </li>
+          <li>
+            Facilitar informes para gerencia con KPIs como tiempo promedio de espera y costo promedio por cita atendida.
+          <div class="solution-link">
+            <a href="solution-details.html#use-case-7-4">Solution details</a>
+          </div>
+          </li>
+        </ol>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p>Cada caso puede desarrollarse de manera incremental: iniciar con limpieza y validaciones, luego avanzar a indicadores y automatizaciones, y finalmente alimentar analítica y reportes.</p>
+    </div>
+
+    <div class="footer">
+      Documento generado para guiar la implementación completa del reto sobre <code>dataset_hospital 2 AWS.json</code>.
+    </div>
+  </div>
+</body>
+</html>
