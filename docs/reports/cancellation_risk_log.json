@@ -1,0 +1,276 @@
+{
+  "generated_at": "2025-12-28T10:51:57.721063",
+  "total_records": 9961,
+  "high_risk_count": 1236,
+  "average_risk": 0.3994,
+  "specialty_risk": {
+    "cardiología": 0.4308,
+    "pediatría": 0.443,
+    "neurología": 0.3792,
+    "ginecología": 0.3733,
+    "General": 0.3995,
+    "ortopedia": 0.3719
+  },
+  "entries": [
+    {
+      "id_cita": "15efb4ac-2f66-46d3-967a-94e498364656",
+      "id_paciente": 297,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": 281,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "edb79149-7abf-4d98-8469-2fe5b23cd67f",
+      "id_paciente": 302,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": 8,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "a195663d-b8fc-4cf4-86c8-29ebc4e94071",
+      "id_paciente": 338,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "60dae54e-862f-415a-a0cd-284c70712839",
+      "id_paciente": 389,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "4b38ecb6-b0b8-4e6c-b1de-37502567efb3",
+      "id_paciente": 493,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "70da6730-8dbf-4893-8343-a3b2ff93a8cf",
+      "id_paciente": 526,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "8addaa63-2e6e-4462-a4a0-025a6508d99f",
+      "id_paciente": 567,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "11519bc4-1e1b-41fa-b671-384060533bb4",
+      "id_paciente": 780,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "f6895217-b2cf-49a1-9e52-3ae9b44f019b",
+      "id_paciente": 834,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "055b36a7-87ea-422b-a6c7-9d09e7727346",
+      "id_paciente": 849,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "ecaf487b-caff-45f9-8632-bed9d6a643d5",
+      "id_paciente": 856,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "08bf9d7d-15fa-4ebf-a838-7098b8cd42cd",
+      "id_paciente": 1004,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "09490977-80ea-464b-907b-d28613657c97",
+      "id_paciente": 1039,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": 372,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "e993e995-97de-4e7d-b4f6-e5fabdf6749f",
+      "id_paciente": 1111,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "9d3294b0-e526-433a-8728-34a53bb98745",
+      "id_paciente": 1181,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "1c26b37e-32f4-41fe-a7a0-295384d2f8a3",
+      "id_paciente": 1195,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "a4049630-2f20-49c1-b179-fd85b446fe94",
+      "id_paciente": 1251,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "1ae3585c-93a6-4afe-9c8f-fc25f05235fe",
+      "id_paciente": 1290,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "2b018a32-f70f-4ad1-893b-e309de9077b9",
+      "id_paciente": 1315,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": null,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    },
+    {
+      "id_cita": "9108b9c9-7628-4ae4-acfe-661976746409",
+      "id_paciente": 1415,
+      "especialidad": "pediatría",
+      "estado_cita": "Cancelada",
+      "risk_score": 0.846,
+      "days_since_last": 34,
+      "factors": [
+        "Cancelación previa",
+        "Estado actual Cancelada",
+        "Especialidad: Pediatría"
+      ]
+    }
+  ]
+}
