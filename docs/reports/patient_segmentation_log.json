@@ -1,0 +1,198 @@
+{
+  "generated_at": "2025-12-28T01:13:30.460199",
+  "total_patients": 5010,
+  "cohorts": [
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 646
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 623
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 342
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 326
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 321
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 309
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 305
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 300
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 286
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 172
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 172
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 156
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 146
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 139
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 133
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 130
+    },
+    {
+      "age_segment": "0-17 (Niños)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 104
+    },
+    {
+      "age_segment": "0-17 (Niños)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 84
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 74
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 71
+    },
+    {
+      "age_segment": "0-17 (Niños)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 47
+    },
+    {
+      "age_segment": "0-17 (Niños)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 43
+    },
+    {
+      "age_segment": "0-17 (Niños)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 35
+    },
+    {
+      "age_segment": "0-17 (Niños)",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 21
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Sin citas registradas",
+      "count": 5
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Sin citas registradas",
+      "count": 4
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Sin citas registradas",
+      "count": 4
+    },
+    {
+      "age_segment": "35-64 (Adultos)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Sin citas registradas",
+      "count": 4
+    },
+    {
+      "age_segment": "65+ (Adultos mayores)",
+      "sexo": "Femenino",
+      "frequency_bucket": "Sin citas registradas",
+      "count": 3
+    },
+    {
+      "age_segment": "18-34 (Adultos jóvenes)",
+      "sexo": "Masculino",
+      "frequency_bucket": "Sin citas registradas",
+      "count": 3
+    },
+    {
+      "age_segment": "Edad desconocida",
+      "sexo": "Masculino",
+      "frequency_bucket": "Frecuencia moderada (3-4 citas)",
+      "count": 1
+    },
+    {
+      "age_segment": "Edad desconocida",
+      "sexo": "No declarado",
+      "frequency_bucket": "Frecuencia baja (1-2 citas)",
+      "count": 1
+    }
+  ]
+}
