@@ -1,0 +1,43 @@
+{
+  "generated_at": "2025-12-28T14:38:11.373270",
+  "overall_average_cost": 164.39,
+  "overall_average_wait_days": 478.41,
+  "specialty_entries": [
+    {
+      "specialty": "Cardiología",
+      "appointment_count": 331,
+      "average_cost": 164.77,
+      "average_wait_days": 490.53
+    },
+    {
+      "specialty": "General",
+      "appointment_count": 334,
+      "average_cost": 164.07,
+      "average_wait_days": 484.79
+    },
+    {
+      "specialty": "Ginecología",
+      "appointment_count": 337,
+      "average_cost": 166.94,
+      "average_wait_days": 463.12
+    },
+    {
+      "specialty": "Neurología",
+      "appointment_count": 344,
+      "average_cost": 164.88,
+      "average_wait_days": 441.26
+    },
+    {
+      "specialty": "Ortopedia",
+      "appointment_count": 327,
+      "average_cost": 161.77,
+      "average_wait_days": 533.96
+    },
+    {
+      "specialty": "Pediatría",
+      "appointment_count": 324,
+      "average_cost": 163.77,
+      "average_wait_days": 443.93
+    }
+  ]
+}
