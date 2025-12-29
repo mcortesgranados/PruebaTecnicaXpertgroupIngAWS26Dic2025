@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Trail 4.3</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 8px; text-align: left; }
+  th { background: #dbeafe; }
+  .note { background: #fef9c3; border-left: 4px solid #f59e0b; padding: 12px; margin-top: 18px; }
+  .footer { margin-top: 24px; text-align: right; color: #888; }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Catálogo de responsables y auditoría</h1>
+    <div class="note">
+      <p>Responsables asignados y registros con timestamp + usuario para cada cambio masivo.</p>
+    </div>
+    <h2>Responsables por campo</h2>
+    <table>
+      <thead>
+        <tr><th>Tabla</th><th>Campo</th><th>Owner</th><th>Contacto</th><th>Notas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>pacientes</td><td>email</td><td>Data Ops</td><td>dataops@hospital.local</td><td>Responsable por validar correos antes de limpieza de contacts.</td></tr>
+<tr><td>pacientes</td><td>ciudad</td><td>Equipo de Operaciones</td><td>ops@hospital.local</td><td>Mantiene catálogo de ciudades autorizadas.</td></tr>
+<tr><td>citas_medicas</td><td>fecha_cita</td><td>Agenda</td><td>agenda@hospital.local</td><td>Valida fechas de agenda antes de confirmar.</td></tr>
+      </tbody>
+    </table>
+    <h2>Registro de cambios</h2>
+    <table>
+      <thead>
+        <tr><th>Tabla</th><th>Campo</th><th>Owner</th><th>Contacto</th><th>Acción</th><th>Usuario</th><th>Timestamp</th><th>Nota</th></tr>
+      </thead>
+      <tbody><tr><td>pacientes</td><td>email</td><td>Data Ops</td><td>dataops@hospital.local</td><td>Imputación masiva</td><td>ana</td><td>2025-12-27T16:26:42.564798</td><td>Llenado con plantilla <ciudad>.contacto@hospital.local.</td></tr>
+<tr><td>pacientes</td><td>ciudad</td><td>Equipo de Operaciones</td><td>ops@hospital.local</td><td>Normalización</td><td>javier</td><td>2025-12-27T16:26:42.564811</td><td>Capitalización y estandarización de tildes.</td></tr>
+<tr><td>citas_medicas</td><td>fecha_cita</td><td>Agenda</td><td>agenda@hospital.local</td><td>Validación</td><td>marcela</td><td>2025-12-27T16:26:42.564816</td><td>Se eliminaron registros sin fecha válida.</td></tr></tbody>
+    </table>
+    <div class="footer">
+      Script: <code>scripts/run_cleaning_audit.py</code>
+    </div>
+  </div>
+</body>
+</html>
