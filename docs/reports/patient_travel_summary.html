@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detección de viajes 7.3</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 980px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 32px 40px; }
+  h1 { color: #0f172a; }
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: left; }
+  th { background: #d1fae5; }
+  .note { background: #dcfce7; border-left: 4px solid #22c55e; padding: 16px; border-radius: 6px; }
+  .footer { margin-top: 24px; text-align: right; color: #555; }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pacientes viajando entre ciudades</h1>
+    <p class="note">Identificamos pacientes cuya residencia difiere de la ciudad de la cita, lo que sugiere telemedicina o brigadas móviles.</p>
+    <p><strong>Total detectados:</strong> 0</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Paciente</th>
+          <th>Residencia</th>
+          <th>Ciudades visitadas</th>
+          <th>Conteo ciudades</th>
+          <th>Severidad</th>
+          <th>Fechas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan='6' style='text-align:center;'>No se detectaron traslados entre ciudades.</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Generado desde <code>scripts/run_patient_travel.py</code>
+    </div>
+  </div>
+</body>
+</html>
