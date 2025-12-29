@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte caso de uso 2.2</title>
+  <style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
+  .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
+  h1 { color: #1565c0; }
+  h2 { color: #2e7d32; margin-top: 32px; }
+  h3 { color: #7b1fa2; margin-top: 24px; }
+  .note { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 16px 20px; margin: 18px 0; border-radius: 7px; }
+  .note ul { list-style: disc inside; margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 3px; line-height: 1.35; }
+  .note p { margin: 0 0 6px 0; line-height: 1.5; }
+  .footer { text-align: right; color: #888; font-size: 1em; margin-top: 40px; }
+  .tag { background: #e3f2fd; color: #1565c0; border-radius: 4px; padding: 3px 8px; margin-left: 6px; font-size: 0.95em; }
+  dt { color: #2e7d32; font-weight: bold; margin-top: 10px; }
+  dd { margin-bottom: 10px; }
+  .params table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .params th, .params td { border: 1px solid #ccc; padding: 6px; }
+  .important { background: #fffde7; border-left: 4px solid #fbc02d; padding: 12px 18px; margin: 18px 0; border-radius: 5px; }
+  .sideEffects ul, .solid ul { margin: 0; padding-left: 20px; }
+  @media (max-width: 600px) { .container { padding: 16px 8px; } }
+  /* Code block styling */
+  pre { background: #f6f8fa; padding: 14px; border-radius: 8px; overflow: auto; font-size: 0.92em; }
+  code { font-family: Consolas, 'Courier New', monospace; }
+  .row { display:flex; gap:20px; flex-wrap:wrap; }
+  .col { flex:1 1 420px; }
+  /* Small visual helpers */
+  .endpoint { border: 1px solid #e0e0e0; padding: 12px 14px; border-radius: 8px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+  .json { white-space: pre; font-family: Consolas, 'Courier New', monospace; font-size: 0.95em; }
+  .success { color: #2e7d32; font-weight: 600; }
+  .error { color: #c62828; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Alertas de citas incompletas</h1>
+    <div class="note">
+      <p>Se generan alertas automáticas cuando falta <strong>fecha_cita</strong> o <strong>médico</strong>. El equipo de operaciones debe validar manualmente estos registros.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>id_cita</th>
+          <th>id_paciente</th>
+          <th>especialidad</th>
+          <th>sin fecha</th>
+          <th>sin médico</th>
+          <th>nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>760b31a6-c470-4bf3-add1-878703b403ba</td><td>1</td><td>Cardiología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>2f38fd84-4db6-48d5-989d-8c7e4a34dcaa</td><td>2</td><td>Neurología</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>fc660b15-69c7-4de9-a860-9c73c1174350</td><td>2</td><td>Ginecología</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>1cf4b240-0f86-47a1-bab1-53568b25d786</td><td>3</td><td>Cardiología</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>b22ff34b-7976-4610-a64a-aac85511c4e4</td><td>4</td><td>Ginecología</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>a6f50bf0-f4ca-4bba-8b2e-42d67485773c</td><td>5</td><td>—</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>a8d38c42-b714-4f29-8b60-4afad0a20e35</td><td>5</td><td>—</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>6d6187ef-f4f1-4636-a473-9c896a2e49eb</td><td>5</td><td>Ginecología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>48c37b6f-3b8d-4a0f-83bb-9ca029480376</td><td>6</td><td>Ginecología</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>5ea4825e-e7b3-4515-8900-07d1a419837d</td><td>6</td><td>Neurología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>38416d65-90dd-4d07-9b3f-ddf294c166f8</td><td>8</td><td>—</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>d9831883-ac52-4691-8ee5-97fa2f3fd307</td><td>11</td><td>Cardiología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>901e5c62-3486-42b5-85b0-65f4d0d33610</td><td>12</td><td>—</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>2202d310-6183-4400-b359-2b41cdba6f9f</td><td>12</td><td>Ginecología</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>87d0e7f6-5949-46c6-88a8-78dc1f24ac38</td><td>13</td><td>Pediatría</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>6e56b979-1bf8-4422-8ff9-6b7d8ef94291</td><td>14</td><td>—</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>9e18c765-669f-460f-92d7-f0536ee13682</td><td>15</td><td>Pediatría</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>a3986cc8-f4d0-452e-8b7b-1f8b74fecab4</td><td>16</td><td>Ortopedia</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>e6047dac-0329-471a-a72f-b68ca2748ee0</td><td>17</td><td>Neurología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>7fe682c1-e2b6-4e34-a680-78f54f103309</td><td>18</td><td>—</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>1e0f7701-0aed-42d5-a081-4844f2657863</td><td>18</td><td>Neurología</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>b9fb8eee-9bc5-4718-a48e-a1adffa6d16e</td><td>19</td><td>Ginecología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>73feba1e-eeb6-49e5-a224-6c0f39dfa609</td><td>19</td><td>Neurología</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>0d3dffa0-7691-4d40-bf84-0e87c6879ba6</td><td>19</td><td>Neurología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>844f3909-4175-400b-8823-567697c4f554</td><td>20</td><td>Cardiología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>0dcf52d9-5762-40dd-b075-918683adc375</td><td>20</td><td>Neurología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>daa658a4-37ab-4824-869a-f7d279502d69</td><td>22</td><td>Ortopedia</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>3a0a4640-d6bf-4020-bf70-3085bd9a412e</td><td>24</td><td>Ginecología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>eff73ceb-caf4-4fca-8304-2af0a9bb0356</td><td>25</td><td>Neurología</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>71ccf319-82cf-4d60-b6ee-bca497fa2a56</td><td>26</td><td>Cardiología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>d3c242c3-5f88-44cb-89fc-43ba9f34f640</td><td>27</td><td>Pediatría</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>ff944b56-b22b-4253-abe0-734ca57e5579</td><td>31</td><td>Ortopedia</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>d3f834d3-24f1-436c-b9f9-4b2192b46107</td><td>34</td><td>Cardiología</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>084b7530-d105-49be-af9b-81d50fa2c9e8</td><td>35</td><td>—</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>584846f6-2edc-46fb-a269-229d193033e4</td><td>35</td><td>Ginecología</td><td>sí</td><td>sí</td><td>Alerta automática: fecha_cita ausente y médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>93910278-3af0-432e-be2f-5902b267e7bf</td><td>36</td><td>—</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>1fbc9db5-6aa5-4315-9fbe-6115382974dd</td><td>36</td><td>—</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>d33d7996-7097-4023-92cf-26c512bc51f5</td><td>37</td><td>Ortopedia</td><td>sí</td><td>no</td><td>Alerta automática: fecha_cita ausente. Validar manualmente.</td></tr>
+<tr><td>5d743232-fed1-4579-848b-804595b8755a</td><td>37</td><td>—</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+<tr><td>b3185c57-6386-4664-838a-887debc3ff7a</td><td>38</td><td>Cardiología</td><td>no</td><td>sí</td><td>Alerta automática: médico sin asignar. Validar manualmente.</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      Reporte generado desde <code>scripts/run_appointment_alerts.py</code>.
+    </div>
+  </div>
+</body>
+</html>
