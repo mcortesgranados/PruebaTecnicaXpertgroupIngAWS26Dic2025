@@ -1,0 +1,307 @@
+{
+  "generated_at": "2025-12-28T12:05:41.221164",
+  "threshold": 0.75,
+  "cancellation_threshold": 0.2,
+  "entries": [
+    {
+      "doctor": "Dr. Juan Valdez",
+      "specialty": "Ginecología",
+      "completed": 62,
+      "scheduled": 325,
+      "utilization_rate": 0.191,
+      "cancellation_rate": 0.545,
+      "deviation": -0.559,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "specialty": "Ortopedia",
+      "completed": 64,
+      "scheduled": 305,
+      "utilization_rate": 0.21,
+      "cancellation_rate": 0.531,
+      "deviation": -0.54,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "specialty": "General",
+      "completed": 71,
+      "scheduled": 330,
+      "utilization_rate": 0.215,
+      "cancellation_rate": 0.555,
+      "deviation": -0.535,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "specialty": "Cardiología",
+      "completed": 74,
+      "scheduled": 341,
+      "utilization_rate": 0.217,
+      "cancellation_rate": 0.501,
+      "deviation": -0.533,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "specialty": "Neurología",
+      "completed": 72,
+      "scheduled": 329,
+      "utilization_rate": 0.219,
+      "cancellation_rate": 0.529,
+      "deviation": -0.531,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Sin Médico",
+      "specialty": "Ortopedia",
+      "completed": 79,
+      "scheduled": 356,
+      "utilization_rate": 0.222,
+      "cancellation_rate": 0.489,
+      "deviation": -0.528,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "specialty": "Ginecología",
+      "completed": 80,
+      "scheduled": 358,
+      "utilization_rate": 0.223,
+      "cancellation_rate": 0.497,
+      "deviation": -0.527,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "specialty": "Pediatría",
+      "completed": 75,
+      "scheduled": 334,
+      "utilization_rate": 0.225,
+      "cancellation_rate": 0.524,
+      "deviation": -0.525,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "specialty": "Ortopedia",
+      "completed": 81,
+      "scheduled": 354,
+      "utilization_rate": 0.229,
+      "cancellation_rate": 0.489,
+      "deviation": -0.521,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Sin Médico",
+      "specialty": "General",
+      "completed": 74,
+      "scheduled": 320,
+      "utilization_rate": 0.231,
+      "cancellation_rate": 0.531,
+      "deviation": -0.519,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "specialty": "Cardiología",
+      "completed": 78,
+      "scheduled": 332,
+      "utilization_rate": 0.235,
+      "cancellation_rate": 0.488,
+      "deviation": -0.515,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "specialty": "Pediatría",
+      "completed": 77,
+      "scheduled": 327,
+      "utilization_rate": 0.235,
+      "cancellation_rate": 0.517,
+      "deviation": -0.515,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "specialty": "General",
+      "completed": 73,
+      "scheduled": 309,
+      "utilization_rate": 0.236,
+      "cancellation_rate": 0.524,
+      "deviation": -0.514,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Sin Médico",
+      "specialty": "Neurología",
+      "completed": 81,
+      "scheduled": 341,
+      "utilization_rate": 0.238,
+      "cancellation_rate": 0.496,
+      "deviation": -0.512,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Sin Médico",
+      "specialty": "Cardiología",
+      "completed": 81,
+      "scheduled": 340,
+      "utilization_rate": 0.238,
+      "cancellation_rate": 0.521,
+      "deviation": -0.512,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "specialty": "Cardiología",
+      "completed": 76,
+      "scheduled": 318,
+      "utilization_rate": 0.239,
+      "cancellation_rate": 0.491,
+      "deviation": -0.511,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "specialty": "Pediatría",
+      "completed": 75,
+      "scheduled": 313,
+      "utilization_rate": 0.24,
+      "cancellation_rate": 0.495,
+      "deviation": -0.51,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "specialty": "Ortopedia",
+      "completed": 77,
+      "scheduled": 321,
+      "utilization_rate": 0.24,
+      "cancellation_rate": 0.495,
+      "deviation": -0.51,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Camilo Rojas",
+      "specialty": "Ginecología",
+      "completed": 79,
+      "scheduled": 326,
+      "utilization_rate": 0.242,
+      "cancellation_rate": 0.518,
+      "deviation": -0.508,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Sin Médico",
+      "specialty": "Pediatría",
+      "completed": 80,
+      "scheduled": 322,
+      "utilization_rate": 0.248,
+      "cancellation_rate": 0.506,
+      "deviation": -0.502,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "specialty": "Neurología",
+      "completed": 86,
+      "scheduled": 345,
+      "utilization_rate": 0.249,
+      "cancellation_rate": 0.475,
+      "deviation": -0.501,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "specialty": "Pediatría",
+      "completed": 86,
+      "scheduled": 342,
+      "utilization_rate": 0.251,
+      "cancellation_rate": 0.515,
+      "deviation": -0.499,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "specialty": "Cardiología",
+      "completed": 79,
+      "scheduled": 304,
+      "utilization_rate": 0.26,
+      "cancellation_rate": 0.539,
+      "deviation": -0.49,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "specialty": "Ginecología",
+      "completed": 81,
+      "scheduled": 311,
+      "utilization_rate": 0.26,
+      "cancellation_rate": 0.492,
+      "deviation": -0.49,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "specialty": "General",
+      "completed": 94,
+      "scheduled": 358,
+      "utilization_rate": 0.263,
+      "cancellation_rate": 0.5,
+      "deviation": -0.487,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Andrés Murcia",
+      "specialty": "General",
+      "completed": 95,
+      "scheduled": 356,
+      "utilization_rate": 0.267,
+      "cancellation_rate": 0.489,
+      "deviation": -0.483,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "specialty": "Ortopedia",
+      "completed": 87,
+      "scheduled": 325,
+      "utilization_rate": 0.268,
+      "cancellation_rate": 0.449,
+      "deviation": -0.482,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dra. Lina Torres",
+      "specialty": "Neurología",
+      "completed": 99,
+      "scheduled": 364,
+      "utilization_rate": 0.272,
+      "cancellation_rate": 0.481,
+      "deviation": -0.478,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Sin Médico",
+      "specialty": "Ginecología",
+      "completed": 97,
+      "scheduled": 354,
+      "utilization_rate": 0.274,
+      "cancellation_rate": 0.466,
+      "deviation": -0.476,
+      "status": "high_cancellations"
+    },
+    {
+      "doctor": "Dr. Juan Valdez",
+      "specialty": "Neurología",
+      "completed": 83,
+      "scheduled": 301,
+      "utilization_rate": 0.276,
+      "cancellation_rate": 0.495,
+      "deviation": -0.474,
+      "status": "high_cancellations"
+    }
+  ]
+}
