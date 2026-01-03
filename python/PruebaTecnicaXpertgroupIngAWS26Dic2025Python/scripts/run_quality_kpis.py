@@ -1,4 +1,11 @@
-"""Script para ejecutar casos de uso 4.1 (KPIs de calidad)."""
+"""
+Script para ejecutar casos de uso 4.1 (KPIs de calidad).
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core models define domain types separately from this script; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -21,6 +28,13 @@ DEFAULT_HTML = Path("reports/quality_kpis_summary.html")
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     patient_repo = JsonPatientRepository(DEFAULT_DATASET)
     appointment_repo = JsonAppointmentRepository(DEFAULT_DATASET)
     service = QualityKpiService(patient_repo, appointment_repo)
@@ -38,6 +52,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     table_sections = []
     chart_configs = []
     for table in report.tables:
@@ -152,6 +171,11 @@ def build_html(report) -> str:
 
 
 def build_row(before: FieldQualityMetric, after: FieldQualityMetric) -> str:
+    """
+    Builds a single HTML table row for KPI entries, keeping row rendering
+    separate from calculations (Single Responsibility).
+    """
+
     return f"""
 <tr>
   <td>{before.field}</td>
