@@ -1,4 +1,11 @@
-"""Script para caso 5.3: dashboards de ocupación por ciudad y especialidad."""
+"""
+Script para caso 5.3: dashboards de ocupación por ciudad y especialidad.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -20,6 +27,13 @@ SUMMARY_HTML = REPORT_DIR / "occupancy_dashboard_summary.html"
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     patient_repo = JsonPatientRepository(DATASET)
     appointment_repo = JsonAppointmentRepository(DATASET)
     service = OccupancyDashboardService(patient_repo, appointment_repo)
@@ -36,6 +50,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     entries = report.entries[:10]
     label_status = ["Completadas", "Canceladas", "Reprogramadas"]
     status_totals = {
