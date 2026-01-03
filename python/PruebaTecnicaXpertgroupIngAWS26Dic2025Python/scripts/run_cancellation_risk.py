@@ -1,4 +1,11 @@
-"""Script para el caso 5.2: modelo heurístico de probabilidad de cancelación."""
+"""
+Script para el caso 5.2: modelo heurístico de probabilidad de cancelación.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `datetime` for cutoff or event dates; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -20,6 +27,13 @@ SUMMARY_HTML = REPORT_DIR / "cancellation_risk_summary.html"
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     repo = JsonAppointmentRepository(DATASET)
     report = CancellationRiskService(repo).analyze()
 
@@ -34,6 +48,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     entries = report.entries
     chart_labels = json.dumps([entry.id_cita for entry in entries[:10]])
     chart_values = json.dumps([round(entry.risk_score, 3) for entry in entries[:10]])

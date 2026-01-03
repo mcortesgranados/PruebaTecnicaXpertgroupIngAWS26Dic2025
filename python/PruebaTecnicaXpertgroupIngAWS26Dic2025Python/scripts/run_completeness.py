@@ -1,4 +1,11 @@
-"""Script principal para ejecutar el caso de uso 1.1."""
+"""
+Script principal para ejecutar el caso de uso 1.1.
+Utiliza `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; imputer adapters to enrich missing values before analysis; ingestion adapters to isolate data-loading concerns; persistence adapters to emit audit logs or metrics; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import sys
 from pathlib import Path
@@ -13,6 +20,13 @@ from src.core.services import CompletenessService
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     dataset_path = Path("dataset_hospital 2 AWS.json")
     reporter_path = Path("reports/completeness_metrics.json")
 
@@ -44,6 +58,11 @@ def main() -> None:
 
 
 def build_html(metrics, plans):
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     style = """  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafbfc; color: #23272f; margin: 0; padding: 0; }
   .container { max-width: 950px; margin: 40px auto; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border-radius: 10px; padding: 32px 40px; }
   h1 { color: #1565c0; }

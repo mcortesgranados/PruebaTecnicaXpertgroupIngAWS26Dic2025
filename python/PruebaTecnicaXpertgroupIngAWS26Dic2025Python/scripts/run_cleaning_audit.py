@@ -1,4 +1,11 @@
-"""Script para caso 4.3: registrar responsables y auditoría de limpiezas."""
+"""
+Script para caso 4.3: registrar responsables y auditoría de limpiezas.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; core models define domain types separately from this script; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -68,6 +75,13 @@ SAMPLE_CHANGES = [
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     service = CleaningAuditService(RESPONSIBILITIES)
     report = service.register_changes(SAMPLE_CHANGES)
 
@@ -84,6 +98,11 @@ def main() -> None:
 
 
 def build_html(report, responsibilities) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     resp_map = {(r.table, r.field): r for r in responsibilities}
     rows = "\n".join(
         "<tr>"

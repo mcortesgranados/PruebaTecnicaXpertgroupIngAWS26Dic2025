@@ -1,4 +1,11 @@
-"""Script para documentar reglas de negocio clave (caso 4.2)."""
+"""
+Script para documentar reglas de negocio clave (caso 4.2).
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -17,6 +24,13 @@ DEFAULT_HTML = Path("reports/business_rules_catalog.html")
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     service = BusinessRulesCatalogService()
     catalog = service.define_catalog()
 
@@ -32,6 +46,11 @@ def main() -> None:
 
 
 def build_html(catalog) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     rows = "\n".join(
         "<div class=\"rule\">"
         f"<h3>{rule.title}</h3>"

@@ -1,4 +1,11 @@
-"""Script para el caso de uso 2.4: historial de estados de citas."""
+"""
+Script para el caso de uso 2.4: historial de estados de citas.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -19,6 +26,13 @@ DEFAULT_HTML = Path("reports/appointment_state_timeline_summary.html")
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     repository = JsonAppointmentRepository(DEFAULT_DATASET)
     service = AppointmentStateTimelineService(repository)
     report = service.analyze()
@@ -37,6 +51,11 @@ def main() -> None:
 
 
 def build_html_report(report) -> str:
+    """
+    Composes the HTML summary/report string, keeping presentation logic
+    separate from business logic (Single Responsibility).
+    """
+
     entry_rows = "\n".join(
         "<tr>"
         f"<td>{entry.id_cita}</td>"
