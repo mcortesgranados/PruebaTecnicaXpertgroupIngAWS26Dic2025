@@ -1,4 +1,11 @@
-"""Script para el caso 6.1: ETL completo hacia tablas limpias."""
+"""
+Script para el caso 6.1: ETL completo hacia tablas limpias.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `datetime` for cutoff or event dates; `pathlib.Path` for cross-platform filesystem paths; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -18,6 +25,11 @@ HTML_REPORT = REPORT_DIR / "etl" / "etl_summary.html"
 
 
 def build_html(summary: dict) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     orphan_preview = summary.get("orphans", [])[:10]
     orphan_rows = "\n".join(f"<li>{oid}</li>" for oid in orphan_preview) or "<li>Sin registros huérfanos.</li>"
     clean_dir = REPORT_DIR / "etl"
@@ -92,6 +104,13 @@ def build_html(summary: dict) -> str:
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     service = ETLPipelineService(DATASET, REPORT_DIR)
     summary = service.run()
     summary["generated_at"] = datetime.utcnow().isoformat()
