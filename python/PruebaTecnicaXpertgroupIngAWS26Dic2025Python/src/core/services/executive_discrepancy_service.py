@@ -1,4 +1,9 @@
-"""Servicio que compila reportes ejecutivos y simula envío a gobernanza."""
+"""
+Servicio que compila reportes ejecutivos y simula envío a gobernanza.
+Utiliza anotaciones diferidas para referencias de tipo; `json` para serializar y deserializar cargas JSON; `datetime` para calculos y validaciones de fechas; `pathlib.Path` para manejar rutas multiplataforma; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -11,6 +16,13 @@ from ..models import ExecutiveDiscrepancyEntry, ExecutiveDiscrepancyReport
 
 
 class ExecutiveDiscrepancyService:
+    """
+    Representa ejecutivo discrepancia servicio y mantiene Single
+    Responsibility para ese concepto del dominio, permitiendo extender el
+    comportamiento sin modificar su contrato (Open/Closed) y apoyandose en
+    abstracciones (Dependency Inversion).
+    """
+
     CHANNEL = "gobernanza@hospital.local"
     DEFINITION = [
         {
@@ -51,9 +63,21 @@ class ExecutiveDiscrepancyService:
     ]
 
     def __init__(self, report_dir: Path):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.report_dir = report_dir
 
     def compile(self) -> ExecutiveDiscrepancyReport:
+        """
+        Encapsula compile, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         entries: List[ExecutiveDiscrepancyEntry] = []
         for definition in self.DEFINITION:
             path = self.report_dir / definition["source"]
@@ -78,6 +102,12 @@ class ExecutiveDiscrepancyService:
 
     @staticmethod
     def _read_value(path: Path, path_expr: str) -> int:
+        """
+        Encapsula read value, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not path.exists():
             return 0
         try:

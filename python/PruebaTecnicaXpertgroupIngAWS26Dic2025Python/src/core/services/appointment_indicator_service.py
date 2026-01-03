@@ -1,4 +1,9 @@
-"""Servicio para medir indicadores de citas por especialidad, estado y médico."""
+"""
+Servicio para medir indicadores de citas por especialidad, estado y médico.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -15,10 +20,29 @@ from ..ports import AppointmentRepository
 
 
 class AppointmentIndicatorService:
+    """
+    Representa cita Indicator servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     def __init__(self, repository: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.repository = repository
 
     def measure_indicators(self) -> AppointmentIndicatorReport:
+        """
+        Encapsula measure indicadores, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         records = list(self.repository.list_appointments())
         daily_counts: Counter = Counter()
         weekly_counts: Counter = Counter()
@@ -48,6 +72,12 @@ class AppointmentIndicatorService:
         )
 
     def _compose_key(self, period: str, record: AppointmentRecord) -> Tuple[str, str, str, str]:
+        """
+        Encapsula compose key, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         return (
             period,
             self._safe(record.especialidad, "sin_especialidad"),
@@ -57,12 +87,24 @@ class AppointmentIndicatorService:
 
     @staticmethod
     def _safe(value: str | None, fallback: str) -> str:
+        """
+        Encapsula safe, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if value and isinstance(value, str) and value.strip():
             return value.strip()
         return fallback
 
     @staticmethod
     def _parse_date(value: str | None) -> datetime | None:
+        """
+        Encapsula parse date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         try:
@@ -73,6 +115,12 @@ class AppointmentIndicatorService:
     def _build_entries(
         self, period_type: str, counter: Counter
     ) -> Iterable[AppointmentIndicatorEntry]:
+        """
+        Encapsula build entries, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         entries = []
         for (period, especialidad, estado, medico), count in counter.items():
             entries.append(

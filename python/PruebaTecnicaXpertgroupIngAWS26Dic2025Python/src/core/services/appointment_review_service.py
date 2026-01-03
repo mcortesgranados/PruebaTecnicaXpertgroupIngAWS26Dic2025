@@ -1,4 +1,9 @@
-"""Servicio para revisar citas completadas/canceladas que carecen de datos críticos."""
+"""
+Servicio para revisar citas completadas/canceladas que carecen de datos críticos.
+Utiliza anotaciones diferidas para referencias de tipo; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -9,12 +14,31 @@ from ..ports import AppointmentRepository
 
 
 class AppointmentReviewService:
+    """
+    Representa cita revision servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     TARGET_STATES = {"Completada", "Cancelada"}
 
     def __init__(self, repository: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.repository = repository
 
     def review(self) -> AppointmentReviewReport:
+        """
+        Encapsula revision, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         records = list(self.repository.list_appointments())
         entries: List[AppointmentReviewEntry] = []
 
@@ -44,6 +68,12 @@ class AppointmentReviewService:
         )
 
     def _collect_issues(self, record: AppointmentRecord) -> List[str]:
+        """
+        Encapsula collect issues, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         issues = []
         if not record.fecha_cita or not record.fecha_cita.strip():
             issues.append("fecha_cita inválida o ausente")

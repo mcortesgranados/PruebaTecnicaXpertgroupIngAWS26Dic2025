@@ -1,3 +1,9 @@
+"""
+Modulo encargado de completitud servicio.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 from __future__ import annotations
 
 from collections import defaultdict
@@ -8,19 +14,44 @@ from ..ports import ImputationStrategy, PatientRepository
 
 
 class CompletenessService:
+    """
+    Representa completitud servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     FIELDS_TO_CHECK = ("email", "telefono", "ciudad")
 
     def __init__(self, repository: PatientRepository, imputer: ImputationStrategy):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.repository = repository
         self.imputer = imputer
 
     def evaluate(self) -> Tuple[List[CompletenessMetric], List[ImputationPlan]]:
+        """
+        Encapsula evaluate, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         records = list(self.repository.list_patients())
         metrics = [self._metric_for_field(records, field) for field in self.FIELDS_TO_CHECK]
         plan = self.imputer.suggest(records)
         return metrics, plan
 
     def _metric_for_field(self, records: Iterable[PatientRecord], field: str) -> CompletenessMetric:
+        """
+        Encapsula metric for field, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         total = 0
         missing = 0
         per_city = defaultdict(lambda: [0, 0])

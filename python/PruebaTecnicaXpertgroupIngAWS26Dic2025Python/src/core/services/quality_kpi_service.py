@@ -1,4 +1,9 @@
-"""Servicio para calcular KPIs de calidad antes y después de la limpieza."""
+"""
+Servicio para calcular KPIs de calidad antes y después de la limpieza.
+Utiliza anotaciones diferidas para referencias de tipo; `datetime` para calculos y validaciones de fechas; `statistics` para metricas agregadas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -17,6 +22,13 @@ from ..ports import AppointmentRepository, PatientRepository
 
 
 class QualityKpiService:
+    """
+    Representa calidad KPI servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     PATIENT_FIELDS = [
         ("nombre", None),
         ("fecha_nacimiento", "_is_valid_date"),
@@ -38,12 +50,24 @@ class QualityKpiService:
         patient_repo_after: Optional[PatientRepository] = None,
         appointment_repo_after: Optional[AppointmentRepository] = None,
     ):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.patient_repo_before = patient_repo_before
         self.appointment_repo_before = appointment_repo_before
         self.patient_repo_after = patient_repo_after or patient_repo_before
         self.appointment_repo_after = appointment_repo_after or appointment_repo_before
 
     def compute(self) -> QualityKpiReport:
+        """
+        Encapsula compute, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         patients_before = list(self.patient_repo_before.list_patients())
         appointments_before = list(self.appointment_repo_before.list_appointments())
         patients_after = list(self.patient_repo_after.list_patients())
@@ -78,6 +102,12 @@ class QualityKpiService:
     def _compute_metrics(
         self, records: Sequence, fields: Sequence, limit: Optional[int] = None
     ) -> List[FieldQualityMetric]:
+        """
+        Encapsula compute metrics, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         total = len(records)
         metrics: List[FieldQualityMetric] = []
         for field_name, checker in fields:
@@ -96,6 +126,12 @@ class QualityKpiService:
 
     @staticmethod
     def _completeness(records: Sequence, field: str) -> float:
+        """
+        Encapsula completitud, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not records:
             return 0.0
         filled = sum(
@@ -108,6 +144,12 @@ class QualityKpiService:
 
     @staticmethod
     def _uniqueness(records: Sequence, field: str) -> float:
+        """
+        Encapsula uniqueness, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not records:
             return 0.0
         values = [getattr(record, field, None) for record in records]
@@ -117,6 +159,12 @@ class QualityKpiService:
     def _format_validity(
         self, records: Sequence, checker: Optional[str], field: str
     ) -> float:
+        """
+        Encapsula format validity, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         if not checker:
             return 1.0
         check_fn = getattr(self, checker)
@@ -125,6 +173,12 @@ class QualityKpiService:
 
     @staticmethod
     def _is_valid_date(value: Optional[str]) -> bool:
+        """
+        Encapsula is valid date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return False
         try:
@@ -135,6 +189,12 @@ class QualityKpiService:
 
     @staticmethod
     def _is_valid_email(value: Optional[str]) -> bool:
+        """
+        Encapsula is valid email, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value or "@" not in value:
             return False
         return "." in value.split("@")[-1]

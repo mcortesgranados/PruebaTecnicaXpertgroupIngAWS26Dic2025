@@ -1,4 +1,9 @@
-"""Servicio que detecta pacientes viajando entre ciudades para planificar telemedicina."""
+"""
+Servicio que detecta pacientes viajando entre ciudades para planificar telemedicina.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -11,13 +16,32 @@ from ..ports import AppointmentRepository, PatientRepository
 
 
 class PatientTravelService:
+    """
+    Representa paciente viaje servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     MIN_TRAVEL_ALERTS = 1
 
     def __init__(self, patient_repo: PatientRepository, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.patient_repo = patient_repo
         self.appointment_repo = appointment_repo
 
     def analyze(self) -> PatientTravelReport:
+        """
+        Encapsula analyze, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         patients: Dict[int, PatientRecord] = {
             patient.id_paciente: patient for patient in self.patient_repo.list_patients()
             if patient.id_paciente is not None
@@ -68,12 +92,24 @@ class PatientTravelService:
 
     @staticmethod
     def _normalize_city(value: Optional[str]) -> str:
+        """
+        Encapsula normalize ciudad, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return ""
         return value.strip().title()
 
     @staticmethod
     def _friendly_date(value: Optional[str]) -> str:
+        """
+        Encapsula friendly date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return "Sin fecha"
         try:

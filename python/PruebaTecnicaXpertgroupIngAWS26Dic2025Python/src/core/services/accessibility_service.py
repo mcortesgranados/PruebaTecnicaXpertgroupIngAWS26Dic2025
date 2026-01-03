@@ -1,4 +1,9 @@
-"""Servicio que cruza citas por paciente con su ciudad de residencia para detectar viajes."""
+"""
+Servicio que cruza citas por paciente con su ciudad de residencia para detectar viajes.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `statistics` para metricas agregadas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -11,11 +16,30 @@ from ..ports import AppointmentRepository, PatientRepository
 
 
 class AccessibilityService:
+    """
+    Representa accesibilidad servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     def __init__(self, patient_repo: PatientRepository, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.patient_repo = patient_repo
         self.appointment_repo = appointment_repo
 
     def evaluate(self) -> AccessibilityReport:
+        """
+        Encapsula evaluate, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         patients = {p.id_paciente: p for p in self.patient_repo.list_patients()}
         appointments = list(self.appointment_repo.list_appointments())
         patient_cities: Dict[int, List[str]] = defaultdict(list)

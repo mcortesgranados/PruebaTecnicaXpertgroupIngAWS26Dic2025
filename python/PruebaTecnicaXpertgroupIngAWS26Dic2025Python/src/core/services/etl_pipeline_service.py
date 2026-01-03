@@ -1,4 +1,9 @@
-"""Servicio que ejecuta el pipeline ETL completo desde JSON hasta tablas limpias."""
+"""
+Servicio que ejecuta el pipeline ETL completo desde JSON hasta tablas limpias.
+Utiliza anotaciones diferidas para referencias de tipo; `json` para serializar y deserializar cargas JSON; `time` para marcadores de desempeno; `datetime` para calculos y validaciones de fechas; `pathlib.Path` para manejar rutas multiplataforma; `typing` para contratos explicitos; `pandas` para manipulacion tabular.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -12,11 +17,30 @@ import pandas as pd
 
 
 class ETLPipelineService:
+    """
+    Representa ETLPipeline servicio y mantiene Single Responsibility para
+    ese concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     def __init__(self, dataset_path: Path, report_dir: Path):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.dataset_path = dataset_path
         self.report_dir = report_dir
 
     def run(self) -> Dict[str, Any]:
+        """
+        Encapsula run, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         start_iso = datetime.utcnow().isoformat()
         start_clock = time.perf_counter()
 
@@ -40,6 +64,12 @@ class ETLPipelineService:
         return summary
 
     def extract(self) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+        """
+        Encapsula extract, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         with self.dataset_path.open(encoding="utf-8") as stream:
             payload = json.load(stream)
         patients = payload.get("pacientes", [])
@@ -51,6 +81,12 @@ class ETLPipelineService:
         patients: List[Dict[str, Any]],
         appointments: List[Dict[str, Any]],
     ) -> Tuple[pd.DataFrame, pd.DataFrame, Dict[str, Any]]:
+        """
+        Encapsula transform, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         patients_df = pd.DataFrame(patients)
         appointments_df = pd.DataFrame(appointments)
 
@@ -71,6 +107,12 @@ class ETLPipelineService:
         return patients_df, appointments_df, summary
 
     def load(self, patients_df: pd.DataFrame, appointments_df: pd.DataFrame) -> None:
+        """
+        Encapsula load, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         clean_dir = self.report_dir / "etl"
         clean_dir.mkdir(parents=True, exist_ok=True)
 
@@ -78,6 +120,12 @@ class ETLPipelineService:
         self._write_table(appointments_df, clean_dir / "citas_cleaned.csv", clean_dir / "citas_cleaned.parquet")
 
     def _write_table(self, df: pd.DataFrame, csv_path: Path, parquet_path: Path) -> None:
+        """
+        Encapsula write table, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         df.to_csv(csv_path, index=False, encoding="utf-8")
         try:
             df.to_parquet(parquet_path, index=False)
@@ -85,6 +133,12 @@ class ETLPipelineService:
             parquet_path.write_text("", encoding="utf-8")
 
     def _persist_metrics(self, summary: Dict[str, Any]) -> None:
+        """
+        Encapsula persist metrics, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         metrics_path = self.report_dir / "etl" / "etl_metrics.json"
         metrics_path.parent.mkdir(parents=True, exist_ok=True)
         existing: List[Dict[str, Any]] = []
@@ -105,6 +159,12 @@ class ETLPipelineService:
         metrics_path.write_text(json.dumps(existing, ensure_ascii=False, indent=2), encoding="utf-8")
 
     def _clean_patients(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Encapsula clean patients, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if df.empty:
             return df
         df = df.copy()
@@ -121,6 +181,12 @@ class ETLPipelineService:
         return df
 
     def _clean_appointments(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Encapsula clean appointments, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         if df.empty:
             return df
         df = df.copy()

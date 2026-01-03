@@ -1,4 +1,9 @@
-"""Servicio para estimar la probabilidad de cancelación basada en historial."""
+"""
+Servicio para estimar la probabilidad de cancelación basada en historial.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `math` para funciones numericas auxiliares; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -12,6 +17,13 @@ from ..ports import AppointmentRepository
 
 
 class CancellationRiskService:
+    """
+    Representa Cancellation Risk servicio y mantiene Single Responsibility
+    para ese concepto del dominio, permitiendo extender el comportamiento
+    sin modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     _specialty_weights: Dict[str, float] = {
         "pediatría": 0.4,
         "geriatría": 0.3,
@@ -22,9 +34,21 @@ class CancellationRiskService:
     _risk_threshold = 0.6
 
     def __init__(self, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.appointment_repo = appointment_repo
 
     def analyze(self) -> CancellationRiskReport:
+        """
+        Encapsula analyze, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         appointments = sorted(
             list(self.appointment_repo.list_appointments()),
             key=self._sort_key,
@@ -99,6 +123,12 @@ class CancellationRiskService:
         days_since_last: Optional[int],
         specialty: str,
     ) -> tuple[float, List[str]]:
+        """
+        Encapsula score cita, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         weight = -1.2
         factors: List[str] = []
 
@@ -129,6 +159,12 @@ class CancellationRiskService:
         return score, factors
 
     def _compute_days_between(self, previous: datetime, current_str: Optional[str]) -> Optional[int]:
+        """
+        Encapsula compute days between, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         current = self._parse_date(current_str)
         if not current or not previous:
             return None
@@ -137,10 +173,22 @@ class CancellationRiskService:
 
     @staticmethod
     def _sigmoid(value: float) -> float:
+        """
+        Encapsula sigmoid, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         return 1 / (1 + exp(-value))
 
     @staticmethod
     def _parse_date(value: Optional[str]) -> Optional[datetime]:
+        """
+        Encapsula parse date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         try:
@@ -150,11 +198,23 @@ class CancellationRiskService:
 
     @classmethod
     def _normalize_specialty(cls, specialty: Optional[str]) -> str:
+        """
+        Encapsula normalize specialty, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         if not specialty:
             return "General"
         return specialty.strip().lower()
 
     def _sort_key(self, appointment) -> tuple:
+        """
+        Encapsula sort key, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         date = self._parse_date(appointment.fecha_cita) or datetime.min
         pid = appointment.id_paciente if appointment.id_paciente is not None else -1
         return (pid, date)

@@ -1,3 +1,8 @@
+"""
+Modulo encargado de servicios.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 from .age_consistency_service import AgeConsistencyService
 from .appointment_alert_service import AppointmentAlertService
 from .appointment_cost_audit_service import AppointmentCostAuditService

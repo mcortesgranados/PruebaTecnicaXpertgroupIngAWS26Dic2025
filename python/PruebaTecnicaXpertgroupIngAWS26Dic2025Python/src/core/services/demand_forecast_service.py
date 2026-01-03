@@ -1,4 +1,9 @@
-"""Servicio para simular escenarios de demanda futura y brechas de capacidad."""
+"""
+Servicio para simular escenarios de demanda futura y brechas de capacidad.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `math` para funciones numericas auxiliares; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -12,13 +17,32 @@ from ..ports import AppointmentRepository
 
 
 class DemandForecastService:
+    """
+    Representa demanda pronostico servicio y mantiene Single Responsibility
+    para ese concepto del dominio, permitiendo extender el comportamiento
+    sin modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     MONTHS_AHEAD = 3
     BASE_CAPACITY = 15
 
     def __init__(self, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.appointment_repo = appointment_repo
 
     def forecast(self) -> DemandForecastReport:
+        """
+        Encapsula pronostico, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         monthly_totals: Dict[str, int] = defaultdict(int)
         doctor_month: Dict[Tuple[str, str], int] = defaultdict(int)
         doctor_specialty: Dict[str, str] = {}
@@ -80,6 +104,12 @@ class DemandForecastService:
 
     @staticmethod
     def _parse_date(value: Optional[str]) -> Optional[datetime]:
+        """
+        Encapsula parse date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         try:
@@ -89,10 +119,22 @@ class DemandForecastService:
 
     @staticmethod
     def _format_month(value: datetime) -> str:
+        """
+        Encapsula format month, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         return f"{value.year}-{value.month:02d}"
 
     @staticmethod
     def _build_future_months(last_month: str, count: int) -> List[str]:
+        """
+        Encapsula build future months, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         year, month = map(int, last_month.split("-"))
         months: List[str] = []
         for _ in range(count):
@@ -104,6 +146,12 @@ class DemandForecastService:
         return months
 
     def _compute_avg_growth(self, months: List[str], totals: Dict[str, int]) -> float:
+        """
+        Encapsula compute avg growth, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         rates: List[float] = []
         for previous, current in zip(months, months[1:]):
             prev_value = totals.get(previous, 0)

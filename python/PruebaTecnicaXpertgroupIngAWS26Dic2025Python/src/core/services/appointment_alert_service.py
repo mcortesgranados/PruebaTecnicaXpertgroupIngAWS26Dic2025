@@ -1,4 +1,9 @@
-"""Servicio que detecta citas sin información crítica y genera alertas."""
+"""
+Servicio que detecta citas sin información crítica y genera alertas.
+Utiliza anotaciones diferidas para referencias de tipo; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -9,10 +14,29 @@ from ..ports import AppointmentRepository
 
 
 class AppointmentAlertService:
+    """
+    Representa cita Alert servicio y mantiene Single Responsibility para ese
+    concepto del dominio, permitiendo extender el comportamiento sin
+    modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     def __init__(self, repository: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.repository = repository
 
     def scan_alerts(self) -> AppointmentAlertReport:
+        """
+        Encapsula scan alertas, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         records = list(self.repository.list_appointments())
         entries: List[AppointmentAlertEntry] = []
 

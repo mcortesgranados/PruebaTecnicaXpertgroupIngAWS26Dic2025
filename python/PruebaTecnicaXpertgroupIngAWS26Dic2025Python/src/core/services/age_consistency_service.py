@@ -1,4 +1,9 @@
-"""Servicio que evalúa la consistencia entre <code>fecha_nacimiento</code> y <code>edad</code>."""
+"""
+Servicio que evalúa la consistencia entre <code>fecha_nacimiento</code> y <code>edad</code>.
+Utiliza anotaciones diferidas para referencias de tipo; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -10,10 +15,29 @@ from ..ports import PatientRepository
 
 
 class AgeConsistencyService:
+    """
+    Representa Age Consistency servicio y mantiene Single Responsibility
+    para ese concepto del dominio, permitiendo extender el comportamiento
+    sin modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     def __init__(self, repository: PatientRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.repository = repository
 
     def audit_ages(self, cutoff_date: date) -> AgeConsistencyReport:
+        """
+        Encapsula auditoria ages, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         records = list(self.repository.list_patients())
         log_entries: List[AgeCorrectionLogEntry] = []
         inconsistencies = 0
@@ -94,6 +118,12 @@ class AgeConsistencyService:
 
     @staticmethod
     def _parse_birthdate(value: Optional[str]) -> Optional[date]:
+        """
+        Encapsula parse birthdate, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         try:
@@ -103,6 +133,12 @@ class AgeConsistencyService:
 
     @staticmethod
     def _calculate_age(birth_date: date, cutoff_date: date) -> int:
+        """
+        Encapsula calculate age, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         years = cutoff_date.year - birth_date.year
         if (cutoff_date.month, cutoff_date.day) < (birth_date.month, birth_date.day):
             years -= 1

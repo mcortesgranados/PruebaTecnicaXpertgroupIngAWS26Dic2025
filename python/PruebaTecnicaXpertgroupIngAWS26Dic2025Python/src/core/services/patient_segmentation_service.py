@@ -1,4 +1,9 @@
-"""Servicio para generar segmentos de pacientes por edad, sexo y frecuencia de citas."""
+"""
+Servicio para generar segmentos de pacientes por edad, sexo y frecuencia de citas.
+Utiliza anotaciones diferidas para referencias de tipo; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -10,6 +15,13 @@ from ..ports import AppointmentRepository, PatientRepository
 
 
 class PatientSegmentationService:
+    """
+    Representa paciente segmentacion servicio y mantiene Single
+    Responsibility para ese concepto del dominio, permitiendo extender el
+    comportamiento sin modificar su contrato (Open/Closed) y apoyandose en
+    abstracciones (Dependency Inversion).
+    """
+
     AGE_BUCKETS = [
         ("0-17 (Niños)", 0, 17),
         ("18-34 (Adultos jóvenes)", 18, 34),
@@ -18,10 +30,22 @@ class PatientSegmentationService:
     ]
 
     def __init__(self, patient_repo: PatientRepository, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.patient_repo = patient_repo
         self.appointment_repo = appointment_repo
 
     def segment(self) -> PatientSegmentationReport:
+        """
+        Encapsula segment, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         appointment_counts = self._count_appointments()
         buckets: Dict[tuple[str, str, str], int] = {}
         total_patients = 0
@@ -53,6 +77,12 @@ class PatientSegmentationService:
         )
 
     def _count_appointments(self) -> Dict[int, int]:
+        """
+        Encapsula count appointments, manteniendo Single Responsibility y
+        dejando el contrato abierto para nuevas versiones (Open/Closed) mientras
+        depende de abstracciones (Dependency Inversion).
+        """
+
         counts: Dict[int, int] = {}
         for appointment in self.appointment_repo.list_appointments():
             if appointment.id_paciente is None:
@@ -61,6 +91,12 @@ class PatientSegmentationService:
         return counts
 
     def _calculate_age(self, patient) -> Optional[int]:
+        """
+        Encapsula calculate age, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if isinstance(patient.edad, int):
             return patient.edad
         if patient.fecha_nacimiento:
@@ -76,6 +112,12 @@ class PatientSegmentationService:
         return None
 
     def _label_age_segment(self, age: Optional[int]) -> str:
+        """
+        Encapsula label age segment, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         if age is None:
             return "Edad desconocida"
         for label, minimum, maximum in self.AGE_BUCKETS:
@@ -84,6 +126,12 @@ class PatientSegmentationService:
         return "Edad adulta"
 
     def _normalize_sex(self, sexo: Optional[str]) -> str:
+        """
+        Encapsula normalize sex, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not sexo:
             return "No declarado"
         cleaned = sexo.strip().lower()
@@ -94,6 +142,12 @@ class PatientSegmentationService:
         return sexo.strip().title()
 
     def _frequency_bucket(self, count: int) -> str:
+        """
+        Encapsula frequency bucket, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         if count == 0:
             return "Sin citas registradas"
         if count <= 2:

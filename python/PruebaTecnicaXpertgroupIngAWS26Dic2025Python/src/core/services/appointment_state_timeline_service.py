@@ -1,4 +1,9 @@
-"""Servicio para consolidar histórico de estados y reprogramaciones."""
+"""
+Servicio para consolidar histórico de estados y reprogramaciones.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -16,10 +21,29 @@ from ..ports import AppointmentRepository
 
 
 class AppointmentStateTimelineService:
+    """
+    Representa cita estado linea de tiempo servicio y mantiene Single
+    Responsibility para ese concepto del dominio, permitiendo extender el
+    comportamiento sin modificar su contrato (Open/Closed) y apoyandose en
+    abstracciones (Dependency Inversion).
+    """
+
     def __init__(self, repository: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.repository = repository
 
     def analyze(self) -> AppointmentStateTimelineReport:
+        """
+        Encapsula analyze, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         records = list(self.repository.list_appointments())
         grouped = self._group_by_id(records)
         entries: List[AppointmentStateHistoryEntry] = []
@@ -84,6 +108,12 @@ class AppointmentStateTimelineService:
 
     @staticmethod
     def _group_by_id(records: Iterable[AppointmentRecord]) -> Dict[str, List[AppointmentRecord]]:
+        """
+        Encapsula group by id, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         grouped: Dict[str, List[AppointmentRecord]] = defaultdict(list)
         for record in records:
             grouped[record.id_cita].append(record)
@@ -91,12 +121,24 @@ class AppointmentStateTimelineService:
 
     @staticmethod
     def _sort_key(record: AppointmentRecord) -> Tuple[datetime, int]:
+        """
+        Encapsula sort key, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         parsed = AppointmentStateTimelineService._parse_date(record.fecha_cita)
         sort_date = parsed or datetime.min
         return sort_date, hash(record.id_cita)
 
     @staticmethod
     def _parse_date(value: str | None) -> datetime | None:
+        """
+        Encapsula parse date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         try:
@@ -106,6 +148,12 @@ class AppointmentStateTimelineService:
 
     @staticmethod
     def _normalize_doctor(value: str | None) -> str | None:
+        """
+        Encapsula normalize medico, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         normalized = " ".join(value.split())

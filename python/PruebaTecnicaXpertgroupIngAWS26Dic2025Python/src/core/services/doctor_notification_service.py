@@ -1,4 +1,9 @@
-"""Servicio que alerta médicos sobre pacientes con patrones sospechosos."""
+"""
+Servicio que alerta médicos sobre pacientes con patrones sospechosos.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -11,14 +16,33 @@ from ..ports import AppointmentRepository, PatientRepository
 
 
 class DoctorNotificationService:
+    """
+    Representa medico notificacion servicio y mantiene Single Responsibility
+    para ese concepto del dominio, permitiendo extender el comportamiento
+    sin modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     RECENT_WINDOW_DAYS = 7
     CANCEL_THRESHOLD = 2
 
     def __init__(self, patient_repo: PatientRepository, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.patient_repo = patient_repo
         self.appointment_repo = appointment_repo
 
     def analyze(self) -> DoctorNotificationReport:
+        """
+        Encapsula analyze, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         patients = {p.id_paciente: p for p in self.patient_repo.list_patients()}
         grouped: Dict[tuple[str, Optional[int]], List] = defaultdict(list)
 
@@ -55,6 +79,12 @@ class DoctorNotificationService:
         )
 
     def _detect_patterns(self, appointments) -> List[str]:
+        """
+        Encapsula detect patterns, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         patterns: List[str] = []
         cancels = 0
         prev_date: Optional[datetime] = None
@@ -78,6 +108,12 @@ class DoctorNotificationService:
 
     @staticmethod
     def _parse_date(value: Optional[str]) -> Optional[datetime]:
+        """
+        Encapsula parse date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         if not value:
             return None
         try:
@@ -87,5 +123,11 @@ class DoctorNotificationService:
 
     @staticmethod
     def _format_date(value: Optional[str]) -> Optional[str]:
+        """
+        Encapsula format date, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         parsed = DoctorNotificationService._parse_date(value)
         return parsed.strftime("%Y-%m-%d") if parsed else None

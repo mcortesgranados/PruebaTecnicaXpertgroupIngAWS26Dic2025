@@ -1,4 +1,9 @@
-"""Servicio para monitorear compliance de agenda por médico y especialidad."""
+"""
+Servicio para monitorear compliance de agenda por médico y especialidad.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -11,13 +16,32 @@ from ..ports import AppointmentRepository
 
 
 class DoctorUtilizationService:
+    """
+    Representa medico utilizacion servicio y mantiene Single Responsibility
+    para ese concepto del dominio, permitiendo extender el comportamiento
+    sin modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     UTILIZATION_THRESHOLD = 0.75
     CANCELLATION_THRESHOLD = 0.2
 
     def __init__(self, appointment_repo: AppointmentRepository):
+        """
+        Encapsula init, manteniendo Single Responsibility y dejando el contrato
+        abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         self.appointment_repo = appointment_repo
 
     def analyze(self) -> DoctorUtilizationReport:
+        """
+        Encapsula analyze, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         counts: Dict[Tuple[str, str], Dict[str, int]] = defaultdict(
             lambda: {"completed": 0, "cancelled": 0, "reprogrammed": 0, "scheduled": 0}
         )

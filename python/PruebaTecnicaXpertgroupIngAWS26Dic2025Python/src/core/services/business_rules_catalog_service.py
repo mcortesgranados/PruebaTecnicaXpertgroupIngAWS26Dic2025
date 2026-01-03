@@ -1,4 +1,9 @@
-"""Servicio que documenta reglas de negocio clave."""
+"""
+Servicio que documenta reglas de negocio clave.
+Utiliza anotaciones diferidas para referencias de tipo; `datetime` para calculos y validaciones de fechas; `typing` para contratos explicitos.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 
 from __future__ import annotations
 
@@ -9,7 +14,20 @@ from ..models import BusinessRule, BusinessRulesCatalog
 
 
 class BusinessRulesCatalogService:
+    """
+    Representa negocio reglas catalogo servicio y mantiene Single
+    Responsibility para ese concepto del dominio, permitiendo extender el
+    comportamiento sin modificar su contrato (Open/Closed) y apoyandose en
+    abstracciones (Dependency Inversion).
+    """
+
     def define_catalog(self) -> BusinessRulesCatalog:
+        """
+        Encapsula define catalogo, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         rules = [
             BusinessRule(
                 id="rule-estado",
