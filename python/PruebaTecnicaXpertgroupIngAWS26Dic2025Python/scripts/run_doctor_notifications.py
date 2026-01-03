@@ -1,4 +1,11 @@
-"""Script para alertar médicos sobre patrones críticos (caso 7.4)."""
+"""
+Script para alertar médicos sobre patrones críticos (caso 7.4).
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -20,6 +27,13 @@ SUMMARY_HTML = REPORT_DIR / "doctor_notifications_summary.html"
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     patient_repo = JsonPatientRepository(DATASET)
     appointment_repo = JsonAppointmentRepository(DATASET)
     service = DoctorNotificationService(patient_repo, appointment_repo)
@@ -36,6 +50,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     rows = "\n".join(
         "<tr>"
         f"<td>{entry.doctor}</td>"

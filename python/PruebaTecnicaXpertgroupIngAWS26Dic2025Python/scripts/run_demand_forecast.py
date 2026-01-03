@@ -1,4 +1,11 @@
-"""Script para caso 5.4: escenarios de demanda futura y brechas de capacidad."""
+"""
+Script para caso 5.4: escenarios de demanda futura y brechas de capacidad.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -19,6 +26,13 @@ SUMMARY_HTML = REPORT_DIR / "demand_forecast_summary.html"
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     repo = JsonAppointmentRepository(DATASET)
     report = DemandForecastService(repo).forecast()
 
@@ -33,6 +47,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     entries = report.entries[:12]
     month_labels = json.dumps(report.future_months)
     predicted_series = json.dumps(
