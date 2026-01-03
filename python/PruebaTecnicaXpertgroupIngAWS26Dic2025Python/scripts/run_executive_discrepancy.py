@@ -1,4 +1,11 @@
-"""Script para el caso 4.4: reportes ejecutivos y envío simulado a gobernanza."""
+"""
+Script para el caso 4.4: reportes ejecutivos y envío simulado a gobernanza.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `datetime` for cutoff or event dates; `pathlib.Path` for cross-platform filesystem paths; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -19,6 +26,13 @@ DEFAULT_HTML = REPORT_DIR / "executive_discrepancies_summary.html"
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     service = ExecutiveDiscrepancyService(REPORT_DIR)
     report = service.compile()
@@ -33,6 +47,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     entries = report.entries
     chart_labels = json.dumps([entry.category for entry in entries])
     chart_values = json.dumps([entry.count for entry in entries])
@@ -189,6 +208,11 @@ def build_html(report) -> str:
 
 
 def _severity_to_color(severity: str) -> str:
+    """
+    Maps severity levels to CSS colors so formatting decisions stay isolated
+    (Single Responsibility).
+    """
+
     mapping = {
         "high": "#c62828",
         "medium": "#f9a826",
@@ -198,6 +222,11 @@ def _severity_to_color(severity: str) -> str:
 
 
 def _normalize_severity(severity: str) -> str:
+    """
+    Normalizes severity labels so the rest of the pipeline can trust
+    consistent representations (Single Responsibility).
+    """
+
     return severity.lower() if severity else "low"
 
 
