@@ -1,4 +1,11 @@
-"""Script para el caso de uso 3.3."""
+"""
+Script para el caso de uso 3.3.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -20,6 +27,13 @@ DEFAULT_HTML = Path("reports/age_specialty_mismatch_summary.html")
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     appointment_repo = JsonAppointmentRepository(DEFAULT_DATASET)
     patient_repo = JsonPatientRepository(DEFAULT_DATASET)
     service = AgeSpecialtyMismatchService(appointment_repo, patient_repo)
@@ -39,6 +53,11 @@ def main() -> None:
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     rows = "\n".join(
         "<tr>"
         f"<td>{entry.id_cita}</td>"
