@@ -1,4 +1,11 @@
-"""Script principal para ejecutar el caso de uso 1.2."""
+"""
+Script principal para ejecutar el caso de uso 1.2.
+Utiliza `argparse` for parsing CLI options; `json` for serializing reports and logs; `sys` for runtime path wiring; `datetime` for cutoff or event dates; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import argparse
 import json
@@ -19,6 +26,11 @@ DEFAULT_HTML_REPORT = Path("reports/age_consistency_summary.html")
 
 
 def build_parser() -> argparse.ArgumentParser:
+    """
+    Builds the argparse parser so CLI parsing stays isolated (Single
+    Responsibility) and open for future options.
+    """
+
     parser = argparse.ArgumentParser(description="Ejecuta el caso de uso 1.2 sobre el dataset hospitalario.")
     parser.add_argument(
         "--cutoff-date",
@@ -42,6 +54,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _parse_cutoff_date(value: str) -> date:
+    """
+    Parses ISO 8601 cutoff dates, keeping validation isolated for callers to
+    rely on accurate date objects (Single Responsibility).
+    """
+
     try:
         return datetime.fromisoformat(value).date()
     except ValueError as exc:
@@ -49,6 +66,13 @@ def _parse_cutoff_date(value: str) -> date:
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     parser = build_parser()
     args = parser.parse_args()
 
@@ -71,6 +95,11 @@ def main() -> None:
 def _print_summary(
     report: "AgeConsistencyReport", log_path: Path, html_path: Path
 ) -> None:
+    """
+    Prints the report summary to the console to keep CLI output separate
+    from business rules (Single Responsibility).
+    """
+
     print("Caso de uso 1.2: detección de inconsistencias entre edad y fecha de nacimiento")
     print(f"- Registros procesados: {report.total_records}")
     print(f"- Inconsistencias detectadas: {report.inconsistencies}")
@@ -81,6 +110,11 @@ def _print_summary(
 
 
 def build_html_report(report: "AgeConsistencyReport") -> str:
+    """
+    Composes the HTML summary/report string, keeping presentation logic
+    separate from business logic (Single Responsibility).
+    """
+
     entries = report.log_entries[:20]
     rows = "\n".join(
         "<tr>"
