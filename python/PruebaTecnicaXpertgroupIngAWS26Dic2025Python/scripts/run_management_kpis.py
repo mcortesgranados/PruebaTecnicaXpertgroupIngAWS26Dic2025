@@ -1,4 +1,11 @@
-"""Script para caso 7.4: reportes ejecutivos con KPIs de espera y costo."""
+"""
+Script para caso 7.4: reportes ejecutivos con KPIs de espera y costo.
+Utiliza `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import json
 import sys
@@ -19,6 +26,11 @@ SUMMARY_HTML = REPORT_DIR / "management_kpis_summary.html"
 
 
 def build_html(report) -> str:
+    """
+    Composes the HTML summary string, keeping presentation logic isolated
+    and easy to extend (Single Responsibility).
+    """
+
     rows = "\n".join(
         "<tr>"
         f"<td>{entry.specialty}</td>"
@@ -76,6 +88,13 @@ def build_html(report) -> str:
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     service = ManagementKpiService(JsonAppointmentRepository(DATASET))
     report = service.report()
 
