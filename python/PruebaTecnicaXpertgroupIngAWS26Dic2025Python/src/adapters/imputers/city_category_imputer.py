@@ -1,3 +1,9 @@
+"""
+Modulo encargado de ciudad categoria imputador.
+Utiliza anotaciones diferidas para referencias de tipo; `collections` para contadores y agrupaciones; `typing` para contratos explicitos; modelos del dominio ubicados en `src.core.models`; puertos que definen interfaces para el nucleo del negocio.
+Este modulo sigue SOLID: Single Responsibility mantiene el enfoque, Open/Closed deja la puerta abierta y Dependency Inversion depende de abstracciones en lugar de detalles.
+"""
+
 from __future__ import annotations
 
 from collections import defaultdict
@@ -8,9 +14,22 @@ from ...core.ports import ImputationStrategy
 
 
 class CityCategoryImputer(ImputationStrategy):
+    """
+    Representa ciudad categoria imputador y mantiene Single Responsibility
+    para ese concepto del dominio, permitiendo extender el comportamiento
+    sin modificar su contrato (Open/Closed) y apoyandose en abstracciones
+    (Dependency Inversion).
+    """
+
     MISSING_THRESHOLD = 0.15
 
     def suggest(self, records: Iterable[PatientRecord]) -> List[ImputationPlan]:
+        """
+        Encapsula suggest, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         records = list(records)
         field_stats = {field: self._compute_ratios(records, field) for field in ("email", "telefono", "ciudad")}
         return [
@@ -20,6 +39,12 @@ class CityCategoryImputer(ImputationStrategy):
         ]
 
     def _compute_ratios(self, records: List[PatientRecord], field: str):
+        """
+        Encapsula compute ratios, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         stats = defaultdict(lambda: [0, 0])
         for record in records:
             city = record.ciudad or "sin_ciudad"
@@ -33,6 +58,12 @@ class CityCategoryImputer(ImputationStrategy):
         }
 
     def _plan_for_email(self, stats) -> ImputationPlan:
+        """
+        Encapsula plan for email, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         candidates = sorted(stats.items(), key=lambda item: item[1][2], reverse=True)
         city, (_, _, ratio) = candidates[0]
         strategy = (
@@ -47,6 +78,12 @@ class CityCategoryImputer(ImputationStrategy):
         return ImputationPlan(field="email", strategy=strategy, rationale=rationale)
 
     def _plan_for_phone(self, stats) -> ImputationPlan:
+        """
+        Encapsula plan for phone, manteniendo Single Responsibility y dejando el
+        contrato abierto para nuevas versiones (Open/Closed) mientras depende de
+        abstracciones (Dependency Inversion).
+        """
+
         candidates = sorted(stats.items(), key=lambda item: item[1][2], reverse=True)
         city, (_, _, ratio) = candidates[0]
         strategy = (
@@ -59,6 +96,12 @@ class CityCategoryImputer(ImputationStrategy):
         return ImputationPlan(field="telefono", strategy=strategy, rationale=rationale)
 
     def _plan_for_city(self, stats, records: List[PatientRecord]) -> ImputationPlan:
+        """
+        Encapsula plan for ciudad, manteniendo Single Responsibility y dejando
+        el contrato abierto para nuevas versiones (Open/Closed) mientras depende
+        de abstracciones (Dependency Inversion).
+        """
+
         category_missing = defaultdict(lambda: [0, 0])
         for record in records:
             category_missing[record.categoria][0] += 1
