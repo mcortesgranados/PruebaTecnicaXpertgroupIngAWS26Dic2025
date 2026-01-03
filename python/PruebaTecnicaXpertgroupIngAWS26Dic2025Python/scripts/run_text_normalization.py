@@ -1,4 +1,11 @@
-"""Script principal para ejecutar el caso de uso 1.4."""
+"""
+Script principal para ejecutar el caso de uso 1.4.
+Utiliza `argparse` for parsing CLI options; `json` for serializing reports and logs; `sys` for runtime path wiring; `pathlib.Path` for cross-platform filesystem paths; ingestion adapters to isolate data-loading concerns; core services implement business rules while respecting Dependency Inversion.
+Este modulo sigue SOLID: Single Responsibility keeps orchestration focused, Open/Closed lets new services plug in, y Dependency Inversion depends on abstractions instead of concrete implementations.
+"""
+
+
+
 
 import argparse
 import json
@@ -20,6 +27,11 @@ DEFAULT_HTML_REPORT = Path("reports/text_normalization_summary.html")
 
 
 def build_parser() -> argparse.ArgumentParser:
+    """
+    Builds the argparse parser so CLI parsing stays isolated (Single
+    Responsibility) and open for future options.
+    """
+
     parser = argparse.ArgumentParser(description="Ejecuta la normalización de texto en el dataset.")
     parser.add_argument(
         "--dataset-path",
@@ -43,6 +55,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
+    """
+    Coordinates data ingestion adapters, the appropriate domain service, and
+    reporting steps so the orchestrator maintains a single responsibility
+    while remaining open to new services and depending on abstractions
+    (Dependency Inversion).
+    """
+
     parser = build_parser()
     args = parser.parse_args()
 
@@ -70,6 +89,11 @@ def main() -> None:
 
 
 def build_html_report(report: "TextNormalizationReport") -> str:
+    """
+    Composes the HTML summary/report string, keeping presentation logic
+    separate from business logic (Single Responsibility).
+    """
+
     entries = report.log_entries[:20]
     rows = "\n".join(
         "<tr>"
