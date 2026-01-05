@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hospital Project Interview FAQ</title>
+<style>
+body { font-family: 'Segoe UI', Arial, sans-serif; margin: 2rem; line-height: 1.5; }
+header { margin-bottom: 2rem; }
+section { margin-top: 2rem; }
+article { margin-bottom: 1.5rem; }
+h3 { margin-bottom: 0.3rem; }
+h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+code { background: #f8f8f8; padding: 0.1rem 0.3rem; border-radius: 3px; }
+</style>
+</head>
+<body>
+<header>
+<h1>Hospital Project Interview FAQ</h1>
+<p>This page collects 120 targeted questions and answers distilled from the Python implementation under python/PruebaTecnicaXpertgroupIngAWS26Dic2025Python to help you review behavior before a technical interview.</p>
+</header>
+<section id="domain-and-models">
+<h2>Domain &amp; Models</h2>
+<article>
+<h3>Q1: What fields does <code>PatientRecord</code> capture and how does it infer <code>categoria</code>?</h3>
+<p>The dataclass in <code>src/core/models.py</code> stores <code>id_paciente</code>, <code>nombre</code>, <code>fecha_nacimiento</code>, <code>edad</code>, <code>sexo</code>, <code>email</code>, <code>telefono</code>, <code>ciudad</code>, and <code>categoria</code>; <code>PatientRecord.from_dict</code> calls <code>categorize_patient_age</code> to compute <code>categoria</code> from the provided age or birthdate.</p>
+</article>
+<article>
+<h3>Q2: Which values does <code>PatientCategory</code> expose and when does code pick <code>UNKNOWN</code>?</h3>
+<p>The enum lists <code>CHILD</code>, <code>ADULT</code>, <code>SENIOR</code>, and <code>UNKNOWN</code>; <code>categorize_patient_age</code> returns <code>UNKNOWN</code> when neither an integer age nor a parsable <code>fecha_nacimiento</code> is present.</p>
+</article>
+<article>
+<h3>Q3: What strategy does <code>categorize_patient_age</code> apply when given an age versus a birthdate?</h3>
+<p>If <code>edad</code> is an <code>int</code> it delegates to <code>categorize_by_value</code>; otherwise it tries to parse ISO-formatted <code>fecha_nacimiento</code>, calculates the difference versus the current UTC year, and defaults to <code>UNKNOWN</code> when parsing fails.</p>
+</article>
+<article>
+<h3>Q4: How does <code>categorize_by_value</code> bucket ages?</h3>
+<p>Values below 18 map to <code>CHILD</code>, values below 65 map to <code>ADULT</code>, and all others become <code>SENIOR</code>.</p>
+</article>
+<article>
+<h3>Q5: What metrics does <code>CompletenessMetric</code> track for each field?</h3>
+<p>It records the <code>field</code>, the <code>total</code> and <code>missing</code> counters, the <code>completeness</code> ratio, and dictionaries <code>per_city_missing</code> and <code>per_category_missing</code> so stakeholders can see percentages per city and per patient category.</p>
+</article>
+<article>
+<h3>Q6: What information does <code>ImputationPlan</code> describe?</h3>
+<p>The dataclass bundles a target <code>field</code>, the chosen <code>strategy</code>, and a <code>rationale</code> string describing the recommended fix for missing data.</p>
+</article>
+<article>
+<h3>Q7: What does <code>AgeCorrectionLogEntry</code> record for inconsistencies?</h3>
+<p>Each entry logs <code>id_paciente</code>, <code>nombre</code>, <code>fecha_nacimiento</code>, the registered and calculated ages, an <code>action</code> such as <code>inconsistent_age</code> or <code>imputed_age</code>, and a descriptive <code>note</code>.</p>
+</article>
+<article>
+<h3>Q8: How does <code>AppointmentRecord.from_dict</code> normalize the <code>ciudad</code> value?</h3>
+<p>It prefers <code>ciudad</code> and falls back to <code>ciudad_cita</code> so each appointment retains a city even when only the appointment location is supplied.</p>
+</article>
+<article>
+<h3>Q9: Which bucket metadata does <code>AppointmentIndicatorEntry</code> expose?</h3>
+<p>The entry captures <code>period_type</code>, <code>period_value</code>, <code>especialidad</code>, <code>estado_cita</code>, <code>medico</code>, and the aggregated <code>count</code>.</p>
+</article>
+<article>
+<h3>Q10: What summary elements live inside <code>CostAuditReport</code>?</h3>
+<p>The report stores <code>total_records</code>, <code>analyzed_records</code>, a list of <code>summaries</code> (SpecialtyCostSummary) with averages and deviations, and a list of <code>anomalies</code> (CostAnomalyEntry).</p>
+</article>
+<article>
+<h3>Q11: What does <code>PatientTravelEntry</code> log for each traveler?</h3>
+<p>It records <code>id_paciente</code>, <code>nombre</code>, <code>residence</code>, the <code>travel_cities</code> set, <code>travel_count</code>, the computed <code>severity</code>, and <code>last_travel_dates</code>.</p>
+</article>
+<article>
+<h3>Q12: How is the business rule catalog modeled?</h3>
+<p>A <code>BusinessRule</code> provides an <code>id</code>, <code>title</code>, <code>description</code>, and flexible <code>details</code>; <code>BusinessRulesCatalog</code> aggregates those rules with a <code>created_at</code> timestamp.</p>
+</article>
+</section>
+<section id="repositories-and-etl">
+<h2>Repositories &amp; ETL</h2>
+<article>
+<h3>Q13: What abstract operations do <code>PatientRepository</code> and <code>AppointmentRepository</code> export?</h3>
+<p>Each port defines a single abstract method, <code>list_patients</code> or <code>list_appointments</code>, so the core services depend on interfaces instead of concrete adapters.</p>
+</article>
+<article>
+<h3>Q14: How do the JSON repositories load records from disk?</h3>
+<p>They open the dataset path, parse JSON, fetch the <code>pacientes</code> or <code>citas_medicas</code> array, and yield domain objects through <code>PatientRecord.from_dict</code> or <code>AppointmentRecord.from_dict</code>.</p>
+</article>
+<article>
+<h3>Q15: Which dataset file does <code>backend/app.py</code> point to by default?</h3>
+<p>The module sets <code>DATASET</code> to <code>BASE_PATH</code> / "dataset_hospital 2 AWS.json", so every service call uses that JSON file unless it is replaced.</p>
+</article>
+<article>
+<h3>Q16: What steps does <code>ETLPipelineService.run()</code> perform?</h3>
+<p>It records a start timestamp, calls <code>extract</code>, <code>transform</code>, and <code>load</code>, enriches the summary with patient and appointment counts plus start/end/duration, persists metrics, and returns that summary dictionary.</p>
+</article>
+<article>
+<h3>Q17: How does <code>transform</code> handle orphan appointments?</h3>
+<p>After cleaning both dataframes, it applies a mask to drop rows whose <code>id_paciente</code> is not in the cleaned patient frame and notes the dropped <code>id_cita</code>s as orphans.</p>
+</article>
+<article>
+<h3>Q18: Where are the cleaned tables written?</h3>
+<p>The <code>load</code> step writes <code>pacientes_cleaned.csv</code>/<code>.parquet</code> and <code>citas_cleaned.csv</code>/<code>.parquet</code> under <code>reports/etl</code>.</p>
+</article>
+<article>
+<h3>Q19: What happens if parquet support is unavailable?</h3>
+<p>The helper catches <code>ImportError</code> from <code>df.to_parquet</code> and writes an empty UTF-8 placeholder so the CSV still documents the table.</p>
+</article>
+<article>
+<h3>Q20: How does <code>_persist_metrics</code> keep track of ETL runs?</h3>
+<p>It appends an entry to <code>reports/etl/etl_metrics.json</code> with start/end times, duration, exported counts, and orphan total, creating the file when it does not exist.</p>
+</article>
+<article>
+<h3>Q21: How does the backend derive dataset and report directories?</h3>
+<p>It computes <code>BASE_PATH</code> as two levels above <code>app.py</code> and defines <code>REPORT_DIR</code> and <code>SCRIPTS_DIR</code> relative to that root.</p>
+</article>
+<article>
+<h3>Q22: How are automatable scripts discovered for the API?</h3>
+<p>The loader looks for <code>scripts/run_*.py</code>, reads each docstring, normalizes the key, and registers descriptors used by the <code>/scripts</code> endpoints.</p>
+</article>
+</section>
+<section id="accessibilityservice">
+<h2>AccessibilityService</h2>
+<article>
+<h3>Q23: What is the main goal of <code>AccessibilityService.evaluate()</code>?</h3>
+<p>It cross compares appointment counts per patient with their residence city to surface patients whose volume significantly exceeds local peers.</p>
+</article>
+<article>
+<h3>Q24: How does it detect deviation from city averages?</h3>
+<p>The service builds overall and city-specific counts, computes mean and pstdev, and flags counts that exceed the city mean plus twice the city standard deviation or the global average plus global standard deviation when city data is sparse.</p>
+</article>
+<article>
+<h3>Q25: What fields does <code>AccessibilityReport</code> publish?</h3>
+<p>It emits <code>total_pacientes</code>, <code>flagged</code>, and the <code>entries</code> list of <code>AccessibilityEntry</code> objects sorted by travel volume.</p>
+</article>
+<article>
+<h3>Q26: Under what condition does a patient entry become flagged?</h3>
+<p>When their appointment count is above the city threshold and the city has enough data, or when the overall standard deviation is positive and their count exceeds overall average plus standard deviation.</p>
+</article>
+</section>
+<section id="ageconsistencyservice">
+<h2>AgeConsistencyService</h2>
+<article>
+<h3>Q27: What does <code>AgeConsistencyService.audit_ages()</code> report?</h3>
+<p>It builds an <code>AgeConsistencyReport</code> with the cutoff date, total records, inconsistency count, imputations, missing birthdates, and log entries for each anomaly.</p>
+</article>
+<article>
+<h3>Q28: How are missing or malformed birthdates recorded?</h3>
+<p>Entries with blank <code>fecha_nacimiento</code> get action <code>missing_birthdate</code>, while parsable failures get <code>invalid_birthdate</code> along with notes explaining why.</p>
+</article>
+<article>
+<h3>Q29: What happens when a patient lacks <code>edad</code> but has a valid birthdate?</h3>
+<p>The service creates an <code>AgeCorrectionLogEntry</code> with action <code>imputed_age</code> and records the calculated value based on the cutoff date.</p>
+</article>
+<article>
+<h3>Q30: How does <code>_calculate_age</code> treat birthdays before the cutoff date?</h3>
+<p>It subtracts birth years, decrements by one if the cutoff month/day precedes the birthday, and never returns a negative value.</p>
+</article>
+</section>
+<section id="agespecialtymismatchservice">
+<h2>AgeSpecialtyMismatchService</h2>
+<article>
+<h3>Q31: Which specialty keywords use custom age bounds in <code>AgeSpecialtyMismatchService</code>?</h3>
+<p>The service defines ranges for keywords containing <code>pediatr</code> (0 to 17) and <code>geriatr</code> (65 to 150).</p>
+</article>
+<article>
+<h3>Q32: What range is used when the specialty lacks those keywords?</h3>
+<p>It falls back to the default range of 18 to 64.</p>
+</article>
+<article>
+<h3>Q33: How does it compute the appointment age when either value is missing?</h3>
+<p>It returns <code>None</code> if either <code>fecha_nacimiento</code> or <code>fecha_cita</code> is missing or malformed, using safe ISO parsing.</p>
+</article>
+<article>
+<h3>Q34: When does it append an <code>AgeSpecialtyMismatchEntry</code>?</h3>
+<p>When the calculated age sits below the expected minimum or above the expected maximum for the normalized specialty.</p>
+</article>
+</section>
+<section id="appointmentalertservice">
+<h2>AppointmentAlertService</h2>
+<article>
+<h3>Q35: What data conditions trigger an <code>AppointmentAlertEntry</code>?</h3>
+<p>The service flags appointments that lack a <code>fecha_cita</code> or that do not have an assigned <code>medico</code>.</p>
+</article>
+<article>
+<h3>Q36: How is the descriptive note constructed?</h3>
+<p>It collects missing pieces into <code>note_parts</code>, joins them with a conjunction, and prefixes the phrase so reviewers know which fields to validate.</p>
+</article>
+<article>
+<h3>Q37: What summary metrics does <code>AppointmentAlertReport</code> include?</h3>
+<p>Total input records, the number of alerts, and the detailed <code>entries</code> list.</p>
+</article>
+<article>
+<h3>Q38: Why are fully populated appointments skipped?</h3>
+<p>Because the loop continues whenever both <code>falta_fecha</code> and <code>falta_medico</code> are false, avoiding false positives.</p>
+</article>
+</section>
+<section id="appointmentcostauditservice">
+<h2>AppointmentCostAuditService</h2>
+<article>
+<h3>Q39: How are specialty cost statistics derived in <code>AppointmentCostAuditService.analyze()</code>?</h3>
+<p>Costs are grouped by normalized specialty, then mean and standard deviation are computed per group while also keeping a map of processed records.</p>
+</article>
+<article>
+<h3>Q40: What defines a cost anomaly?</h3>
+<p>A record is anomalous when its cost deviates from the specialty average by more than twice the specialty standard deviation computed without the current appointment.</p>
+</article>
+<article>
+<h3>Q41: What expected range do <code>SpecialtyCostSummary</code> entries expose?</h3>
+<p>The properties <code>expected_min</code> and <code>expected_max</code> subtract or add twice the standard deviation from the average.</p>
+</article>
+<article>
+<h3>Q42: What fallback does <code>_normalize_specialty</code> provide for blank values?</h3>
+<p>It returns the trimmed specialty string when present or <code>sin_especialidad</code> when the field is empty.</p>
+</article>
+</section>
+<section id="appointmentindicatorservice">
+<h2>AppointmentIndicatorService</h2>
+<article>
+<h3>Q43: Which periods does <code>measure_indicators</code> capture?</h3>
+<p>The method tallies counts for daily buckets and weekly buckets (ISO week), producing entries for both.</p>
+</article>
+<article>
+<h3>Q44: How is the missing-date counter computed?</h3>
+<p>Each appointment without a parseable <code>fecha_cita</code> increments <code>missing_dates</code>.</p>
+</article>
+<article>
+<h3>Q45: What does <code>AppointmentIndicatorReport</code> contain?</h3>
+<p>It reports <code>total_records</code>, <code>missing_date</code>, the combined <code>entries</code>, and the top five <code>bottlenecks</code>.</p>
+</article>
+<article>
+<h3>Q46: How does <code>_safe</code> sanitize values?</h3>
+<p>It strips strings, ensures they are not empty, and falls back to defaults such as <code>sin_especialidad</code> or <code>sin_medico</code>.</p>
+</article>
+</section>
+<section id="appointmentreviewservice">
+<h2>AppointmentReviewService</h2>
+<article>
+<h3>Q47: Which appointment statuses trigger review?</h3>
+<p>Only records whose <code>estado_cita</code> is <code>Completada</code> or <code>Cancelada</code> are processed.</p>
+</article>
+<article>
+<h3>Q48: What issues does <code>_collect_issues</code> detect?</h3>
+<p>It notes absent <code>fecha_cita</code> or missing <code>medico</code>, adding descriptive strings for the report.</p>
+</article>
+<article>
+<h3>Q49: What metrics appear in <code>AppointmentReviewReport</code>?</h3>
+<p>The report returns <code>total_citas</code>, <code>reviewed_citas</code>, and the <code>entries</code> list of problematic appointments.</p>
+</article>
+<article>
+<h3>Q50: Why are other statuses ignored?</h3>
+<p>The service focuses on completed and canceled visits for quality control, so it skips states outside the target set.</p>
+</article>
+</section>
+<section id="appointmentstatetimelineservice">
+<h2>AppointmentStateTimelineService</h2>
+<article>
+<h3>Q51: How does <code>AppointmentStateTimelineService</code> reconstruct state history?</h3>
+<p>It groups records by <code>id_cita</code>, sorts them by parsed dates, and builds ordered <code>transitions</code> lists.</p>
+</article>
+<article>
+<h3>Q52: What data drives the occupancy impact list?</h3>
+<p>Reprogramming events increment counters per doctor-week and track affected appointment IDs inside the <code>occupancy</code> dict.</p>
+</article>
+<article>
+<h3>Q53: When does the service consider an event a reprogramming?</h3>
+<p>Any status whose lowercase string starts with <code>reprogram</code> increments the reprogram counter and contributes to occupancy data.</p>
+</article>
+<article>
+<h3>Q54: What determines the final status in each entry?</h3>
+<p>It reads the last transition value (or defaults to <code>sin_estado</code>) after sorting all recorded states.</p>
+</article>
+</section>
+<section id="businessrulescatalogservice">
+<h2>BusinessRulesCatalogService</h2>
+<article>
+<h3>Q55: Which rules are documented in the catalog?</h3>
+<p>It describes valid appointment states, age ranges per specialty, email format, and phone format along with identifiers such as <code>rule-estado</code> and <code>rule-edad-especialidad</code>.</p>
+</article>
+<article>
+<h3>Q56: How is the creation time recorded?</h3>
+<p>The service uses <code>datetime.utcnow().isoformat()</code> for the catalog <code>created_at</code> field.</p>
+</article>
+<article>
+<h3>Q57: What pattern enforces email formatting?</h3>
+<p>The email rule stores the regex <code>^[^@\s]+@[^@\s]+\.[^@\s]+$</code> inside its details dictionary.</p>
+</article>
+<article>
+<h3>Q58: How can other components use this catalog?</h3>
+<p>They can read the documented states, ranges, and format expectations to align validation or governance checks with the expected contract.</p>
+</article>
+</section>
+<section id="cancellationriskservice">
+<h2>CancellationRiskService</h2>
+<article>
+<h3>Q59: What threshold marks a cancellation as high risk?</h3>
+<p>The service uses <code>_risk_threshold</code> equal to 0.6 so scores at or above that value are considered high risk.</p>
+</article>
+<article>
+<h3>Q60: Which signals increase the risk weight?</h3>
+<p>Previous cancellations or reprograms, short gaps between visits, current cancellation status, and the specialty weight from <code>_specialty_weights</code> each add to the weight while logging explanatory factors.</p>
+</article>
+<article>
+<h3>Q61: How is the weight turned into a probability score?</h3>
+<p>The helper <code>_sigmoid</code> applies 1 / (1 + exp(-weight)) so the final <code>risk_score</code> remains between zero and one.</p>
+</article>
+<article>
+<h3>Q62: How does <code>_compute_days_between</code> avoid negative values?</h3>
+<p>It parses the current ISO date, subtracts the previous datetime, and returns the non negative day difference with <code>max(delta.days, 0)</code>.</p>
+</article>
+</section>
+<section id="cleaningauditservice">
+<h2>CleaningAuditService</h2>
+<article>
+<h3>Q63: What metadata does <code>register_changes</code> expect per event?</h3>
+<p>Each event provides <code>table</code>, <code>field</code>, <code>action</code>, <code>user</code>, and optionally a <code>timestamp</code> and <code>note</code>.</p>
+</article>
+<article>
+<h3>Q64: How are owner and contact resolved?</h3>
+<p>The constructor indexes the provided <code>FieldResponsibility</code> objects so <code>register_changes</code> can look up the owner/contact pair for each table-field key.</p>
+</article>
+<article>
+<h3>Q65: What timestamp is recorded when none is supplied?</h3>
+<p>The code defaults to <code>datetime.utcnow().isoformat()</code> so every entry remains timestamped.</p>
+</article>
+<article>
+<h3>Q66: What does <code>CleaningAuditReport</code> wrap?</h3>
+<p>It returns a report with <code>generated_at</code> and the list of <code>CleaningAuditEntry</code> objects collected from the change events.</p>
+</article>
+</section>
+<section id="completenessservice">
+<h2>CompletenessService</h2>
+<article>
+<h3>Q67: Which fields does <code>CompletenessService</code> evaluate?</h3>
+<p>The service checks <code>email</code>, <code>telefono</code>, and <code>ciudad</code>.</p>
+</article>
+<article>
+<h3>Q68: How are per-city and per-category percentages computed?</h3>
+<p>Counters accumulate total and missing values per city and patient category, then the metric converts them into percentages inside <code>per_city_missing</code> and <code>per_category_missing</code>.</p>
+</article>
+<article>
+<h3>Q69: What role does <code>ImputationStrategy</code> play?</h3>
+<p>The service delegates to the supplied imputer with <code>suggest(records)</code>, letting custom implementations return <code>ImputationPlan</code> recommendations.</p>
+</article>
+<article>
+<h3>Q70: Why does <code>evaluate</code> return both metrics and the imputation plan?</h3>
+<p>The tuple gives observers a snapshot of current data quality and a prioritized list of fields to fix.</p>
+</article>
+</section>
+<section id="demandforecastservice">
+<h2>DemandForecastService</h2>
+<article>
+<h3>Q71: How far ahead does <code>DemandForecastService</code> project demand?</h3>
+<p>The constant <code>MONTHS_AHEAD</code> equals 3 so it builds projections for the next three months beyond the last observed month.</p>
+</article>
+<article>
+<h3>Q72: How is doctor capacity derived?</h3>
+<p>For each doctor, the service multiplies the last seen monthly count by 1.2, rounds to an integer, and trusts <code>BASE_CAPACITY</code> of 15 as the minimum.</p>
+</article>
+<article>
+<h3>Q73: How does <code>_compute_avg_growth</code> treat zero periods?</h3>
+<p>It skips any month pair where the prior count is zero and returns zero if no valid growth rates exist.</p>
+</article>
+<article>
+<h3>Q74: What extra metadata does <code>DemandForecastReport</code> provide?</h3>
+<p>Besides <code>entries</code> it includes <code>generated_at</code>, <code>avg_monthly_growth</code>, <code>months_ahead</code>, <code>future_months</code>, and <code>total_capacity</code>.</p>
+</article>
+</section>
+<section id="doctornotificationservice">
+<h2>DoctorNotificationService</h2>
+<article>
+<h3>Q75: What patient patterns generate doctor alerts?</h3>
+<p>The service looks for repeated appointments close in time (within seven days) or recurrent cancellations to build <code>patterns</code>.</p>
+</article>
+<article>
+<h3>Q76: How is severity assigned?</h3>
+<p>Entries with more than one detected pattern become <code>high</code> severity, while single-pattern alerts remain <code>medium</code>.</p>
+</article>
+<article>
+<h3>Q77: What strings appear inside <code>patterns</code>?</h3>
+<p>The helper returns phrases such as "Multiples citas en periodos cortos" and "Cancelaciones recurrentes".</p>
+</article>
+<article>
+<h3>Q78: How is the final report ordered?</h3>
+<p>It sorts the entries by the number of patterns in descending order before building <code>DoctorNotificationReport</code>.</p>
+</article>
+</section>
+<section id="doctorutilizationservice">
+<h2>DoctorUtilizationService</h2>
+<article>
+<h3>Q79: Which thresholds control the flags in <code>DoctorUtilizationService</code>?</h3>
+<p><code>UTILIZATION_THRESHOLD</code> is 0.75 and <code>CANCELLATION_THRESHOLD</code> is 0.2 to decide when utilization is low or cancellations are high.</p>
+</article>
+<article>
+<h3>Q80: How is utilization rate calculated?</h3>
+<p>It divides completed appointments by the total scheduled count per doctor-specialty pair.</p>
+</article>
+<article>
+<h3>Q81: When is an entry added to the report?</h3>
+<p>Any doctor-specialty whose utilization falls below 0.75 or whose cancellation rate (cancels plus reprograms over scheduled) exceeds 0.2 gets appended.</p>
+</article>
+<article>
+<h3>Q82: What does the <code>deviation</code> field measure?</h3>
+<p>It stores <code>utilization - UTILIZATION_THRESHOLD</code> so readers can see how far the rate is from the target.</p>
+</article>
+</section>
+<section id="duplicatedetectionservice">
+<h2>DuplicateDetectionService</h2>
+<article>
+<h3>Q83: What grouping criteria does <code>DuplicateDetectionService</code> apply?</h3>
+<p>It groups patients by normalized name plus birthdate and by normalized name plus city to detect potential duplicates.</p>
+</article>
+<article>
+<h3>Q84: How is the canonical record chosen?</h3>
+<p>It sorts each group by the completeness score (count of filled attributes) and keeps the record with the highest score and lowest id.</p>
+</article>
+<article>
+<h3>Q85: What totals does <code>DuplicateConsolidationReport</code> expose?</h3>
+<p>The report returns <code>total_records</code>, <code>total_groups</code>, <code>total_duplicates</code>, and the <code>log_entries</code>.</p>
+</article>
+<article>
+<h3>Q86: How does <code>_completeness_score</code> work?</h3>
+<p>It awards one point for each non empty value among <code>fecha_nacimiento</code>, <code>edad</code>, <code>sexo</code>, <code>email</code>, <code>telefono</code>, and <code>ciudad</code>.</p>
+</article>
+</section>
+<section id="executivediscrepancyservice">
+<h2>ExecutiveDiscrepancyService</h2>
+<article>
+<h3>Q87: Which files drive executive discrepancy entries?</h3>
+<p>The definition list references <code>referential_integrity_log.json</code>, <code>appointment_alerts_log.json</code>, <code>appointment_review_log.json</code>, <code>appointment_cost_audit_log.json</code>, and <code>reports/appointment_state_timeline_log.json</code>.</p>
+</article>
+<article>
+<h3>Q88: When does an entry appear in the report?</h3>
+<p>If <code>_read_value</code> returns one or more items the category is included with its count.</p>
+</article>
+<article>
+<h3>Q89: What channel receives the aggregated report?</h3>
+<p>The service sets <code>CHANNEL</code> to <code>gobernanza@hospital.local</code>.</p>
+</article>
+<article>
+<h3>Q90: How does <code>_read_value</code> navigate nested structures?</h3>
+<p>It splits the <code>path_expr</code> on dots, iterates through dicts or digit indexes for lists, and returns a numeric count or zero when navigation fails.</p>
+</article>
+</section>
+<section id="managementkpiservice">
+<h2>ManagementKpiService</h2>
+<article>
+<h3>Q91: Which KPIs does <code>ManagementKpiService</code> produce?</h3>
+<p>It returns the overall average cost and wait days plus <code>ManagementKpiEntry</code> rows per specialty with counts, average costs, and average waits.</p>
+</article>
+<article>
+<h3>Q92: How are wait times derived?</h3>
+<p>The service sorts each patient timeline by appointment date and subtracts consecutive dates in days to accumulate <code>global_waits</code> and specialty buckets.</p>
+</article>
+<article>
+<h3>Q93: How does <code>_normalize_specialty</code> sanitize labels?</h3>
+<p>It strips whitespace, title cases the value, and falls back to <code>General</code> when empty.</p>
+</article>
+<article>
+<h3>Q94: What filter ensures only completed visits influence costs?</h3>
+<p>Costs are added only when <code>estado_cita</code> trimmed and lowercased equals <code>completada</code> and the <code>costo</code> field is not null.</p>
+</article>
+</section>
+<section id="occupancydashboardservice">
+<h2>OccupancyDashboardService</h2>
+<article>
+<h3>Q95: Which statuses are normalized when summarizing occupancy?</h3>
+<p>The service maps <code>COMPLETED</code>, <code>CANCELED</code>, and <code>REPROGRAMMED</code> label sets to normalized buckets before counting.</p>
+</article>
+<article>
+<h3>Q96: How is the (city, specialty) key built?</h3>
+<p>It uses a map from patient id to normalized city and pairs it with the normalized specialty before incrementing the dictionary bucket.</p>
+</article>
+<article>
+<h3>Q97: What does each <code>CitySpecialtyOccupancy</code> entry contain?</h3>
+<p>It tracks the city, specialty, and counts for completed, canceled, and reprogrammed appointments that share the same buckets.</p>
+</article>
+<article>
+<h3>Q98: How is <code>total_appointments</code> computed?</h3>
+<p>The code increments the counter for each appointment whose status can be normalized into the predefined categories.</p>
+</article>
+</section>
+<section id="patientsegmentationservice">
+<h2>PatientSegmentationService</h2>
+<article>
+<h3>Q99: What age buckets define the <code>PatientSegmentationService</code>?</h3>
+<p>It uses ranges 0-17 (kids), 18-34 (young adults), 35-64 (adults), and 65+ (seniors).</p>
+</article>
+<article>
+<h3>Q100: How does it bucket appointment frequency?</h3>
+<p>Zero appointments become "Sin citas registradas", one to two appointments become "Frecuencia baja", three to four as "Frecuencia moderada", and five or more as "Frecuencia alta".</p>
+</article>
+<article>
+<h3>Q101: What does <code>PatientSegmentationReport</code> include?</h3>
+<p>It reports <code>generated_at</code>, the <code>total_patients</code>, and the sorted list of <code>PatientSegment</code> cohorts.</p>
+</article>
+<article>
+<h3>Q102: How does <code>_normalize_sex</code> label gender?</h3>
+<p>It maps variants of female to <code>Femenino</code>, male to <code>Masculino</code>, returns <code>No declarado</code> when missing, and title cases other values.</p>
+</article>
+</section>
+<section id="patienttravelservice">
+<h2>PatientTravelService</h2>
+<article>
+<h3>Q103: What travel patterns does <code>PatientTravelService</code> flag?</h3>
+<p>Patients whose appointment city differs from their residence are aggregated, and travelers must record more than one distinct city to be flagged.</p>
+</article>
+<article>
+<h3>Q104: How is severity determined for travel entries?</h3>
+<p>A <code>severity</code> of <code>high</code> requires more than one visited city, otherwise the severity is <code>medium</code>.</p>
+</article>
+<article>
+<h3>Q105: What summary does <code>PatientTravelReport</code> provide?</h3>
+<p>It lists <code>generated_at</code>, <code>total_travelers</code>, and the sorted travel entries.</p>
+</article>
+</section>
+<section id="referentialintegrityservice">
+<h2>ReferentialIntegrityService</h2>
+<article>
+<h3>Q106: Which appointment issues does <code>ReferentialIntegrityService</code> capture?</h3>
+<p>It logs appointments with missing <code>id_paciente</code> or whose <code>id_paciente</code> is absent from the patient repository.</p>
+</article>
+<article>
+<h3>Q107: What does each <code>ReferentialIntegrityEntry</code> store?</h3>
+<p>Each entry holds <code>id_cita</code>, the optional <code>id_paciente</code>, and a <code>motivo</code> string describing the problem.</p>
+</article>
+<article>
+<h3>Q108: What fields does <code>ReferentialIntegrityReport</code> provide?</h3>
+<p>It returns <code>total_citas</code>, <code>orphan_citas</code>, and the list of <code>entries</code>.</p>
+</article>
+</section>
+<section id="textnormalizationservice">
+<h2>TextNormalizationService</h2>
+<article>
+<h3>Q109: Which normalization steps does <code>TextNormalizationService</code> apply?</h3>
+<p>It strips whitespace, lowercases, and removes diacritics via <code>unicodedata</code> normalization to deliver the <code>NORMALIZATION_METHOD</code>.</p>
+</article>
+<article>
+<h3>Q110: Which fields are normalized per record?</h3>
+<p>It iterates over <code>nombre</code> and <code>ciudad</code>.</p>
+</article>
+<article>
+<h3>Q111: What does <code>TextNormalizationReport</code> include?</h3>
+<p>It returns <code>total_records</code>, a <code>normalized_fields</code> count, and the normalization <code>log_entries</code>.</p>
+</article>
+</section>
+<section id="qualitykpiservice">
+<h2>QualityKpiService</h2>
+<article>
+<h3>Q112: Which tables does <code>QualityKpiService</code> compare before and after cleaning?</h3>
+<p>It evaluates the <code>pacientes</code> table and the <code>citas_medicas</code> table, computing metrics for both the before and after repositories.</p>
+</article>
+<article>
+<h3>Q113: What metrics appear on each <code>FieldQualityMetric</code>?</h3>
+<p>Each metric reports <code>completeness</code>, <code>uniqueness</code>, and <code>format_valid</code> for the field.</p>
+</article>
+<article>
+<h3>Q114: How are format checkers configured per table?</h3>
+<p>The <code>PATIENT_FIELDS</code> list uses <code>_is_valid_date</code> and <code>_is_valid_email</code> where relevant, while <code>APPOINTMENT_FIELDS</code> requests <code>_is_valid_date</code> only for <code>fecha_cita</code>.</p>
+</article>
+</section>
+<section id="backend-api-and-scripts">
+<h2>Backend API &amp; Scripts</h2>
+<article>
+<h3>Q115: What does GET /reports return?</h3>
+<p>It lists all JSON report filenames under reports by reading REPORT_DIR.glob("*.json").</p>
+</article>
+<article>
+<h3>Q116: How are HTML reports delivered?</h3>
+<p>GET /reports/{name}/html returns a FileResponse streaming the corresponding HTML file after checking the path exists.</p>
+</article>
+<article>
+<h3>Q117: How does POST /run/{case} execute built-in services?</h3>
+<p>The endpoint calls _service_runner with the requested case, runs the selected service (doctor notifications, utilization, patient travel, management KPIs, or ETL), and returns the summary dictionary or report.to_dict().</p>
+</article>
+<article>
+<h3>Q118: What metadata does GET /scripts return?</h3>
+<p>It returns ScriptInfo objects for each discovered script, including the normalized key, module path, description, and relative path.</p>
+</article>
+<article>
+<h3>Q119: What validations does /dataset/upload perform?</h3>
+<p>It ensures the uploaded file has content type application/json and is not empty before overwriting the dataset file.</p>
+</article>
+<article>
+<h3>Q120: What does GET /health provide?</h3>
+<p>A JSON payload with status ok and the dataset path string so callers can confirm the API and dataset location.</p>
+</article>
+</section>
+</body>
+</html>
